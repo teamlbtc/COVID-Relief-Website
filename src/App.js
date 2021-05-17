@@ -15,7 +15,6 @@ import Widget from './Page/res/widget';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import qs from 'qs';
 import {axios} from './Page/res/axios';
-import { blue, green } from '@material-ui/core/colors';
 
 
 
@@ -33,6 +32,7 @@ function Main() {
   const [success, setSuccess] = useState("");
   const [nameR, setnameR] = useState("");
   const [nameError, setnameError] = useState("");
+  const [newuser, setNewUser] = useState(false);
   
 
   const submit =  (e) => {
@@ -99,8 +99,6 @@ function Main() {
             }
   })
 }
-
-  
 
   const clearInputs = () =>{
     setEmail("");
@@ -204,8 +202,9 @@ function Main() {
       {
         let e = document.getElementById("successm");
           e.style.opacity=1;
-          e.style.color= green
+          e.style.color= "var(--green)";
           setSuccess(result.data.data)
+          usercheck();
           setTimeout(()=>{
             setSuccess("");
             e.style.opacity=0;
@@ -223,7 +222,7 @@ function Main() {
                     e.style.opacity=0;
                 },10000);
         }
-        else if(result.data.error==="Password length should be more than 8 characters")
+        else if(result.data.error==="Password length should be more than 8 characters" || result.data.error==="Invalid Password")
         {
               let e = document.getElementById("errorppc");
               e.style.opacity=1;
@@ -247,6 +246,12 @@ function Main() {
     })
   }
 
+  const usercheck = () =>{
+    setNewUser(!newuser);
+    clearInputs();
+  }
+  
+
   return (
     <>
     <Router>
@@ -254,8 +259,12 @@ function Main() {
       <div className="header">
         <div className="title-container">
           <div className="title">COVID RELIEF</div>
-          <div>
-            <a href="https://forms.gle/FXoAnjJtufRcoDGJ9" target="_blank" rel="noopener noreferrer">Donate Plasma!</a>
+          <div className="donate-container">
+            <a 
+            href="https://forms.gle/FXoAnjJtufRcoDGJ9" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="donate-title">Donate Plasma Here!</a>
           </div>
         </div>
         <div className="navbar">
@@ -297,44 +306,65 @@ function Main() {
               viewBox="0 0 24 24">
                 <path className="admin-x" d="M13.314 11.9l3.535-3.536a1 1 0 1 0-1.414-1.414l-3.536 3.535L8.364 6.95A1 1 0 1 0 6.95 8.364l3.535 3.535l-3.535 3.536a1 1 0 1 0 1.414 1.414l3.535-3.535l3.536 3.535a1 1 0 1 0 1.414-1.414l-3.535-3.536z"/>
               </svg>
-            </div>      
-            <div className="login">
-            <div className="sv"></div> 
-            <div className="login-title" id="signin">You are Logged in as {localStorage.getItem('name')}!</div>
-            <button className="log" onClick={handleLogOut}>LOGOUT</button> 
-            <div className="login-title" id="signin">REGISTER A USER</div>
-
-            <input className="login-input" type="text" placeholder="Name"
-            required
-            onChange={(e) => setnameR(e.target.value)}
-            id="name"></input>
-            <p className="logerror" id="errorname">{nameError}</p>
-
-            <input className="login-input" type="email" placeholder="Email"
-            required
-            onChange={(e) => setEmailR(e.target.value)}
-            id="email"></input>
-            <p className="logerror" id="erroree">{emailError}</p> 
-
-            <input className="login-input" type="password" placeholder="Password"
-            required
-            onChange={(e) => setPasswordR(e.target.value)}
-            id="password"></input>
-            <p className="logerror" id="errorppc">{passwordError}</p>
-
-            <div className="login-flex">
-              <label className="password-check-label">Show Password</label>
-              <input className="checkbox" type="checkbox" id="passwordcheck" onClick={showpass}/>
-              <label htmlFor="passwordcheck" className="switch"/>      
-            </div>  
-            <button className="log" onClick={register}>Register</button>
-            <p className="logerror" id="successm">{success}</p>
             </div>
+            {newuser ?
+              (
+                <>
+                <div className="login">          
+                <div className="login-title" id="signin">REGISTER A USER!</div>
+
+                  <input className="login-input" type="text" placeholder="Name"
+                  required
+                  onChange={(e) => setnameR(e.target.value)}
+                  id="name"></input>
+                  <p className="logerror" id="errorname">{nameError}</p>
+
+                  <input className="login-input" type="email" placeholder="Email"
+                  required
+                  onChange={(e) => setEmailR(e.target.value)}
+                  id="email"></input>
+                  <p className="logerror" id="erroree">{emailError}</p> 
+
+                  <input className="login-input" type="password" placeholder="Password"
+                  required
+                  onChange={(e) => setPasswordR(e.target.value)}
+                  id="password"></input>
+                  <p className="logerror" id="errorppc">{passwordError}</p>
+
+                  <div className="login-flex">
+                    <label className="password-check-label">Show Password</label>
+                    <input className="checkbox" type="checkbox" id="passwordcheck" onClick={showpass}/>
+                    <label htmlFor="passwordcheck" className="switch"/>      
+                  </div>
+                  
+                  <button className="log" onClick={register}>Register</button>
+                  <p className="logerror" id="successm">{success}</p>
+                  
+                </div>  
+                <div className="sign-up-text"
+                onClick={usercheck}>
+                  Go Back</div>
+                </>
+               
+              )
+              :
+              (
+                <>
+                <div className="login">
+                <div className="login-title" id="signin">You are Logged in as {localStorage.getItem('name')}!</div>
+                <button className="log" onClick={handleLogOut}>LOGOUT</button>       
+                </div>
+                <div className="sign-up-text"
+                onClick={usercheck}>
+                  Add A New Volunteer!</div>
+                </>
+              )
+              }
             </div>
           </div>
           )
           :
-          (
+          (           
             <div className="admin-cover" id="admin-cover" >
             <div className="login-tab">
             <div className="admin-x-btn" onClick={closemodal}>
@@ -344,30 +374,31 @@ function Main() {
                 <path className="admin-x" d="M13.314 11.9l3.535-3.536a1 1 0 1 0-1.414-1.414l-3.536 3.535L8.364 6.95A1 1 0 1 0 6.95 8.364l3.535 3.535l-3.535 3.536a1 1 0 1 0 1.414 1.414l3.535-3.535l3.536 3.535a1 1 0 1 0 1.414-1.414l-3.535-3.536z"/>
               </svg>
             </div>
-            <div className="login">
-            <div className="sv"></div>            
+                <>
+                <div className="login">          
+                <div className="login-title" id="signin">USER LOGIN</div>
+    
+                <input className="login-input" type="email" placeholder="Email"
+                required
+                onChange={(e) => setEmail(e.target.value)}
+                id="email"></input>
+                <p className="logerror" id="errore">{emailError}</p> 
+    
+                <input className="login-input" type="password" placeholder="Password"
+                required
+                onChange={(e) => setPassword(e.target.value)}
+                id="password"></input>
+                <p className="logerror" id="errorp">{passwordError}</p>
+    
+                <div className="login-flex">
+                  <label className="password-check-label">Show Password</label>
+                  <input className="checkbox" type="checkbox" id="passwordcheck" onClick={showpass}/>
+                  <label htmlFor="passwordcheck" className="switch"/>      
+                </div>  
+                <button className="log" onClick={submit}>LOGIN</button>
+                </div>
+                </>
 
-            <div className="login-title" id="signin">ADMINISTRATOR LOGIN</div>
-
-            <input className="login-input" type="email" placeholder="Email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            id="email"></input>
-            <p className="logerror" id="errore">{emailError}</p> 
-
-            <input className="login-input" type="password" placeholder="Password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            id="password"></input>
-            <p className="logerror" id="errorp">{passwordError}</p>
-
-            <div className="login-flex">
-              <label className="password-check-label">Show Password</label>
-              <input className="checkbox" type="checkbox" id="passwordcheck" onClick={showpass}/>
-              <label htmlFor="passwordcheck" className="switch"/>      
-            </div>  
-            <button className="log" onClick={submit}>LOGIN</button>
-            </div>
             </div>
             </div>
           )

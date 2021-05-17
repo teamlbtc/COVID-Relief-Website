@@ -218,13 +218,13 @@
 .log {
   width: 60%;
   height: 40px;
-  padding: .5rem;
+  padding: 0.5rem;
   font-weight: 500;
   background-color: var(--accent);
   color: var(--white);
   border: none;
   border-radius: 5px;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   transition: all 0.3s;
 }
 
@@ -233,13 +233,25 @@
   transition: all 0.3s;
 }
 
+.sign-up-text {
+  margin: 0.5rem 0 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: underline;
+}
+
+.sign-up-text:hover {
+  color: var(--accenthl);
+  font-size: 1.01rem;
+  transition: all 0.3s;
+}
+
 .donate-container {
-  stroke: var(--accent);
-  fill: none;
   height: 100%;
-  transition: ease-in-out 0.3s;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
@@ -247,17 +259,15 @@
 
 .donate-title {
   font-size: 0.8rem;
-  margin: 0px 10px;
-}
-.donate-header {
-  width: 100%;
-  margin: 0 0 10px 0;
+  text-decoration: none;
+  color: var(--accent);
+  text-transform: uppercase;
+  transition: all 0.3s;
 }
 
-.donate-container:hover {
-  color: var(--accent);
-  stroke: var(--accent);
-  transition: ease-in-out 0.3s;
+.donate-container:hover .donate-title {
+  color: var(--accenthl);
+  transition: all 0.3s;
 }
 
 .info {
