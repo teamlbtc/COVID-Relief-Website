@@ -46,10 +46,6 @@ const Editbtn = ({
     setEditMedType,
     editbloodgroup,
     setEditBloodGroup,
-    editrecoverydate,
-    setEditRecoveryDate,
-    editvaccinated,
-    setEditVaccinated,
     editomrcondition,
     setEditOMRCondition,
     editoxygentype,
@@ -180,25 +176,6 @@ const Editbtn = ({
             setEditCapacity("");
             setEditPrice("");
         }
-        else if (collectionname==="/plasma")
-        {   
-            setEditName("");
-            setEditDesc("");
-            setEditLoc("");
-            setEditTime("");
-            setEditCName("");
-            setEditCNum(""); 
-            setEditCEmail(""); 
-            setEditLink("");
-            setEditVerified("");
-            setEditVerifiedBy("");
-            setEditSource("");            
-            setEditAvailable(false);
-            setEditBloodGroup("");
-            setEditPBType("");
-            setEditRecoveryDate("");
-            setEditVaccinated(false);
-        }
         else if (collectionname==="/remdesivir")
         {   
             setEditName("");
@@ -314,10 +291,6 @@ const Editbtn = ({
             setEditMedType={setEditMedType}
             editbloodgroup={editbloodgroup}
             setEditBloodGroup={setEditBloodGroup}
-            editrecoverydate={editrecoverydate}
-            setEditRecoveryDate={setEditRecoveryDate}
-            editvaccinated={editvaccinated}
-            setEditVaccinated={setEditVaccinated}
             editomrcondition={editomrcondition}
             setEditOMRCondition={setEditOMRCondition}
             editoxygentype={editoxygentype}
@@ -328,7 +301,6 @@ const Editbtn = ({
             setEditFoodType={setEditFoodType}
             editconsultationtype={editconsultationtype}
             setEditConsultationType={setEditConsultationType}/>     
-  
         </div>
         </div>
         </div>

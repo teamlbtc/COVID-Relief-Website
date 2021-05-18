@@ -5,11 +5,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import "date-fns";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
 import {axios} from './axios';
 import qs from 'qs';    
 
@@ -52,10 +47,6 @@ const Modal = ({
     setEditMedType,
     editbloodgroup,
     setEditBloodGroup,
-    editrecoverydate,
-    setEditRecoveryDate,
-    editvaccinated,
-    setEditVaccinated,
     editomrcondition,
     setEditOMRCondition,
     editoxygentype,
@@ -85,12 +76,6 @@ const Modal = ({
     const omrconditioninput = (e) => {
         setEditOMRCondition(e.target.value);
     }
-    const vaccinatedinput = (e) => {
-        setEditVaccinated(e.target.checked);
-    }
-    const recoverydateinput = (inputrecoverydate) => {
-        setEditRecoveryDate(inputrecoverydate);
-      }
     const bloodgroupinput = (e) => {
         setEditBloodGroup(e.target.value);
     }
@@ -253,27 +238,6 @@ const Modal = ({
                 setEditOxygenType(i.type);
                 setEditCapacity(i.capacity);
                 setEditPrice(i.price);
-            });
-        }
-        else if (collectionname==="/plasma")
-        {   
-            editlist.forEach(i=>{
-                setEditName(i.name );
-                setEditDesc(i.description);
-                setEditLoc(i.location_covered);
-                setEditTime(i.timings);
-                setEditCName(i.contact_name);
-                setEditCNum(i.contact_number); 
-                setEditCEmail(i.contact_email); 
-                setEditLink(i.link_to_go);
-                setEditVerified(i.verified);
-                setEditVerifiedBy(i.verified_by);
-                setEditSource(i.source);
-                setEditAvailable(i.available);
-                setEditBloodGroup(i.blood_group);
-                setEditPBType(i.type);
-                setEditRecoveryDate(i.covid_recovery_date !== null ? i.covid_recovery_date.toString() : null);
-                setEditVaccinated(i.vaccinated);
             });
         }
         else if (collectionname==="/remdesivir")
@@ -611,51 +575,7 @@ const Modal = ({
                 let body = document.querySelector("body");
                 body.style.overflow = "unset"; 
             });
-        }
-        else if (collectionname==="/plasma")
-        {   
-            axios.patch(`${collectionname}/${editid}`, 
-            qs.stringify({
-                name : editname,
-                description : editdesc,
-                location_covered : editlocation,
-                timings : edittiming,
-                contact_name : editcontactname,
-                contact_number : editcontactnum,
-                contact_email : editcontactemail,
-                link_to_go : editlink,
-                verified : editverified,
-                verified_by : editverifiedby,
-                last_update_time:new Date(),
-                source : editsource,
-                available : editavailable,
-                type: editpbtype,
-                blood_group: editbloodgroup,
-                covid_recovery_date: editrecoverydate,
-                vaccinated: editvaccinated
-            }))
-            .then(() => {
-                setEditName("");
-                setEditDesc("");
-                setEditLoc("");
-                setEditTime("");
-                setEditCName("");
-                setEditCNum("");
-                setEditCEmail("");
-                setEditLink("");
-                setEditVerified("");
-                setEditVerifiedBy("");
-                setEditSource("");
-                setEditAvailable(false);
-                setEditPBType("");
-                setEditBloodGroup("");
-                setEditRecoveryDate(null);
-                setEditVaccinated("");
-                setEditId("");
-                let body = document.querySelector("body");
-                body.style.overflow = "unset"; 
-            });
-        }             
+        }          
     };
 
     const useStyles = makeStyles(() => ({
@@ -1073,109 +993,6 @@ const Modal = ({
                 <div className="input-flex" >       
                     <label className="label">Price</label>
                     <input className="edit-input" value={editprice} onChange={priceinput} type="text" placeholder="Price (Rupees)"></input>
-                </div>
-            </div>
-        );
-    }
-    else if (collectionname==="/plasma")
-    {
-        return (
-            <div className="form-details" id="form-input">
-            <div className="form-data-title">Information</div>
-            <div className="input-flex" >   
-                <label className="label">Donation Type<div className="red">*</div></label>
-                <FormControl className={classes.formControl}>
-                    <InputLabel 
-                    fontSize="0.8rem"
-                    fontWeight={500}
-                    className={classes.input}
-                    >Donation Type</InputLabel>
-                    <Select
-                        value={editpbtype}
-                        onChange={pbtypeinput}
-                        className={classes.inputfield}
-                        required
-                        >
-                        <MenuItem value={"0"}
-                        fontSize="0.8rem"
-                        fontWeight={500}
-                        className={classes.item}>Platform</MenuItem>
-                        <MenuItem value={"1"}
-                        fontSize="0.8rem"
-                        className={classes.item}>Individual</MenuItem>
-                        <MenuItem value={"2"}
-                        fontSize="0.8rem"
-                        className={classes.item}>Blood Bank</MenuItem>
-                    </Select>
-                </FormControl>    
-            </div>
-            <div className="input-flex" >       
-                <label className="label">Blood Group</label>
-                <FormControl className={classes.formControl}>
-                    <InputLabel 
-                    fontSize="0.8rem"
-                    fontWeight={500}
-                    className={classes.input}
-                    >Blood Group</InputLabel>
-                    <Select
-                        value={editbloodgroup}
-                        onChange={bloodgroupinput}
-                        className={classes.inputfield}
-                        required
-                        >
-                        <MenuItem value={"A+"}
-                        fontSize="0.8rem"
-                        className={classes.item}>A+</MenuItem>
-                        <MenuItem value={"A-"}
-                        fontSize="0.8rem"
-                        className={classes.item}>A-</MenuItem>
-                        <MenuItem value={"B+"}
-                        fontSize="0.8rem"
-                        className={classes.item}>B+</MenuItem>
-                        <MenuItem value={"B-"}
-                        fontSize="0.8rem"
-                        className={classes.item}>B-</MenuItem>
-                        <MenuItem value={"O+"}
-                        fontSize="0.8rem"
-                        className={classes.item}>O+</MenuItem>
-                        <MenuItem value={"O-"}
-                        fontSize="0.8rem"
-                        className={classes.item}>O-</MenuItem>
-                        <MenuItem value={"AB+"}
-                        fontSize="0.8rem"
-                        className={classes.item}>AB+</MenuItem>
-                        <MenuItem value={"AB-"}
-                        fontSize="0.8rem"
-                        className={classes.item}>AB-</MenuItem>
-                    </Select>
-                </FormControl>
-            </div>
-                <div className="input-flex" >   
-                    <label className="label">COVID Recovery Date</label>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                        placeholder="Recovery Date"
-                        disableToolbar
-                        variant="inline"
-                        format="dd/MM/yyyy"
-                        margin="normal"
-                        id="recovery-date-picker-inline"
-                        value={editrecoverydate}
-                        onChange={recoverydateinput}
-                        autoOk={true}
-                        KeyboardButtonProps={{
-                            "aria-label": "change date",
-                        }}
-                        className={classes.datepicker}
-                        />
-                    </MuiPickersUtilsProvider>
-                </div>
-                <div className="input-flex">
-                    <label className="label">Vaccinated</label>
-                    <div className="checkbox-container">
-                        <input className="checkbox" type="checkbox" id="checkedit2" checked={editvaccinated} onChange={vaccinatedinput} />
-                        <label htmlFor="checkedit2" className="switch"></label> 
-                    </div>    
                 </div>
             </div>
         );

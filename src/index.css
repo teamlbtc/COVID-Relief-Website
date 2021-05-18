@@ -249,27 +249,6 @@
   transition: all 0.3s;
 }
 
-.donate-container {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
-
-.donate-title {
-  font-size: 0.8rem;
-  text-decoration: none;
-  color: var(--accent);
-  text-transform: uppercase;
-  transition: all 0.3s;
-}
-
-.donate-container:hover .donate-title {
-  color: var(--accenthl);
-  transition: all 0.3s;
-}
-
 .info {
   width: 1.6rem;
   height: 1.6rem;
