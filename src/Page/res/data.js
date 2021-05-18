@@ -430,38 +430,161 @@ const Data = (
                 <div className="desc-label">Description:</div> 
                 <div className="desc">{description !== "" ? description : "No Data"}</div>
             </div>
+            {
+                (()=> {
+                if (collectionname==="/blooddonor")
+                {
+                    return (
+                        <>                   
+                        <div className="desc-container">
+                        <div className="desc-label">Blood Type:</div> 
+                            <div className="desc">{pbtypetext !== "" ? pbtypetext : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="desc-label">Blood Group:</div> 
+                            <div className="desc">{blood_group !== "" ? blood_group : "No Data"}</div>
+                        </div>
+                        </>);
+                }
+                else if (collectionname==="/medicine")
+                {
+                    return (
+                        <>
+                        <div className="desc-container">
+                        <div className="data-label">Medicine Name:</div> 
+                            <div className="data">{medicine_name !== "" ? medicine_name : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="data-label">Condition:</div> 
+                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="data-label">Type:</div> 
+                            <div className="data">{medtypetext !== "" ? medtypetext : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="data-label">Price:</div> 
+                            <div className="data">{medprice !== "" ? medprice : "No Data"}</div>
+                        </div>
+                        </>
+                    );
+                }
+                else if (collectionname==="/food")
+                {
+                    return (
+                        <>
+                        <div className="desc-container">
+                        <div className="data-label">Type:</div> 
+                            <div className="data">{foodtypetext !== "" ? foodtypetext : "No Data"}</div>
+                        </div>
+                        </>
+                    );
+                }
+                else if (collectionname==="/onlinedoc")
+                {
+                    return (
+                        <>
+                        <div className="desc-container">
+                        <div className="data-label">Condition:</div> 
+                            <div className="data">{consulttext !== "" ? consulttext : "No Data"}</div>
+                        </div>
+                        </>
+                    );
+                }
+                else if (collectionname==="/plasma")
+                {
+                    return (
+                        <>
+                        <div className="desc-container">
+                        <div className="data-label">Type:</div> 
+                            <div className="data">{pbtypetext  !== "" ? pbtypetext : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="data-label">Blood Group:</div> 
+                            <div className="data">{blood_group  !== "" ? blood_group : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="data-label">Covid Recovery Date:</div> 
+                            <div className="data">{covid_recovery_date ? moment(covid_recovery_date.toString()).calendar() : "No Data"}</div>
+                        </div> 
+                        <div className="desc-container">
+                        <div className="data-label">Vaccinated:</div> 
+                            <div className="data">{vaccinatedtext !== "" ? vaccinatedtext : "No Data"}</div>
+                        </div>
+                        </>
+                    );
+                }
+                else if (collectionname==="/oxygen")
+                {
+                    return (
+                        <>
+                        <div className="desc-container">
+                        <div className="data-label">Type:</div> 
+                            <div className="data">{oxytypetext !== "" ? oxytypetext : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="data-label">Condition:</div>
+                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="data-label">Capacity:</div> 
+                            <div className="data">{oxycapacity !== "" ? oxycapacity : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="data-label">Price:</div> 
+                            <div className="data">{oxyprice !== "" ? oxyprice : "No Data"}</div>
+                        </div>
+                        </>
+                    );
+                }
+                else if (collectionname==="/remdesivir")
+                {
+                    return (
+                        <>
+                        <div className="desc-container">
+                        <div className="data-label">Condition:</div> 
+                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                        </div>
+                        </>
+                    );
+                }
+                })()
+            }
             <div className="data-container">
-            <div className="details" onClick={detailsbtn}>Details</div> 
+            <div className="details" onClick={detailsbtn}>More...</div> 
                 <div className="contact-info">
                 <a href={`tel:${contact_number}`}
+                className="contact-icon"
                 style={{pointerEvents: `${numpoint}`}}>
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24"
-                    className="contact-icon"
+                    className="icon"
                     style={{fill: `${numcolor}`, pointerEvents: `${numpoint}`}}>
                         <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                     </svg>
                 </a>
                 <a href={`mailto:${contact_email !== "" ? contact_email : ""}`}
+                className="contact-icon"
                 style={{pointerEvents: `${epoint}`}}
                 target="_top">
                     <svg 
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    className="contact-icon"
+                    className="icon"
                     style={{fill: `${ecolor}`, pointerEvents: `${epoint}`}}>
                         <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6m-2 0l-8 5l-8-5h16m0 12H4V8l8 5l8-5v10z"/>
                     </svg>
                 </a>
                 <a href={link_to_go !== "" ? getClickableLink(link_to_go) : ""}
+                className="contact-icon"
                 style={{pointerEvents: `${linkpoint}`}}
                 target="_blank" 
-                rel="noreferrer" >
+                rel="noopener noreferrer" >
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24"
-                    className="contact-icon"
+                    className="icon"
                     style={{fill: `${linkcolor}`, pointerEvents: `${linkpoint}`}}>
                         <path d="M10.59 13.41c.41.39.41 1.03 0 1.42c-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0a5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24a2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0a5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24a2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24a.973.973 0 0 1 0-1.42z"/>
                     </svg>
@@ -547,17 +670,6 @@ const Data = (
                     </div>
                     </div>);
                 }
-                else if (collectionname==="/food")
-                {
-                    return (
-                        <div className="extra">
-                        <div className="extra-container">
-                        <div className="data-label">Type:</div> 
-                            <div className="data">{foodtypetext !== "" ? foodtypetext : "No Data"}</div>
-                        </div>
-                        </div>
-                    );
-                }
                 else if (collectionname==="/medicine")
                 {
                     return (
@@ -577,6 +689,17 @@ const Data = (
                         <div className="extra-container">
                         <div className="data-label">Price:</div> 
                             <div className="data">{medprice !== "" ? medprice : "No Data"}</div>
+                        </div>
+                        </div>
+                    );
+                }
+                else if (collectionname==="/food")
+                {
+                    return (
+                        <div className="extra">
+                        <div className="extra-container">
+                        <div className="data-label">Type:</div> 
+                            <div className="data">{foodtypetext !== "" ? foodtypetext : "No Data"}</div>
                         </div>
                         </div>
                     );
@@ -649,7 +772,6 @@ const Data = (
                         </div>
                     );
                 }
-
                 })()
             }
             </div>
@@ -662,17 +784,19 @@ const Data = (
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24"
-                    padding="0.5rem">
+                    padding="0.5rem"
+                    className="icon">
                         <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                     </svg>
                 </a>
                 <a className="contact-icon" 
-                href={`mailto:${contact_email !== "" ? contact_email : ""}`}
+                href={`${contact_email !== "" ? `mailto:${contact_email}` : ""}`}
                 style={{fill: `${ecolor}`, pointerEvents: `${epoint}`}}
                 target="_top">
                     <svg 
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                    className="icon">
                         <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6m-2 0l-8 5l-8-5h16m0 12H4V8l8 5l8-5v10z"/>
                     </svg>
                 </a>
@@ -681,10 +805,11 @@ const Data = (
                 href={link_to_go !== "" ? getClickableLink(link_to_go) : ""} 
                 style={{fill: `${linkcolor}`, pointerEvents: `${linkpoint}`}}
                 target="_blank" 
-                rel="noreferrer" >
+                rel="noopener noreferrer" >
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                    className="icon">
                         <path d="M10.59 13.41c.41.39.41 1.03 0 1.42c-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0a5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24a2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0a5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24a2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24a.973.973 0 0 1 0-1.42z"/>
                     </svg>
                 </a>             

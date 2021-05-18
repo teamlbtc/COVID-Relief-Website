@@ -12,11 +12,12 @@ import Plasma from './Page/Plasma';
 import Rem from './Page/Remdesivir';
 import Testing from './Page/Testing';
 import Widget from './Page/res/widget';
+import Top from './Page/res/top';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import qs from 'qs';
 import {axios} from './Page/res/axios';
-
-
+import fire from './Page/fire_config';
+import 'firebase/analytics';
 
 function Main() {
 
@@ -34,6 +35,8 @@ function Main() {
   const [nameError, setnameError] = useState("");
   const [newuser, setNewUser] = useState(false);
   
+
+  fire.analytics();
 
   const submit =  (e) => {
     clearErrors();
@@ -417,6 +420,7 @@ function Main() {
         <Route path="/Remdesivir" component={props => (<Rem {...props} user={user}/>)}></Route>
         <Route path="/Counselling" component={props => (<Counselling {...props} user={user}/>)}></Route>
       </Switch>
+      <Top/>
       <Widget/>
     </div>
     </Router> 

@@ -309,6 +309,20 @@ const Modal = ({
         body.style.overflow = "unset"; 
     };
 
+    const deleteModal = () =>{         
+        let cover = document.getElementById("delete-cover");
+        let body = document.querySelector("body");
+        body.style.overflow = "hidden"; 
+        cover.style.display = "grid";
+    }
+
+    const cancelDelete = () => {
+        let cover = document.getElementById("delete-cover");
+        let body = document.querySelector("body");
+        body.style.overflow = "unset"; 
+        cover.style.display = "none";   
+    }
+
     const updateData = () => {
         if (collectionname==="/ambulance"||collectionname==="/bed"||collectionname==="/hometesting"||collectionname==="/tele")
         {   
@@ -324,6 +338,7 @@ const Modal = ({
                 link_to_go : editlink,
                 verified : editverified,
                 verified_by : editverifiedby,
+                last_update_time:new Date(),
                 source : editsource,
                 available : editavailable,
               }))
@@ -365,6 +380,7 @@ const Modal = ({
                 verified_by : editverifiedby,
                 source : editsource,
                 available : editavailable,
+                last_update_time:new Date(),
                 type: editpbtype,
                 blood_group: editbloodgroup
             }))
@@ -405,6 +421,7 @@ const Modal = ({
                 link_to_go : editlink,
                 verified : editverified,
                 verified_by : editverifiedby,
+                last_update_time:new Date(),
                 source : editsource,
                 available : editavailable,
                 type: editmedtype,
@@ -451,6 +468,7 @@ const Modal = ({
                 link_to_go : editlink,
                 verified : editverified,
                 verified_by : editverifiedby,
+                last_update_time:new Date(),
                 source : editsource,
                 available : editavailable,
                 type: editfoodtype,
@@ -488,6 +506,7 @@ const Modal = ({
                 link_to_go : editlink,
                 verified : editverified,
                 verified_by : editverifiedby,
+                last_update_time:new Date(),
                 source : editsource,
                 available : editavailable,
                 type: editconsultationtype,
@@ -525,6 +544,7 @@ const Modal = ({
                 link_to_go : editlink,
                 verified : editverified,
                 verified_by : editverifiedby,
+                last_update_time:new Date(),
                 source : editsource,
                 available : editavailable,
                 condition : editomrcondition,
@@ -568,6 +588,7 @@ const Modal = ({
                 link_to_go : editlink,
                 verified : editverified,
                 verified_by : editverifiedby,
+                last_update_time:new Date(),
                 source : editsource,
                 available : editavailable,
                 condition : editomrcondition,
@@ -605,6 +626,7 @@ const Modal = ({
                 link_to_go : editlink,
                 verified : editverified,
                 verified_by : editverifiedby,
+                last_update_time:new Date(),
                 source : editsource,
                 available : editavailable,
                 type: editpbtype,
@@ -1201,9 +1223,21 @@ const Modal = ({
     </div>
     <div className="edit-btn-container">
         <div className="edit-btn-flex">
-            <button className="edit-d-btn" id="add-btn" onClick={deleteData}>DELETE</button>
+            <button className="edit-d-btn" id="add-btn" onClick={deleteModal}>DELETE</button>
             <button className="edit-u-btn" id="add-btn" onClick={updateData}>UPDATE</button>
         </div>
+    </div>
+
+    <div className="delete-cover" id="delete-cover">
+        <div className="delete-confirmation" id="delete-confirmation">
+            <div className="delete-header">You Are About To Delete This Resource!</div>
+            <div className="delete-confirm-container">
+                <div className="delete-btn-flex">
+                    <button className="delete-d-btn" id="add-btn" onClick={deleteData}>DELETE</button>
+                    <button className="delete-c-btn" id="add-btn" onClick={cancelDelete}>CANCEL</button>
+                </div>
+            </div>
+    </div>
     </div>
 
     </>
