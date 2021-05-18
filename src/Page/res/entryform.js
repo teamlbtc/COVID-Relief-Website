@@ -5,11 +5,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import "date-fns";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
 import {axios} from './axios';
 import qs from 'qs';    
 
@@ -34,8 +29,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
     const [inputcapacity, setInputCapacity] = useState("");
     const [inputmedname, setInputMedName] = useState("");
     const [inputbloodgroup, setInputBloodGroup] = useState("");
-    const [inputrecoverydate, setInputRecoveryDate] = useState(null);
-    const [inputvaccinated, setInputVaccinated] = useState(false);
     const [inputomrcondition, setInputOMRCondition] = useState("");
     const [inputoxygentype, setInputOxygenType] = useState("");
     const [inputmedtype, setInputMedType] = useState("");
@@ -62,12 +55,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
     const omrconditioninput = (e) => {
         setInputOMRCondition(e.target.value);
     }
-    const vaccinatedinput = (e) => {
-        setInputVaccinated(e.target.checked);
-    }
-    const recoverydateinput = (inputrecoverydate) => {
-        setInputRecoveryDate(inputrecoverydate);
-      }
     const bloodgroupinput = (e) => {
         setInputBloodGroup(e.target.value);
     }
@@ -470,74 +457,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                 setInputOxygenType("");
                 setInputCapacity("");
                 setInputPrice("");
-                setStateUpdate(true);
-                setTry("Your Entry has Been Added Below.")
-                let success = document.getElementById("add-link");
-                success.style.opacity = 1;
-                success.style.backgroundColor = "var(--accent)";
-                setTimeout(()=>{
-                    success.style.opacity = 0;
-                    btn.disabled=false;
-                    btn.style.backgroundColor="var(--accent)";
-                    setBtnTxt("ADD");
-                },2000);
-            });
-            }
-            else
-            {
-            setTry("Please Enter Required Fields.")
-            let fail = document.getElementById("add-link");
-            fail.style.opacity = 1;
-            fail.style.backgroundColor = "var(--red)";
-            setTimeout(()=>{
-                fail.style.opacity = 0;
-            },2000);
-            }
-        }
-        else if (collectionname==="/plasma")
-        {   
-            if(inputpbtype!==""&&inputrecoverydate!==null&&inputbloodgroup!=="")
-            {
-            setBtnTxt("PLEASE WAIT");
-            let btn = document.getElementById("add-btn");
-            btn.disabled=true;
-            btn.style.backgroundColor="var(--lgrey)";
-            axios.post(collectionname, 
-                qs.stringify({
-                name : inputname,
-                description : inputdesc,
-                location_covered : inputlocation,
-                timings : inputtiming,
-                contact_name : inputcontactname,
-                contact_number : inputcontactnum,
-                contact_email : inputcontactemail,
-                link_to_go : inputlink,
-                verified : inputverified,
-                verified_by : inputverifiedby,
-                source : inputsource,
-                available : inputavailable,
-                type : inputpbtype,
-                blood_group : inputbloodgroup,
-                covid_recovery_date : inputrecoverydate,
-                vaccinated : inputvaccinated,
-            }))
-            .then(() => {
-                setInputName("");
-                setInputDesc("");
-                setInputLoc("");
-                setInputTime("");
-                setInputCName("");
-                setInputCNum("");
-                setInputCEmail("");
-                setInputLink("");
-                setInputVerified("");
-                setInputVerifiedBy("");
-                setInputSource("");                
-                setInputAvailable(false);
-                setInputPBType("");
-                setInputBloodGroup("");
-                setInputRecoveryDate(null);
-                setInputVaccinated(false);
                 setStateUpdate(true);
                 setTry("Your Entry has Been Added Below.")
                 let success = document.getElementById("add-link");
@@ -1075,147 +994,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                             </div>
                         </div>
                     );
-                }
-                else if (collectionname==="/plasma")
-                {
-                    return (
-                        <div className="form-details" id="form-input">
-                        <div className="form-data-title">Information</div>
-                        <div className="input-flex" >   
-                                <label className="label">Donation Type<div className="red">*</div></label>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel 
-                                    fontSize="0.8rem"
-                                    fontWeight={500}
-                                    className={classes.input}
-                                    >Donation Type</InputLabel>
-                                    <Select
-                                        value={inputpbtype}
-                                        onChange={pbtypeinput}
-                                        className={classes.inputfield}
-                                        required
-                                        >
-                                        <MenuItem value={"0"}
-                                        fontSize="0.8rem"
-                                        fontWeight={500}
-                                        className={classes.item}>Platform</MenuItem>
-                                        <MenuItem value={"1"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Individual</MenuItem>
-                                        <MenuItem value={"2"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Blood Bank</MenuItem>
-                                    </Select>
-                                </FormControl>    
-                            </div>
-                            <div className="input-flex" >       
-                                <label className="label">Blood Group<div className="red">*</div></label>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel 
-                                    fontSize="0.8rem"
-                                    fontWeight={500}
-                                    className={classes.input}
-                                    >Blood Group</InputLabel>
-                                    <Select
-                                        value={inputbloodgroup}
-                                        onChange={bloodgroupinput}
-                                        className={classes.inputfield}
-                                        required
-                                        >
-                                        <MenuItem value={"A+"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>A+</MenuItem>
-                                        <MenuItem value={"A-"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>A-</MenuItem>
-                                        <MenuItem value={"B+"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>B+</MenuItem>
-                                        <MenuItem value={"B-"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>B-</MenuItem>
-                                        <MenuItem value={"O+"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>O+</MenuItem>
-                                        <MenuItem value={"O-"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>O-</MenuItem>
-                                        <MenuItem value={"AB+"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>AB+</MenuItem>
-                                        <MenuItem value={"AB-"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>AB-</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </div>
-                            <div className="input-flex" >   
-                                <label className="label">COVID Recovery Date<div className="red">*</div></label>
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                    <KeyboardDatePicker
-                                    placeholder="Recovery Date"
-                                    disableToolbar
-                                    variant="inline"
-                                    format="dd/MM/yyyy"
-                                    margin="normal"
-                                    id="recovery-date-picker-inline"
-                                    value={inputrecoverydate}
-                                    onChange={recoverydateinput}
-                                    autoOk={true}
-                                    KeyboardButtonProps={{
-                                        "aria-label": "change date",
-                                    }}
-                                    className={classes.datepicker}
-                                    />
-                                </MuiPickersUtilsProvider>    
-                            </div>
-                            <div className="input-flex">
-                                <label className="label">Vaccinated</label>
-                                <div className="checkbox-container">
-                                    <input className="checkbox" type="checkbox" id="check1" defaultChecked={inputvaccinated} onClick={vaccinatedinput} />
-                                    <label htmlFor="check1" className="switch"></label> 
-                                </div>    
-                            </div>
-                        </div>
-                    );
-                }
-                else if (collectionname==="/remdesivir")
-                {
-                    return (
-                        <div className="form-details" id="form-input">
-                        <div className="form-data-title">Information</div>
-                            <div className="input-flex" >   
-                                <label className="label">Condition<div className="red">*</div></label>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel 
-                                    fontSize="0.8rem"
-                                    fontWeight={500}
-                                    className={classes.input}
-                                    >Remdesivir Condition</InputLabel>
-                                    <Select
-                                        value={inputomrcondition}
-                                        onChange={omrconditioninput}
-                                        className={classes.inputfield}
-                                        required
-                                        >
-                                        <MenuItem value={"0"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>No Stock</MenuItem>
-                                        <MenuItem value={"1"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Black Market</MenuItem>
-                                        <MenuItem value={"2"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Purchase</MenuItem>
-                                        <MenuItem value={"3"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Waiting Period</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </div>
-                        </div>
-                    );
-                }                    
+                }       
                 })()
             }
              </div>

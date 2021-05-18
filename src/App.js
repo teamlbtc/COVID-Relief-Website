@@ -8,7 +8,6 @@ import Counselling from './Page/Counselling';
 import Med from './Page/Medicine'
 import Food from './Page/Food';
 import Oxygen from './Page/Oxygen';
-import Plasma from './Page/Plasma';
 import Rem from './Page/Remdesivir';
 import Testing from './Page/Testing';
 import Widget from './Page/res/widget';
@@ -262,13 +261,6 @@ function Main() {
       <div className="header">
         <div className="title-container">
           <div className="title">COVID RELIEF</div>
-          <div className="donate-container">
-            <a 
-            href="https://forms.gle/FXoAnjJtufRcoDGJ9" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="donate-title">Donate Plasma Here!</a>
-          </div>
         </div>
         <div className="navbar">
           <div className="login-btn" id="admin-btn" 
@@ -290,7 +282,6 @@ function Main() {
                 <NavLink to="/Testing" className="link">Home Testing</NavLink>
                 <NavLink to="/Consultation" className="link">Online Consultation</NavLink>
                 <NavLink to="/Oxygen" className="link">Oxygen</NavLink>
-                <NavLink to="/Plasma" className="link">Plasma Donors</NavLink>
                 <NavLink to="/Remdesivir" className="link">Remdesivir</NavLink>
                 <NavLink to="/Counselling" className="link">TeleCounselling</NavLink>
             </div>
@@ -416,7 +407,6 @@ function Main() {
         <Route path="/Testing" component={props => (<Testing {...props} user={user}/>)}></Route>
         <Route path="/Consultation" component={props => (<Consultation {...props} user={user}/>)}></Route>
         <Route path="/Oxygen" component={props => (<Oxygen {...props} user={user}/>)}></Route>
-        <Route path="/Plasma" component={props => (<Plasma {...props} user={user}/>)}></Route>
         <Route path="/Remdesivir" component={props => (<Rem {...props} user={user}/>)}></Route>
         <Route path="/Counselling" component={props => (<Counselling {...props} user={user}/>)}></Route>
       </Switch>
