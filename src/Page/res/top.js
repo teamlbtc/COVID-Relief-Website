@@ -3,7 +3,7 @@ const Top = () => {
     (function() {      
         function trackScroll() {
           let scrolled = window.pageYOffset;
-          let coords = document.documentElement.clientHeight;
+          let coords = 300;
       
           if (scrolled > coords) {
             if (goTopBtn) goTopBtn.classList.add('top-show');
