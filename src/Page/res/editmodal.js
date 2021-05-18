@@ -575,7 +575,7 @@ const Modal = ({
                 let body = document.querySelector("body");
                 body.style.overflow = "unset"; 
             });
-        }          
+        }      
     };
 
     const useStyles = makeStyles(() => ({
