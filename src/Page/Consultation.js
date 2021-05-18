@@ -142,8 +142,11 @@ const Consultation = ({user}) => {
                 />
             ))}
             </div>
-            <div className="current-page">Page - {page} of {pages}</div>
-            <div className="page-bar-container">Go to:
+            <div className="current-page">
+                Page - {page} of {pages}</div>
+            <div className="page-bar-container">
+            <div className="go-to">Go to:</div>
+            <div className="page-no-container"> 
             {pageno.map(i=>(
                 <div 
                 key={i} 
@@ -154,10 +157,6 @@ const Consultation = ({user}) => {
                 </div>
             ))}
             </div>
-            <div className="end" >
-            <br/>
-            <br/>
-            <a className="end" href="#top">Click here to go back to the top.</a>   
             </div>
             </>
         )

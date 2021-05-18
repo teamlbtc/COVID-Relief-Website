@@ -902,6 +902,36 @@ const Form = ({collectionname, setStateUpdate}) =>{
                         <div className="form-details" id="form-input">
                         <div className="form-data-title">Information</div>
                             <div className="input-flex" >   
+                                <label className="label">Medicine Name<div className="red">*</div></label>
+                                <input className="input" value={inputmedname} onChange={mednameinput} type="text" placeholder="Name" maxLength="50"></input>
+                            </div>
+                            <div className="input-flex" >       
+                                <label className="label">Type<div className="red">*</div></label>
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel 
+                                    fontSize="0.8rem"
+                                    fontWeight={500}
+                                    className={classes.input}
+                                    >Medicine Type</InputLabel>
+                                    <Select
+                                        value={inputmedtype}
+                                        onChange={medtypeinput}
+                                        className={classes.inputfield}
+                                        required
+                                        >
+                                        <MenuItem value={"0"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Tablet</MenuItem>
+                                        <MenuItem value={"1"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Syrup</MenuItem>
+                                        <MenuItem value={"2"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Injection</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </div>  
+                            <div className="input-flex" >   
                                 <label className="label">Condition<div className="red">*</div></label>
                                 <FormControl className={classes.formControl}>
                                     <InputLabel 
@@ -932,36 +962,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         className={classes.item}>Rental</MenuItem>
                                     </Select>
                                 </FormControl>
-                            </div>
-                            <div className="input-flex" >       
-                                <label className="label">Type<div className="red">*</div></label>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel 
-                                    fontSize="0.8rem"
-                                    fontWeight={500}
-                                    className={classes.input}
-                                    >Medicine Type</InputLabel>
-                                    <Select
-                                        value={inputmedtype}
-                                        onChange={medtypeinput}
-                                        className={classes.inputfield}
-                                        required
-                                        >
-                                        <MenuItem value={"0"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Tablet</MenuItem>
-                                        <MenuItem value={"1"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Syrup</MenuItem>
-                                        <MenuItem value={"2"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Injection</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </div>
-                            <div className="input-flex" >   
-                                <label className="label">Medicine Name<div className="red">*</div></label>
-                                <input className="input" value={inputmedname} onChange={mednameinput} type="text" placeholder="Name" maxLength="50"></input>
                             </div>
                             <div className="input-flex" >       
                                 <label className="label">Price<div className="red">*</div></label>
@@ -1006,6 +1006,33 @@ const Form = ({collectionname, setStateUpdate}) =>{
                     return (
                         <div className="form-details" id="form-input">
                         <div className="form-data-title">Information</div>
+                            <div className="input-flex" >       
+                                <label className="label">Type<div className="red">*</div></label>
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel 
+                                    color="var(--lgrey)" 
+                                    fontSize="0.8rem"
+                                    fontWeight={500}
+                                    className={classes.input}
+                                    >Oxygen Type</InputLabel>
+                                    <Select
+                                        value={inputoxygentype}
+                                        onChange={oxygentypeinput}
+                                        className={classes.inputfield}
+                                        required
+                                        >
+                                        <MenuItem value={"0"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Cylinder</MenuItem>
+                                        <MenuItem value={"1"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Concentrator</MenuItem>
+                                        <MenuItem value={"2"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Both</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </div>
                             <div className="input-flex" >   
                                 <label className="label">Condition<div className="red">*</div></label>
                                 <FormControl className={classes.formControl}>
@@ -1035,33 +1062,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         <MenuItem value={"4"}
                                         fontSize="0.8rem"
                                         className={classes.item}>Rental</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </div>
-                            <div className="input-flex" >       
-                                <label className="label">Type<div className="red">*</div></label>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel 
-                                    color="var(--lgrey)" 
-                                    fontSize="0.8rem"
-                                    fontWeight={500}
-                                    className={classes.input}
-                                    >Oxygen Type</InputLabel>
-                                    <Select
-                                        value={inputoxygentype}
-                                        onChange={oxygentypeinput}
-                                        className={classes.inputfield}
-                                        required
-                                        >
-                                        <MenuItem value={"0"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Cylinder</MenuItem>
-                                        <MenuItem value={"1"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Concentrator</MenuItem>
-                                        <MenuItem value={"2"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Both</MenuItem>
                                     </Select>
                                 </FormControl>
                             </div>

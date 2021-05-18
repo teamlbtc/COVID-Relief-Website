@@ -217,8 +217,6 @@ const Editbtn = ({
         }        
     },[editid]);
 
-
-
     useEffect(()=>{
         if(editid==="")
         {
