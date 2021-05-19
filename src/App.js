@@ -299,7 +299,7 @@ function Main() {
           </div>
             <div className="navlinks">
                 <NavLink to="/" exact className="link">Ambulance</NavLink>
-                {/* <NavLink to="/Beds" className="link">Bed Availablity</NavLink> */}
+                <NavLink to="/Beds" className="link">Bed Avail</NavLink>
                 <NavLink to="/Blood" className="link">Blood Donors</NavLink>
                 <NavLink to="/Medicine" className="link">Medicine</NavLink>
                 <NavLink to="/Food" className="link">Food</NavLink>
