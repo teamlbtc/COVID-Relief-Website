@@ -33,6 +33,7 @@ const Food = ({user}) => {
     const [editverifiedby, setEditVerifiedBy] = useState("");
     const [editavailable, setEditAvailable] = useState();
     const [editfoodtype, setEditFoodType] = useState("");
+    const [editfoodcharges, setEditFoodCharges] = useState("");
     const [stateupdate, setStateUpdate] = useState(false);
     const [loader, setLoader] = useState(true);
     const [page, setPage] = useState(1);
@@ -75,7 +76,7 @@ const Food = ({user}) => {
         <div className="content" id="top">
         <Form collectionname={collectionname}
         setStateUpdate={setStateUpdate}/>
-                {loader ?
+        {loader ?
         (
             <div className="loader-container">
             <div className="loader">Fetching Data</div>
@@ -104,6 +105,7 @@ const Food = ({user}) => {
                 verified_by={i.verified_by}
                 available={i.available}
                 foodtype={i.type}
+                foodcharges={i.charges}
                 user={user}
                 collectionname={collectionname}
                 linklist={linklist}
@@ -138,6 +140,8 @@ const Food = ({user}) => {
                 setEditAvailable={setEditAvailable}
                 editfoodtype={editfoodtype}
                 setEditFoodType={setEditFoodType}
+                editfoodcharges={editfoodcharges}
+                setEditFoodCharges={setEditFoodCharges}
                 />
             ))}
             </div>

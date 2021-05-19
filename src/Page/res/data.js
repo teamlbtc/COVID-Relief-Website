@@ -4,7 +4,6 @@ import moment from 'moment'
 const Data = (
     {user,
     id,
-    comments,
     contact_email,
     contact_name,
     contact_number,
@@ -18,8 +17,6 @@ const Data = (
     verified,
     verified_by,
     available,
-    covid_recovery_date,
-    vaccinated,
     oxytype,
     oxyprice,
     oxycapacity,
@@ -29,6 +26,7 @@ const Data = (
     medprice,
     consultationtype,
     foodtype,
+    foodcharges,
     pbtype,
     blood_group,
     collectionname,
@@ -86,6 +84,8 @@ const Data = (
     setEditPBType,
     editfoodtype,
     setEditFoodType,
+    editfoodcharges,
+    setEditFoodCharges,
     editconsultationtype,
     setEditConsultationType,
     }
@@ -104,11 +104,11 @@ const Data = (
     const [linkpoint, setLinkPoint] = useState();
     const [pbtypetext, setPBTypetext] = useState();
     const [foodtypetext, setFoodTypetext] = useState();
+    const [foodchargestext, setFoodChargesText] = useState();
     const [consulttext, setConsultConditionText] = useState();
     const [omrconditiontext, setOMRConditionText] = useState();
     const [medtypetext, setMedTypeText] = useState();
     const [oxytypetext, setOxyTypeText] = useState();
-    const [vaccinatedtext, setVaccinatedText] = useState();
 
     
     useEffect(()=>{
@@ -123,18 +123,6 @@ const Data = (
             setAvailableColor("var(--lgrey)");
         }
     },[available]);
-
-
-    useEffect(()=>{
-        if(vaccinated===true)
-        {
-            setVaccinatedText("Yes");
-        }
-        else
-        {
-            setVaccinatedText("No");
-        }
-    },[vaccinated]);
 
     useEffect(()=>{
         if(oxytype==="0")
@@ -234,6 +222,21 @@ const Data = (
             setFoodTypetext("No Data");
         }
     },[foodtype]);
+
+    useEffect(()=>{
+        if(foodcharges==="0")
+        {
+            setFoodChargesText("Paid");
+        }
+        else if(foodtype==="1")
+        {
+            setFoodChargesText("Free");
+        }
+        else 
+        {
+            setFoodChargesText("No Data");
+        }
+    },[foodcharges]);
 
     useEffect(()=>{
         if(pbtype==="0")
@@ -422,6 +425,8 @@ const Data = (
             setEditPBType={setEditPBType}
             editfoodtype={editfoodtype}
             setEditFoodType={setEditFoodType}
+            editfoodcharges={editfoodcharges}
+            setEditFoodCharges={setEditFoodCharges}
             editconsultationtype={editconsultationtype}
             setEditConsultationType={setEditConsultationType}/>
 
@@ -477,6 +482,10 @@ const Data = (
                         <div className="data-label">Type:</div> 
                             <div className="data">{foodtypetext !== "" ? foodtypetext : "No Data"}</div>
                         </div>
+                        <div className="desc-container">
+                        <div className="data-label">Charges:</div> 
+                            <div className="data">{foodchargestext !== "" ? foodchargestext : "No Data"}</div>
+                        </div>
                         </>
                     );
                 }
@@ -487,29 +496,6 @@ const Data = (
                         <div className="desc-container">
                         <div className="data-label">Condition:</div> 
                             <div className="data">{consulttext !== "" ? consulttext : "No Data"}</div>
-                        </div>
-                        </>
-                    );
-                }
-                else if (collectionname==="/plasma")
-                {
-                    return (
-                        <>
-                        <div className="desc-container">
-                        <div className="data-label">Type:</div> 
-                            <div className="data">{pbtypetext  !== "" ? pbtypetext : "No Data"}</div>
-                        </div>
-                        <div className="desc-container">
-                        <div className="data-label">Blood Group:</div> 
-                            <div className="data">{blood_group  !== "" ? blood_group : "No Data"}</div>
-                        </div>
-                        <div className="desc-container">
-                        <div className="data-label">Covid Recovery Date:</div> 
-                            <div className="data">{covid_recovery_date ? moment(covid_recovery_date.toString()).calendar() : "No Data"}</div>
-                        </div> 
-                        <div className="desc-container">
-                        <div className="data-label">Vaccinated:</div> 
-                            <div className="data">{vaccinatedtext !== "" ? vaccinatedtext : "No Data"}</div>
                         </div>
                         </>
                     );
@@ -701,7 +687,12 @@ const Data = (
                         <div className="data-label">Type:</div> 
                             <div className="data">{foodtypetext !== "" ? foodtypetext : "No Data"}</div>
                         </div>
+                        <div className="extra-container">
+                        <div className="data-label">Charges:</div> 
+                            <div className="data">{foodchargestext !== "" ? foodchargestext : "No Data"}</div>
                         </div>
+                        </div>
+                        
                     );
                 }
                 else if (collectionname==="/onlinedoc")
@@ -734,29 +725,6 @@ const Data = (
                         <div className="extra-container">
                         <div className="data-label">Price:</div> 
                             <div className="data">{oxyprice !== "" ? oxyprice : "No Data"}</div>
-                        </div>
-                        </div>
-                    );
-                }
-                else if (collectionname==="/plasma")
-                {
-                    return (
-                        <div className="extra">
-                        <div className="extra-container">
-                        <div className="data-label">Blood Group:</div> 
-                            <div className="data">{blood_group  !== "" ? blood_group : "No Data"}</div>
-                        </div>
-                        <div className="extra-container">
-                        <div className="data-label">Type:</div> 
-                            <div className="data">{pbtypetext  !== "" ? pbtypetext : "No Data"}</div>
-                        </div>
-                        <div className="extra-container">
-                        <div className="data-label">Covid Recovery Date:</div> 
-                            <div className="data">{covid_recovery_date ? moment(covid_recovery_date.toString()).calendar() : "No Data"}</div>
-                        </div> 
-                        <div className="extra-container">
-                        <div className="data-label">Vaccinated:</div> 
-                            <div className="data">{vaccinatedtext !== "" ? vaccinatedtext : "No Data"}</div>
                         </div>
                         </div>
                     );

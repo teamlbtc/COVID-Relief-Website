@@ -182,6 +182,23 @@ function Main() {
     setAdminCheck(false);
   };
 
+  const trimname = (e) =>{
+    setnameR((e.target.value)
+    .replace(/(^\s*)|(\s*$)/gi, "")
+    .replace(/[ ]{2,}/gi," ")
+    .replace(/\n +/,"\n"));
+  }
+
+  const trimemail = (e) =>{
+    setEmailR((e.target.value)
+    .replace(/(^\s*)|(\s*$)/gi, ""));
+  }
+
+  const trimpassword = (e) =>{
+    setPasswordR((e.target.value)
+    .replace(/(^\s*)|(\s*$)/gi, ""));
+  }
+
   const register = (e) => {
     clearErrors();
     e.preventDefault();
@@ -189,7 +206,7 @@ function Main() {
       headers: {
         Authorization : 'Bearer '+ localStorage.getItem('token-data'),
       }
-    }
+    }  
     
     let data = {
       name: nameR,
@@ -261,6 +278,13 @@ function Main() {
       <div className="header">
         <div className="title-container">
           <div className="title">COVID RELIEF</div>
+          <a
+          href="https://forms.gle/r7WbWq6d5HqGNjHL7" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="link-container">
+            <div className="link-title">BECOME A VOLUNTEER!</div>
+          </a>
         </div>
         <div className="navbar">
           <div className="login-btn" id="admin-btn" 
@@ -275,7 +299,7 @@ function Main() {
           </div>
             <div className="navlinks">
                 <NavLink to="/" exact className="link">Ambulance</NavLink>
-                <NavLink to="/Beds" className="link">Bed Availablity</NavLink>
+                {/* <NavLink to="/Beds" className="link">Bed Availablity</NavLink> */}
                 <NavLink to="/Blood" className="link">Blood Donors</NavLink>
                 <NavLink to="/Medicine" className="link">Medicine</NavLink>
                 <NavLink to="/Food" className="link">Food</NavLink>
@@ -309,19 +333,19 @@ function Main() {
 
                   <input className="login-input" type="text" placeholder="Name"
                   required
-                  onChange={(e) => setnameR(e.target.value)}
+                  onChange={trimname}
                   id="name"></input>
                   <p className="logerror" id="errorname">{nameError}</p>
 
                   <input className="login-input" type="email" placeholder="Email"
                   required
-                  onChange={(e) => setEmailR(e.target.value)}
+                  onChange={trimemail}
                   id="email"></input>
                   <p className="logerror" id="erroree">{emailError}</p> 
 
                   <input className="login-input" type="password" placeholder="Password"
                   required
-                  onChange={(e) => setPasswordR(e.target.value)}
+                  onChange={trimpassword}
                   id="password"></input>
                   <p className="logerror" id="errorppc">{passwordError}</p>
 

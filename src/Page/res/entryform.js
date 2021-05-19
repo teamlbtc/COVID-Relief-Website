@@ -34,6 +34,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
     const [inputmedtype, setInputMedType] = useState("");
     const [inputpbtype, setInputPBType] = useState("");
     const [inputfoodtype, setInputFoodType] = useState("");
+    const [inputfoodcharges, setInputFoodCharges] = useState("");
     const [inputconsultationtype, setInputConsultationType] = useState("");
 
 
@@ -42,6 +43,9 @@ const Form = ({collectionname, setStateUpdate}) =>{
     }
     const foodtypeinput = (e) => {
         setInputFoodType(e.target.value);
+    }
+    const foodchargesinput = (e) =>{
+        setInputFoodCharges(e.target.value);
     }
     const pbtypeinput = (e) => {
         setInputPBType(e.target.value);
@@ -291,7 +295,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
         }
         else if (collectionname==="/food")
         {   
-            if(inputfoodtype!=="")
+            if(inputfoodtype!==""&&inputfoodcharges!=="")
             {
             setBtnTxt("PLEASE WAIT");
             let btn = document.getElementById("add-btn");
@@ -312,6 +316,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                 source : inputsource,
                 available : inputavailable,
                 type : inputfoodtype,
+                charges: inputfoodcharges
             }))
             .then(() => {
                 setInputName("");
@@ -327,6 +332,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                 setInputSource("");                
                 setInputAvailable(false);
                 setInputFoodType("");
+                setInputFoodCharges("");
                 setStateUpdate(true);
                 setTry("Your Entry has Been Added Below.")
                 let success = document.getElementById("add-link");
@@ -809,6 +815,29 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         <MenuItem value={"2"}
                                         fontSize="0.8rem"
                                         className={classes.item}>Others</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </div>
+                            <div className="input-flex" >   
+                                <label className="label">Charges<div className="red">*</div></label>
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel 
+                                    fontSize="0.8rem"
+                                    fontWeight={500}
+                                    className={classes.input}
+                                    >Food Type</InputLabel>
+                                    <Select
+                                        value={inputfoodcharges}
+                                        onChange={foodchargesinput}
+                                        className={classes.inputfield}
+                                        required
+                                        >
+                                        <MenuItem value={"0"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Paid</MenuItem>
+                                        <MenuItem value={"1"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Free</MenuItem>
                                     </Select>
                                 </FormControl>
                             </div>
