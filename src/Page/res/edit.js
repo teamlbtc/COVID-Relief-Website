@@ -54,6 +54,8 @@ const Editbtn = ({
     setEditPBType,
     editfoodtype,
     setEditFoodType,
+    editfoodcharges,
+    setEditFoodCharges,
     editconsultationtype,
     setEditConsultationType}) => {
 
@@ -140,6 +142,7 @@ const Editbtn = ({
             setEditSource("");            
             setEditAvailable(false);
             setEditFoodType("");
+            setEditFoodCharges("");
         }
         else if (collectionname==="/onlinedoc")
         {   
@@ -299,6 +302,8 @@ const Editbtn = ({
             setEditPBType={setEditPBType}
             editfoodtype={editfoodtype}
             setEditFoodType={setEditFoodType}
+            editfoodcharges={editfoodcharges}
+            setEditFoodCharges={setEditFoodCharges}
             editconsultationtype={editconsultationtype}
             setEditConsultationType={setEditConsultationType}/>     
         </div>

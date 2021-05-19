@@ -55,6 +55,8 @@ const Modal = ({
     setEditPBType,
     editfoodtype,
     setEditFoodType,
+    editfoodcharges,
+    setEditFoodCharges,
     editconsultationtype,
     setEditConsultationType}) => {
 
@@ -63,6 +65,9 @@ const Modal = ({
     }
     const foodtypeinput = (e) => {
         setEditFoodType(e.target.value);
+    }
+    const foodchargesinput = (e) => {
+        setEditFoodCharges(e.target.value);
     }
     const pbtypeinput = (e) => {
         setEditPBType(e.target.value);
@@ -199,6 +204,7 @@ const Modal = ({
                 setEditSource(i.source);
                 setEditAvailable(i.available);
                 setEditFoodType(i.type);
+                setEditFoodCharges(i.charges)
             });
         }
         else if (collectionname==="/onlinedoc")
@@ -436,6 +442,7 @@ const Modal = ({
                 source : editsource,
                 available : editavailable,
                 type: editfoodtype,
+                charges: editfoodcharges
             }))
             .then(() => {
                 setEditName("");
@@ -812,6 +819,29 @@ const Modal = ({
                             <MenuItem value={"2"}
                             fontSize="0.8rem"
                             className={classes.item}>Others</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
+                <div className="input-flex" >   
+                    <label className="label">Charges<div className="red">*</div></label>
+                    <FormControl className={classes.formControl}>
+                        <InputLabel 
+                        fontSize="0.8rem"
+                        fontWeight={500}
+                        className={classes.input}
+                        >Food Type</InputLabel>
+                        <Select
+                            value={editfoodcharges}
+                            onChange={foodchargesinput}
+                            className={classes.inputfield}
+                            required
+                            >
+                            <MenuItem value={"0"}
+                            fontSize="0.8rem"
+                            className={classes.item}>Paid</MenuItem>
+                            <MenuItem value={"1"}
+                            fontSize="0.8rem"
+                            className={classes.item}>Free</MenuItem>
                         </Select>
                     </FormControl>
                 </div>

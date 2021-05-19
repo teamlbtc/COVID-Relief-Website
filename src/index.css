@@ -39,7 +39,7 @@
 .loader-container {
   background-color: var(--white);
   padding: 0.3rem;
-  margin: 2.5rem auto;
+  margin: 5rem auto;
   position: absolute;
   display: grid;
   place-items: center;
@@ -249,9 +249,34 @@
   transition: all 0.3s;
 }
 
-.info {
-  width: 1.6rem;
-  height: 1.6rem;
+.link-container {
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: ease-in-out 0.3s;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+}
+
+.link-container:hover {
+  background-color: var(--accent);
+  transition: ease-in-out 0.3s;
+  box-shadow: 0 0 8px 2px #00000035;
+}
+
+.link-title {
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  transition: ease-in-out 0.3s;
+}
+
+.link-container:hover .link-title {
+  color: var(--white);
+  transition: ease-in-out 0.3s;
 }
 
 .cover3 {
@@ -1662,7 +1687,7 @@
   }
 
   .donate-title {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
   }
 
   .form-container {
