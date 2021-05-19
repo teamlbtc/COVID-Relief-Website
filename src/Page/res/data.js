@@ -228,7 +228,7 @@ const Data = (
         {
             setFoodChargesText("Paid");
         }
-        else if(foodtype==="1")
+        else if(foodcharges==="1")
         {
             setFoodChargesText("Free");
         }

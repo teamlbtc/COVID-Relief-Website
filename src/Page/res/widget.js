@@ -34,11 +34,20 @@ const Widget = () => {
         }, 2500);
     }
 
-    const share = () =>{         
-        let cover = document.getElementById("cover1");
+    const share = () =>{
         let body = document.querySelector("body");
         body.style.overflow = "hidden"; 
-        cover.style.display = "grid";
+        let cover = document.getElementById("cover1");
+        cover.style.opacity = 1;
+        cover.style.pointerEvents = "unset";
+        let box = document.getElementById("share-widget");
+        box.style.borderTopRightRadius=0;
+        box.style.borderTopLeftRadius=0;
+        box.style.borderBottomLeftRadius=0;
+        box.style.backgroundColor="var(--white)";
+        box.style.boxShadow="none";
+        let icon = document.getElementById("share-icon");
+        icon.style.fill="var(--accent)";
     }
    
     const closemodal = (e) => {
@@ -46,21 +55,23 @@ const Widget = () => {
         let body = document.querySelector("body");
         if (e.target === cover) {
             body.style.overflow = "unset"; 
-            cover.style.display = "none";   
+            cover.style.opacity = 0;
+            cover.style.pointerEvents = "none";
+            let box = document.getElementById("share-widget");
+            box.style.borderTopRightRadius="50%";
+            box.style.borderTopLeftRadius="50%";
+            box.style.borderBottomLeftRadius="50%"; 
+            box.style.backgroundColor="var(--accent)";
+            let icon = document.getElementById("share-icon");
+            icon.style.fill="var(--white)";
         }
-    }
-
-    const closemodalx = () => {
-        let cover = document.getElementById("cover1");
-        let body = document.querySelector("body");
-        body.style.overflow = "unset"; 
-        cover.style.display = "none";   
     }
 
     return(
         <>
         <div className="share-widget" id="share-widget" onClick={share} >
             <svg 
+            id="share-icon"
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 20 20"
             className="share-icon">
@@ -69,13 +80,6 @@ const Widget = () => {
         </div>
         <div className="cover" id="cover1" onClick={closemodal}>
         <div className="popup-box" id="popup-box">
-            <div className="head-container">
-                <div className="popup-header">Share This Page</div>
-                <div className="close-popup" onClick={closemodalx}>
-                    <div className="x1"></div>
-                    <div className="x2"></div>
-                </div>
-            </div>
             <div className="share-flex">
                 <a href={facebookLink(url)} 
                 target="blank" 
