@@ -12,10 +12,11 @@ import Rem from './Page/Remdesivir';
 import Testing from './Page/Testing';
 import Widget from './Page/res/widget';
 import Top from './Page/res/top';
+import About from './Page/res/about';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import qs from 'qs';
 import {axios} from './Page/res/axios';
-import fire from './Page/fire_config';
+//import fire from './Page/fire_config';
 
 function Main() {
 
@@ -34,7 +35,7 @@ function Main() {
   const [newuser, setNewUser] = useState(false);
   
 
-  fire.analytics();
+  //fire.analytics();
 
   const submit =  (e) => {
     clearErrors();
@@ -277,13 +278,23 @@ function Main() {
       <div className="header">
         <div className="title-container">
           <div className="title">COVID RELIEF</div>
+          <div className="container">
           <a
           href="https://forms.gle/r7WbWq6d5HqGNjHL7" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="link-container">
             <div className="link-title">BECOME A VOLUNTEER!</div>
+            <svg className="plasmalink-icon"
+            xmlns="http://www.w3.org/2000/svg"  
+            viewBox="0 0 24 24">
+              <g fill="none">
+                <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g></svg>
+
           </a>
+          <About/>
+          </div>
         </div>
         <div className="navbar">
           <div className="login-btn" id="admin-btn" 
@@ -298,14 +309,14 @@ function Main() {
           </div>
             <div className="navlinks">
                 <NavLink to="/" exact className="link">Ambulance</NavLink>
+                <NavLink to="/Oxygen" className="link">Oxygen</NavLink>
                 <NavLink to="/Beds" className="link">Bed Avail</NavLink>
                 <NavLink to="/Blood" className="link">Blood Donors</NavLink>
+                <NavLink to="/Remdesivir" className="link">Remdesivir</NavLink>
                 <NavLink to="/Medicine" className="link">Medicine</NavLink>
                 <NavLink to="/Food" className="link">Food</NavLink>
-                <NavLink to="/Testing" className="link">Home Testing</NavLink>
                 <NavLink to="/Consultation" className="link">Online Consultation</NavLink>
-                <NavLink to="/Oxygen" className="link">Oxygen</NavLink>
-                <NavLink to="/Remdesivir" className="link">Remdesivir</NavLink>
+                <NavLink to="/Testing" className="link">Home Testing</NavLink>
                 <NavLink to="/Counselling" className="link">TeleCounselling</NavLink>
             </div>
         </div>
