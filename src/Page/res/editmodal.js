@@ -628,19 +628,19 @@ const Modal = ({
         <div className="form-data-title">Service Details</div>
         <div className="input-flex">   
         <label className="label">Name<div className="red">*</div></label>
-        <input className="edit-input" value={editname} onChange={nameinput} type="text" placeholder="Service Name" maxLength="50"></input>
+        <input className="edit-input" value={editname} onChange={nameinput} type="text" placeholder="Service Name"></input>
         </div>
         <div className="input-flex" >   
         <label className="label">Description</label>
-        <input className="edit-input" value={editdesc} onChange={descinput} type="text" placeholder="Service Description" maxLength="100"></input>
+        <input className="edit-input" value={editdesc} onChange={descinput} type="text" placeholder="Service Description"></input>
         </div>
         <div className="input-flex" >   
         <label className="label">Location</label>
-        <input className="edit-input" value={editlocation} onChange={locinput} type="text" placeholder="Service Location" maxLength="50"></input>
+        <input className="edit-input" value={editlocation} onChange={locinput} type="text" placeholder="Service Location"></input>
         </div>
         <div className="input-flex" >   
         <label className="label">Timings</label>
-        <input className="edit-input" value={edittiming} onChange={timeinput} type="text" placeholder="Service Timings" maxLength="50"></input>
+        <input className="edit-input" value={edittiming} onChange={timeinput} type="text" placeholder="Service Timings"></input>
         </div>
         </div>
 
@@ -648,7 +648,7 @@ const Modal = ({
         <div className="form-data-title">Contact Information</div>
         <div className="input-flex" >   
         <label className="label">Contact Name<div className="red">*</div></label>
-        <input className="edit-input" value={editcontactname} onChange={cnameinput} type="text" placeholder="Contact Name" maxLength="50"></input>
+        <input className="edit-input" value={editcontactname} onChange={cnameinput} type="text" placeholder="Contact Name"></input>
         </div>
         <div className="input-flex" >   
         <label className="label">Contact Number<div className="red">*</div></label>
@@ -656,7 +656,7 @@ const Modal = ({
         </div>
     <div className="input-flex" >   
         <label className="label">Contact Email</label>
-        <input className="edit-input" value={editcontactemail} onChange={cemailinput} type="email" placeholder="Contact E-mail" maxLength="50"></input>
+        <input className="edit-input" value={editcontactemail} onChange={cemailinput} type="email" placeholder="Contact E-mail"></input>
     </div>
     <div className="input-flex" >   
         <label className="label">Link</label>
@@ -702,7 +702,7 @@ const Modal = ({
     </div>
     <div className="input-flex" >       
         <label className="label">Source</label>
-        <input className="edit-input" value={editsource} onChange={sourceinput} type="text" placeholder="Enter Source " maxLength="50"></input>
+        <input className="edit-input" value={editsource} onChange={sourceinput} type="text" placeholder="Enter Source"></input>
     </div>
     <div className="input-flex">
         <label className="label">Available</label>
@@ -715,7 +715,7 @@ const Modal = ({
             
 {
     (()=> {
-    if (collectionname==="/blood")
+    if (collectionname==="/blooddonor")
     {
         return (
             <div className="form-details" id="form-input">
@@ -913,7 +913,7 @@ const Modal = ({
             </div>
                 <div className="input-flex" >   
                     <label className="label">Medicine Name<div className="red">*</div></label>
-                    <input className="edit-input" value={editmedname} onChange={mednameinput} type="text" placeholder="Name" maxLength="50"></input>
+                    <input className="edit-input" value={editmedname} onChange={mednameinput} type="text" placeholder="Name"></input>
                 </div>
                 <div className="input-flex" >       
                     <label className="label">Price<div className="red">*</div></label>
