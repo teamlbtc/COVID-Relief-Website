@@ -9,6 +9,7 @@ import {axios} from './axios';
 import qs from 'qs';    
 
 const Modal = ({
+    id,
     editid,
     setEditId,
     collectionname, 
@@ -280,14 +281,15 @@ const Modal = ({
     };
 
     const deleteModal = () =>{         
-        let cover = document.getElementById("delete-cover");
+        let cover = document.getElementById(`delete-${id}`);
         let body = document.querySelector("body");
         body.style.overflow = "hidden"; 
         cover.style.display = "grid";
+        console.log("stupid");
     }
 
     const cancelDelete = () => {
-        let cover = document.getElementById("delete-cover");
+        let cover = document.getElementById(`delete-${id}`);
         let body = document.querySelector("body");
         body.style.overflow = "unset"; 
         cover.style.display = "none";   
@@ -326,7 +328,6 @@ const Modal = ({
                 setEditSource("");
                 setEditAvailable(false);
                 setEditId("");
-                console.log(res);
                 let body = document.querySelector("body");
                 body.style.overflow = "unset"; 
             })
@@ -1075,7 +1076,7 @@ const Modal = ({
         </div>
     </div>
 
-    <div className="delete-cover" id="delete-cover">
+    <div className="delete-cover" id={`delete-${id}`}>
         <div className="delete-confirmation" id="delete-confirmation">
             <div className="delete-header">You Are Sure You Want To Delete This Resource!</div>
             <div className="delete-confirm-container">

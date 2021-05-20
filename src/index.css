@@ -289,6 +289,7 @@
   margin: 10px 0;
   font-size: 1rem;
   color: var(--lgrey);
+  text-transform: capitalize;
 }
 
 .e-form-container {
@@ -1237,19 +1238,17 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
   margin: 0 0 0 0;
 }
 
 .desc-label {
-  width: 35%;
+  min-width: fit-content;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .desc {
-  width: 65%;
   color: var(--mgrey);
   text-transform: capitalize;
   word-wrap: break-word;
@@ -1257,6 +1256,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin: 0 0 0 0.2rem;
 }
 
 .data-container {
@@ -1489,6 +1489,15 @@
   color: var(--lgrey);
 }
 
+.ddesc-container {
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  margin: 0.8rem 0;
+  align-items: flex-start;
+}
+
 .ddesc-label {
   font-size: 1rem;
   color: var(--dgrey);
@@ -1620,6 +1629,7 @@
   fill: var(--white);
   margin-right: 0.2rem;
   transition: ease-in-out 0.3s;
+  pointer-events: none;
 }
 
 .share-flex {
@@ -1636,6 +1646,7 @@
   height: 1.5rem;
   fill: var(--mgrey);
   stroke: var(--mgrey);
+  pointer-events: none;
 }
 
 .media-link {
@@ -1655,6 +1666,7 @@
   font-weight: 500;
   font-size: 1rem;
   color: var(--mgrey);
+  pointer-events: none;
 }
 
 .media-link:hover {

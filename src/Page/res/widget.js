@@ -36,18 +36,21 @@ const Widget = () => {
         }, 2500);
     }
 
-    const share = () =>{
+    const share = (e) =>{
         let body = document.querySelector("body");
-        body.style.overflow = "hidden"; 
         let cover = document.getElementById("cover1");
-        cover.style.opacity = 1;
-        cover.style.pointerEvents = "unset";
         let box = document.getElementById("share-widget");
-        box.classList.add("popup-box");
         let shareflex = document.getElementById("share-flex");
-        shareflex.style.display="flex";
         let shareicon = document.getElementById("share-icon");
-        shareicon.style.display="none";
+        if (e.target === box)
+        {
+            shareflex.style.display="flex";
+            box.classList.add("popup-box");
+            cover.style.opacity = 1;
+            cover.style.pointerEvents = "unset";
+            body.style.overflow = "hidden"; 
+            shareicon.style.display="none"
+        }
     }
    
     const closemodal = (e) => {
@@ -57,6 +60,25 @@ const Widget = () => {
         let shareflex = document.getElementById("share-flex");
         let shareicon = document.getElementById("share-icon");
         if (e.target === cover) {
+            body.style.overflow = "unset"; 
+            cover.style.opacity = 0;
+            cover.style.pointerEvents = "none";   
+            box.classList.remove("popup-box");
+            shareflex.style.display="none";
+            shareicon.style.display="unset";
+        }
+    }
+
+    const closemodalx = (e) => {
+        let cover = document.getElementById("cover1");
+        let body = document.querySelector("body");
+        let box = document.getElementById("share-widget");
+        let shareflex = document.getElementById("share-flex");
+        let shareicon = document.getElementById("share-icon");
+        let fb = document.getElementById("fb");
+        let twit = document.getElementById("twit");
+        let linkd = document.getElementById("linkd");
+        if (e.target === fb || e.target === twit || e.target === linkd) {
             body.style.overflow = "unset"; 
             cover.style.opacity = 0;
             cover.style.pointerEvents = "none";   
@@ -82,7 +104,9 @@ const Widget = () => {
                 <a className="media-link"
                 href={facebookLink(url)} 
                 target="blank" 
-                rel="noreferrer noopener">
+                rel="noreferrer noopener"
+                id="fb"
+                onClick={closemodalx}>
                     <div className="media-text">
                         Facebook
                     </div>
@@ -97,7 +121,9 @@ const Widget = () => {
                 <a className="media-link"
                 href={twitterLink(url)} 
                 target="blank" 
-                rel="noreferrer noopener">
+                rel="noreferrer noopener"
+                id="twit"
+                onClick={closemodalx}>
                     <div className="media-text">
                         Twitter
                     </div>
@@ -112,7 +138,9 @@ const Widget = () => {
                 <a className="media-link"
                 href={linkedinLink(url)} 
                 target="blank" 
-                rel="noreferrer noopener">
+                rel="noreferrer noopener"
+                id="linkd"
+                onClick={closemodalx}>
                     <div className="media-text">
                         LinkedIn
                     </div>
@@ -123,7 +151,6 @@ const Widget = () => {
                         <path stroke="none" d="M27.26 27.271h-4.733v-7.427c0-1.771-.037-4.047-2.475-4.047c-2.468 0-2.844 1.921-2.844 3.916v7.557h-4.739V11.999h4.552v2.083h.061c.636-1.203 2.183-2.468 4.491-2.468c4.801 0 5.692 3.161 5.692 7.271v8.385zM7.115 9.912a2.75 2.75 0 0 1-2.751-2.756a2.753 2.753 0 1 1 2.751 2.756zm2.374 17.359H4.74V12h4.749zM29.636 0H2.36C1.057 0 0 1.031 0 2.307v27.387c0 1.276 1.057 2.307 2.36 2.307h27.271c1.301 0 2.369-1.031 2.369-2.307V2.307C32 1.031 30.932 0 29.631 0z"/>
                     </svg> 
                 </a>
-
                 <div className="media-link" onClick={urlcopy}>
                     <div className="media-text">
                         {copy}
