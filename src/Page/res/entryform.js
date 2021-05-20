@@ -157,11 +157,23 @@ const Form = ({collectionname, setStateUpdate}) =>{
                     btn.style.backgroundColor="var(--accent)";
                     setBtnTxt("ADD");
                 },2000);
+            })
+            .catch((err)=>{
+                setTry("An Error Occurred at Our End.")
+                let success = document.getElementById("add-link");
+                success.style.opacity = 1;
+                success.style.backgroundColor = "var(--red)";
+                setTimeout(()=>{
+                    success.style.opacity = 0;
+                    btn.disabled=false;
+                    btn.style.backgroundColor="var(--accent)";
+                    setBtnTxt("ADD");
+                },5000);
             });
         }
         else if (collectionname==="/blooddonor")
         {   
-            if(inputpbtype!==""&&inputbloodgroup!=="")
+            if(inputpbtype!=="")
             {
             setBtnTxt("PLEASE WAIT");
             let btn = document.getElementById("add-btn");
@@ -210,6 +222,18 @@ const Form = ({collectionname, setStateUpdate}) =>{
                     btn.style.backgroundColor="var(--accent)";
                     setBtnTxt("ADD");
                 },2000);
+            })
+            .catch((err)=>{
+                setTry("An Error Occurred at Our End.")
+                let success = document.getElementById("add-link");
+                success.style.opacity = 1;
+                success.style.backgroundColor = "var(--red)";
+                setTimeout(()=>{
+                    success.style.opacity = 0;
+                    btn.disabled=false;
+                    btn.style.backgroundColor="var(--accent)";
+                    setBtnTxt("ADD");
+                },5000);
             });
             }
             else
@@ -278,8 +302,18 @@ const Form = ({collectionname, setStateUpdate}) =>{
                     btn.style.backgroundColor="var(--accent)";
                     setBtnTxt("ADD");
                 },2000);
-            }).catch((err)=>{
-                console.log(err)
+            })
+            .catch((err)=>{
+                setTry("An Error Occurred at Our End.")
+                let success = document.getElementById("add-link");
+                success.style.opacity = 1;
+                success.style.backgroundColor = "var(--red)";
+                setTimeout(()=>{
+                    success.style.opacity = 0;
+                    btn.disabled=false;
+                    btn.style.backgroundColor="var(--accent)";
+                    setBtnTxt("ADD");
+                },5000);
             });
             }
             else
@@ -344,6 +378,18 @@ const Form = ({collectionname, setStateUpdate}) =>{
                     btn.style.backgroundColor="var(--accent)";
                     setBtnTxt("ADD");
                 },2000);
+            })
+            .catch((err)=>{
+                setTry("An Error Occurred at Our End.")
+                let success = document.getElementById("add-link");
+                success.style.opacity = 1;
+                success.style.backgroundColor = "var(--red)";
+                setTimeout(()=>{
+                    success.style.opacity = 0;
+                    btn.disabled=false;
+                    btn.style.backgroundColor="var(--accent)";
+                    setBtnTxt("ADD");
+                },5000);
             });
             }
             else
@@ -406,6 +452,18 @@ const Form = ({collectionname, setStateUpdate}) =>{
                     btn.style.backgroundColor="var(--accent)";
                     setBtnTxt("ADD");
                 },2000);
+            })
+            .catch((err)=>{
+                setTry("An Error Occurred at Our End.")
+                let success = document.getElementById("add-link");
+                success.style.opacity = 1;
+                success.style.backgroundColor = "var(--red)";
+                setTimeout(()=>{
+                    success.style.opacity = 0;
+                    btn.disabled=false;
+                    btn.style.backgroundColor="var(--accent)";
+                    setBtnTxt("ADD");
+                },5000);
             });
             }
             else
@@ -474,6 +532,18 @@ const Form = ({collectionname, setStateUpdate}) =>{
                     btn.style.backgroundColor="var(--accent)";
                     setBtnTxt("ADD");
                 },2000);
+            })
+            .catch((err)=>{
+                setTry("An Error Occurred at Our End.")
+                let success = document.getElementById("add-link");
+                success.style.opacity = 1;
+                success.style.backgroundColor = "var(--red)";
+                setTimeout(()=>{
+                    success.style.opacity = 0;
+                    btn.disabled=false;
+                    btn.style.backgroundColor="var(--accent)";
+                    setBtnTxt("ADD");
+                },5000);
             });
             }
             else
@@ -536,6 +606,18 @@ const Form = ({collectionname, setStateUpdate}) =>{
                     btn.style.backgroundColor="var(--accent)";
                     setBtnTxt("ADD");
                 },2000);
+            })
+            .catch((err)=>{
+                setTry("An Error Occurred at Our End.")
+                let success = document.getElementById("add-link");
+                success.style.opacity = 1;
+                success.style.backgroundColor = "var(--red)";
+                setTimeout(()=>{
+                    success.style.opacity = 0;
+                    btn.disabled=false;
+                    btn.style.backgroundColor="var(--accent)";
+                    setBtnTxt("ADD");
+                },5000);
             });
             }
             else
@@ -744,7 +826,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                 </FormControl>    
                             </div>
                             <div className="input-flex" >       
-                                <label className="label">Blood<div className="red">*</div></label>
+                                <label className="label">Blood Group</label>
                                 <FormControl className={classes.formControl}>
                                     <InputLabel 
                                     fontSize="0.8rem"

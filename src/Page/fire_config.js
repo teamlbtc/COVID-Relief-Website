@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/analytics';
 
 const fire = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FB_API_KEY,

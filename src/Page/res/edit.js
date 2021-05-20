@@ -216,15 +216,15 @@ const Editbtn = ({
         setEditList(linklist.filter(i=>i._id===editid));
     },[editid, linklist, setEditList])
 
-    const closemodal = (e) => {
-        let cover = document.getElementById("cover2");
-        let body = document.querySelector("body");
-        if (e.target === cover) {
-            body.style.overflow = "unset";
-            setCover("none");
-            setEditId("");
-        }   
-    }
+    // const closemodal = (e) => {
+    //     let cover = document.getElementById("cover2");
+    //     let body = document.querySelector("body");
+    //     if (e.target === cover) {
+    //         body.style.overflow = "unset";
+    //         setCover("none");
+    //         setEditId("");
+    //     }   
+    // }
 
     const closemodalx = () => {
         let body = document.querySelector("body");
@@ -240,7 +240,7 @@ const Editbtn = ({
                 
             <div className="edit-btn" style={{display: `${edit}`}} onClick={popup} idvalue={id}>EDIT</div>
             
-        <div className="edit-cover" id="cover2" style={{display: `${cover}`}} onClick={closemodal}>
+        <div className="edit-cover" id="cover2" style={{display: `${cover}`}}>
  
         <div className="edit-modal">
 

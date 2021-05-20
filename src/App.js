@@ -16,7 +16,6 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import qs from 'qs';
 import {axios} from './Page/res/axios';
 import fire from './Page/fire_config';
-import 'firebase/analytics';
 
 function Main() {
 
