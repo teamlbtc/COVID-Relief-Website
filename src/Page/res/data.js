@@ -335,6 +335,14 @@ const Data = (
         body.style.overflow="unset";
     }
 
+    const closemodal = (e) => {
+        let body = document.querySelector("body");
+        let cover = document.getElementById(id);
+        if (e.target=== cover)
+        cover.style.display = "none";
+        body.style.overflow="unset";
+    }
+
     return(
         <>
         <div className="card">
@@ -579,7 +587,7 @@ const Data = (
             </div>
         </div>
 
-        <div className="details-card-cover" id={id}>
+        <div className="details-card-cover" id={id} onClick={closemodal}>
 
             <div className="details-card-container">
             <div className="details-head-container">
@@ -619,7 +627,7 @@ const Data = (
                 <div className="dtime-data">Last Updated: {moment(last_update_time.toString()).calendar()}</div>
             </div>
             
-            <div className="extra-container">
+            <div className="ddesc-container">
                 <div className="ddesc-label">Description:</div> 
                 <div className="ddesc">{description !== "" ? description : "No Data"}</div>
             </div>

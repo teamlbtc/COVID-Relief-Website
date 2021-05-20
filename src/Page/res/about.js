@@ -50,16 +50,14 @@ const About = () => {
             <div className="about-flex">
                 <div className="instruction">
                     Let's Be The Change
-                    <p className="para">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </p>
+
                 </div>
                 <div className="instruction">
                     About
                     <p className="para">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
-                    dolore magna aliqua.
+                    This site is made to assist people with Verified Information related to COVID.
+                    <br/>
+                    Resources are verified by Volunteers
                     </p>
                 </div>
                 <div className="e-form-container">
