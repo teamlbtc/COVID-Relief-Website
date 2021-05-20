@@ -16,7 +16,7 @@ import About from './Page/res/about';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import qs from 'qs';
 import {axios} from './Page/res/axios';
-//import fire from './Page/fire_config';
+import fire from './Page/fire_config';
 
 function Main() {
 
@@ -35,7 +35,7 @@ function Main() {
   const [newuser, setNewUser] = useState(false);
   
 
-  //fire.analytics();
+  fire.analytics();
 
   const submit =  (e) => {
     clearErrors();
