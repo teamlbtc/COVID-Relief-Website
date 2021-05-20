@@ -1077,7 +1077,7 @@ const Modal = ({
 
     <div className="delete-cover" id="delete-cover">
         <div className="delete-confirmation" id="delete-confirmation">
-            <div className="delete-header">You Are About To Delete This Resource!</div>
+            <div className="delete-header">You Are Sure You Want To Delete This Resource!</div>
             <div className="delete-confirm-container">
                 <div className="delete-btn-flex">
                     <button className="delete-d-btn" id="add-btn" onClick={deleteData}>DELETE</button>

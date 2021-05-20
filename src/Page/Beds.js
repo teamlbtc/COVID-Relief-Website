@@ -11,7 +11,7 @@ const Beds = () => {
     }, []);
 
     return(
-        <div className="bed-content">
+        <div className="content">
         {loader ?
         (
             <div className="loader-container">

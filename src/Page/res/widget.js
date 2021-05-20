@@ -41,34 +41,33 @@ const Widget = () => {
         cover.style.opacity = 1;
         cover.style.pointerEvents = "unset";
         let box = document.getElementById("share-widget");
-        box.style.borderTopRightRadius=0;
-        box.style.borderTopLeftRadius=0;
-        box.style.borderBottomLeftRadius=0;
-        box.style.backgroundColor="var(--white)";
-        box.style.boxShadow="none";
-        let icon = document.getElementById("share-icon");
-        icon.style.fill="var(--accent)";
+        box.classList.add("popup-box");
+        let shareflex = document.getElementById("share-flex");
+        shareflex.style.display="flex";
+        let shareicon = document.getElementById("share-icon");
+        shareicon.style.display="none";
     }
    
     const closemodal = (e) => {
         let cover = document.getElementById("cover1");
         let body = document.querySelector("body");
+        let box = document.getElementById("share-widget");
+        let shareflex = document.getElementById("share-flex");
+        let shareicon = document.getElementById("share-icon");
         if (e.target === cover) {
             body.style.overflow = "unset"; 
             cover.style.opacity = 0;
-            cover.style.pointerEvents = "none";
-            let box = document.getElementById("share-widget");
-            box.style.borderTopRightRadius="50%";
-            box.style.borderTopLeftRadius="50%";
-            box.style.borderBottomLeftRadius="50%"; 
-            box.style.backgroundColor="var(--accent)";
-            let icon = document.getElementById("share-icon");
-            icon.style.fill="var(--white)";
+            cover.style.pointerEvents = "none";   
+            box.classList.remove("popup-box");
+            shareflex.style.display="none";
+            shareicon.style.display="unset";
         }
     }
 
     return(
         <>
+        <div className="cover" id="cover1" onClick={closemodal}>
+        </div>
         <div className="share-widget" id="share-widget" onClick={share} >
             <svg 
             id="share-icon"
@@ -77,10 +76,7 @@ const Widget = () => {
             className="share-icon">
                 <path d="M15 13.442c-.633 0-1.204.246-1.637.642l-5.938-3.463c.046-.188.075-.384.075-.584s-.029-.395-.075-.583L13.3 6.025A2.48 2.48 0 0 0 15 6.7c1.379 0 2.5-1.121 2.5-2.5S16.379 1.7 15 1.7s-2.5 1.121-2.5 2.5c0 .2.029.396.075.583L6.7 8.212A2.485 2.485 0 0 0 5 7.537c-1.379 0-2.5 1.121-2.5 2.5s1.121 2.5 2.5 2.5a2.48 2.48 0 0 0 1.7-.675l5.938 3.463a2.339 2.339 0 0 0-.067.546A2.428 2.428 0 1 0 15 13.442z"/>
             </svg>
-        </div>
-        <div className="cover" id="cover1" onClick={closemodal}>
-        <div className="popup-box" id="popup-box">
-            <div className="share-flex">
+            <div className="share-flex" id="share-flex">
                 <a href={facebookLink(url)} 
                 target="blank" 
                 rel="noreferrer noopener"
@@ -104,7 +100,6 @@ const Widget = () => {
                     <div className="link-copied" id="link-copied">Link Copied!</div>
                 </div>
             </div>
-        </div>
         </div>
         </>
     );
