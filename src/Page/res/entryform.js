@@ -1094,39 +1094,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         className={classes.item}>Rental</MenuItem>
                                     </Select>
                                 </FormControl>
-                            </div>
-                            <div className="input-flex" >   
-                                <label className="label">Condition<div className="red">*</div></label>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel 
-                                    fontSize="0.8rem"
-                                    fontWeight={500}
-                                    className={classes.input}
-                                    >Oxygen Condition</InputLabel>
-                                    <Select
-                                        value={inputomrcondition}
-                                        onChange={omrconditioninput}
-                                        className={classes.inputfield}
-                                        required
-                                        >
-                                        <MenuItem value={"0"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>No Stock</MenuItem>
-                                        <MenuItem value={"1"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Black Market</MenuItem>
-                                        <MenuItem value={"2"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Purchase</MenuItem>
-                                        <MenuItem value={"3"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Waiting Period</MenuItem>
-                                        <MenuItem value={"4"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Rental</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </div>
+                            </div>                      
                             <div className="input-flex" >   
                                 <label className="label">Capacity<div className="red">*</div></label>
                                 <input className="input" value={inputcapacity} onChange={capacityinput} type="text" placeholder="Capacity"></input>
