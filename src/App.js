@@ -16,6 +16,7 @@ import About from './Page/res/about';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import qs from 'qs';
 import {axios} from './Page/res/axios';
+import Volunteer from './Page/res/volunteer';
 import fire from './Page/fire_config';
 
 function Main() {
@@ -34,7 +35,6 @@ function Main() {
   const [nameError, setnameError] = useState("");
   const [newuser, setNewUser] = useState(false);
   
-
   fire.analytics();
 
   const submit =  (e) => {
@@ -274,27 +274,12 @@ function Main() {
   return (
     <>
     <Router>
+
     <div className="app">
       <div className="header">
         <div className="title-container">
           <div className="title">COVID RELIEF</div>
-          <div className="container">
-          <a
-          href="https://forms.gle/r7WbWq6d5HqGNjHL7" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="link-container">
-            <div className="link-title">BECOME A VOLUNTEER!</div>
-            <svg className="plasmalink-icon"
-            xmlns="http://www.w3.org/2000/svg"  
-            viewBox="0 0 24 24">
-              <g fill="none">
-                <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </g></svg>
-
-          </a>
           <About/>
-          </div>
         </div>
         <div className="navbar">
           <div className="login-btn" id="admin-btn" 
@@ -446,6 +431,7 @@ function Main() {
       </Switch>
       <Top/>
       <Widget/>
+      <Volunteer/>
     </div>
     </Router> 
     </>
