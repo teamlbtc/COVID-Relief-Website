@@ -17,7 +17,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import qs from 'qs';
 import {axios} from './Page/res/axios';
 import Volunteer from './Page/res/volunteer';
-import fire from './Page/fire_config';
+//import fire from './Page/fire_config';
 
 function Main() {
 
@@ -35,7 +35,7 @@ function Main() {
   const [nameError, setnameError] = useState("");
   const [newuser, setNewUser] = useState(false);
   
-  fire.analytics();
+  //fire.analytics();
 
   const submit =  (e) => {
     clearErrors();
@@ -269,14 +269,12 @@ function Main() {
     setNewUser(!newuser);
     clearInputs();
   }
-  
 
   return (
-    <>
     <Router>
-
     <div className="app">
       <div className="header">
+      <Volunteer/>
         <div className="title-container">
           <div className="title">COVID RELIEF</div>
           <About/>
@@ -295,17 +293,17 @@ function Main() {
             <div className="navlinks">
                 <NavLink to="/" exact className="link">Ambulance</NavLink>
                 <NavLink to="/Oxygen" className="link">Oxygen</NavLink>
-                <NavLink to="/Beds" className="link">Bed Avail</NavLink>
                 <NavLink to="/Blood" className="link">Blood Donors</NavLink>
-                <NavLink to="/Remdesivir" className="link">Remdesivir</NavLink>
                 <NavLink to="/Medicine" className="link">Medicine</NavLink>
                 <NavLink to="/Food" className="link">Food</NavLink>
                 <NavLink to="/Consultation" className="link">Online Consultation</NavLink>
                 <NavLink to="/Testing" className="link">Home Testing</NavLink>
                 <NavLink to="/Counselling" className="link">TeleCounselling</NavLink>
+                <NavLink to="/Beds" className="link">Bed Avail</NavLink>
+                <NavLink to="/Remdesivir" className="link">Remdesivir</NavLink>
             </div>
         </div>
-        </div>
+      </div>
 
         {
           
@@ -419,7 +417,6 @@ function Main() {
  
       <Switch>
         <Route path="/" exact component={props => (<Ambulance {...props} user={user}/>)}></Route>
-        <Route path="/Beds" component={props => (<Beds {...props} user={user}/>)}></Route>
         <Route path="/Blood" component={props => (<Blood {...props} user={user}/>)}></Route>
         <Route path="/Medicine" component={props => (<Med {...props} user={user}/>)}></Route>
         <Route path="/Food" component={props => (<Food {...props} user={user}/>)}></Route>
@@ -428,13 +425,12 @@ function Main() {
         <Route path="/Oxygen" component={props => (<Oxygen {...props} user={user}/>)}></Route>
         <Route path="/Remdesivir" component={props => (<Rem {...props} user={user}/>)}></Route>
         <Route path="/Counselling" component={props => (<Counselling {...props} user={user}/>)}></Route>
+        <Route path="/Beds" component={props => (<Beds {...props} user={user}/>)}></Route>
       </Switch>
       <Top/>
       <Widget/>
-      <Volunteer/>
     </div>
-    </Router> 
-    </>
+    </Router>
   );
 }
 

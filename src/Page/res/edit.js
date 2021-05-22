@@ -54,8 +54,8 @@ const Editbtn = ({
     setEditPBType,
     editfoodtype,
     setEditFoodType,
-    editfoodcharges,
-    setEditFoodCharges,
+    editcharges,
+    setEditCharges,
     editconsultationtype,
     setEditConsultationType}) => {
 
@@ -75,7 +75,7 @@ const Editbtn = ({
 ;
 
     useEffect(()=>{
-        if (collectionname==="/ambulance"||collectionname==="/bed"||collectionname==="/hometesting"||collectionname==="/tele")
+        if (collectionname==="/ambulance"||collectionname==="/hometesting"||collectionname==="/tele")
         {
             setEditName("");
             setEditDesc("");
@@ -142,7 +142,7 @@ const Editbtn = ({
             setEditSource("");            
             setEditAvailable(false);
             setEditFoodType("");
-            setEditFoodCharges("");
+            setEditCharges("");
         }
         else if (collectionname==="/onlinedoc")
         {   
@@ -159,6 +159,7 @@ const Editbtn = ({
             setEditSource("");            
             setEditAvailable(false);;
             setEditConsultationType("");
+            setEditCharges("");
         }
         else if (collectionname==="/oxygen")
         {   
@@ -303,8 +304,8 @@ const Editbtn = ({
             setEditPBType={setEditPBType}
             editfoodtype={editfoodtype}
             setEditFoodType={setEditFoodType}
-            editfoodcharges={editfoodcharges}
-            setEditFoodCharges={setEditFoodCharges}
+            editcharges={editcharges}
+            setEditCharges={setEditCharges}
             editconsultationtype={editconsultationtype}
             setEditConsultationType={setEditConsultationType}/>     
         </div>

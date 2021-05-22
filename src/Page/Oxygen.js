@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import Data from './res/data';
 import Form from './res/entryform';
 import {axios} from './res/axios';
+import PageNo from './res/pageno';
 
 const Oxygen = ({user}) => {
 
@@ -38,8 +39,8 @@ const Oxygen = ({user}) => {
     const [editoxygentype, setEditOxygenType] = useState("");
     const [stateupdate, setStateUpdate] = useState(false);
     const [loader, setLoader] = useState(true);
-    const [page, setPage] = useState(1);
-    const [size] = useState(16);
+    const [page, setPage] = useState("1");
+    const [size] = useState(12);
     const [pages, setPages] = useState();
     
     useEffect(() => {
@@ -68,11 +69,6 @@ const Oxygen = ({user}) => {
 
     for(let i = 1;  i<=pages; i++){
         pageno.push(i);
-    }
-
-    const setCurPage = (e) => {
-        setLoader(true);
-        setPage(e.target.getAttribute("pageid"));
     }
 
     return(
@@ -155,19 +151,16 @@ const Oxygen = ({user}) => {
                 />
             ))}
             </div>
-            <div className="current-page">
-                Page - {page} of {pages}</div>
             <div className="page-bar-container">
-            <div className="go-to">Go to:</div>
+            <div className="go-to">Page:</div>
             <div className="page-no-container"> 
             {pageno.map(i=>(
-                <div 
-                key={i} 
-                className="page-no" 
-                pageid={i}
-                onClick={setCurPage}>
-                    {i}
-                </div>
+                <PageNo
+                key={i}
+                i={i}
+                page={page}
+                setPage={setPage}
+                setLoader={setLoader}/>
             ))}
             </div>
             </div>

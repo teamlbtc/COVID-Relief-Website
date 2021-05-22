@@ -26,7 +26,7 @@ const Data = (
     medprice,
     consultationtype,
     foodtype,
-    foodcharges,
+    charges,
     pbtype,
     blood_group,
     collectionname,
@@ -84,31 +84,28 @@ const Data = (
     setEditPBType,
     editfoodtype,
     setEditFoodType,
-    editfoodcharges,
-    setEditFoodCharges,
+    editcharges,
+    setEditCharges,
     editconsultationtype,
     setEditConsultationType,
     }
     ) => {
 
-    const [availabletext, setAvailableText] = useState();
-    const [availablecolor, setAvailableColor] = useState();     
-    const [verifiedtext, setVerifiedText] = useState();
-    const [verifiedbytext, setVerifiedByText] = useState();
-    const [color, setColor] = useState();
-    const [numcolor, setNumColor] = useState();
-    const [numpoint, setNumPoint] = useState();
-    const [ecolor, setEColor] = useState();
-    const [epoint, setEPoint] = useState();
-    const [linkcolor, setLinkColor] = useState();
-    const [linkpoint, setLinkPoint] = useState();
-    const [pbtypetext, setPBTypetext] = useState();
-    const [foodtypetext, setFoodTypetext] = useState();
-    const [foodchargestext, setFoodChargesText] = useState();
-    const [consulttext, setConsultConditionText] = useState();
-    const [omrconditiontext, setOMRConditionText] = useState();
-    const [medtypetext, setMedTypeText] = useState();
-    const [oxytypetext, setOxyTypeText] = useState();
+    const [availabletext, setAvailableText] = useState("");
+    const [availablecolor, setAvailableColor] = useState("");     
+    const [verifiedtext, setVerifiedText] = useState("");
+    const [verifiedbytext, setVerifiedByText] = useState("");
+    const [color, setColor] = useState("");
+    const [numdisplay, setNumDisplay] = useState("");
+    const [edisplay, setEDisplay] = useState("");
+    const [linkdisplay, setLinkDisplay] = useState("");
+    const [pbtypetext, setPBTypetext] = useState("");
+    const [foodtypetext, setFoodTypetext] = useState("");
+    const [chargestext, setChargesText] = useState("");
+    const [consulttext, setConsultConditionText] = useState("");
+    const [omrconditiontext, setOMRConditionText] = useState("");
+    const [medtypetext, setMedTypeText] = useState("");
+    const [oxytypetext, setOxyTypeText] = useState("");
 
     
     useEffect(()=>{
@@ -224,19 +221,19 @@ const Data = (
     },[foodtype]);
 
     useEffect(()=>{
-        if(foodcharges==="0")
+        if(charges==="0")
         {
-            setFoodChargesText("Paid");
+            setChargesText("Paid");
         }
-        else if(foodcharges==="1")
+        else if(charges==="1")
         {
-            setFoodChargesText("Free");
+            setChargesText("Free");
         }
         else 
         {
-            setFoodChargesText("No Data");
+            setChargesText("No Data");
         }
-    },[foodcharges]);
+    },[charges]);
 
     useEffect(()=>{
         if(pbtype==="0")
@@ -284,35 +281,29 @@ const Data = (
     useEffect(()=>{
         if (contact_email!=="")
         {
-            setEColor("var(--accent)");
-            setEPoint("unset");
+            setEDisplay("unset")
         }
         else
         {
-            setEColor("var(--back)");
-            setEPoint("none");
+            setEDisplay("none");
         }   
         
         if (contact_number!=="")
         {
-            setNumColor("var(--accent)");
-            setNumPoint("unset");
+            setNumDisplay("unset");
         }
         else
         {
-            setNumColor("var(--back)");
-            setNumPoint("none");
+            setNumDisplay("none");
         }
         
         if (link_to_go!=="")
         {
-            setLinkColor("var(--accent)");
-            setLinkPoint("unset");
+            setLinkDisplay("unset");
         }
         else
         {
-            setLinkColor("var(--back)");
-            setLinkPoint("none");
+            setLinkDisplay("none");
         }
     },[contact_number, link_to_go, contact_email])
 
@@ -358,13 +349,13 @@ const Data = (
                     </svg>
       
                     <div className="verified-card" id="verified-card">    
-                        <div className="data-container">
-                            <div className="data-label">Status:</div>
-                        <div className="data">{verifiedtext}</div>
+                        <div className="extra-container">
+                            <div className="ddata-label">Status:</div>
+                        <div className="ddata">{verifiedtext}</div>
                         </div>
-                        <div className="data-container">
-                            <div className="data-label">Verified By:</div>
-                        <div className="data">{verifiedbytext}</div>
+                        <div className="extra-container">
+                            <div className="ddata-label">Verified By:</div>
+                        <div className="ddata">{verifiedbytext}</div>
                         </div>
                     </div>
                     </div>
@@ -433,8 +424,8 @@ const Data = (
             setEditPBType={setEditPBType}
             editfoodtype={editfoodtype}
             setEditFoodType={setEditFoodType}
-            editfoodcharges={editfoodcharges}
-            setEditFoodCharges={setEditFoodCharges}
+            editcharges={editcharges}
+            setEditCharges={setEditCharges}
             editconsultationtype={editconsultationtype}
             setEditConsultationType={setEditConsultationType}/>
 
@@ -450,7 +441,7 @@ const Data = (
                     return (
                         <>                   
                         <div className="desc-container">
-                        <div className="desc-label">Blood Type:</div> 
+                        <div className="desc-label">Type:</div> 
                             <div className="desc">{pbtypetext !== "" ? pbtypetext : "No Data"}</div>
                         </div>
                         <div className="desc-container">
@@ -492,7 +483,7 @@ const Data = (
                         </div>
                         <div className="desc-container">
                         <div className="data-label">Charges:</div> 
-                            <div className="data">{foodchargestext !== "" ? foodchargestext : "No Data"}</div>
+                            <div className="data">{chargestext !== "" ? chargestext : "No Data"}</div>
                         </div>
                         </>
                     );
@@ -504,6 +495,10 @@ const Data = (
                         <div className="desc-container">
                         <div className="data-label">Condition:</div> 
                             <div className="data">{consulttext !== "" ? consulttext : "No Data"}</div>
+                        </div>
+                        <div className="desc-container">
+                        <div className="data-label">Charges:</div> 
+                            <div className="data">{chargestext !== "" ? chargestext : "No Data"}</div>
                         </div>
                         </>
                     );
@@ -531,17 +526,6 @@ const Data = (
                         </>
                     );
                 }
-                else if (collectionname==="/remdesivir")
-                {
-                    return (
-                        <>
-                        <div className="desc-container">
-                        <div className="data-label">Condition:</div> 
-                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
-                        </div>
-                        </>
-                    );
-                }
                 })()
             }
             <div className="data-container">
@@ -549,37 +533,34 @@ const Data = (
                 <div className="contact-info">
                 <a href={`tel:${contact_number}`}
                 className="contact-icon"
-                style={{pointerEvents: `${numpoint}`}}>
+                style={{display: `${numdisplay}`}}>
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24"
-                    className="icon"
-                    style={{fill: `${numcolor}`, pointerEvents: `${numpoint}`}}>
+                    className="icon">
                         <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                     </svg>
                 </a>
                 <a href={`mailto:${contact_email !== "" ? contact_email : ""}`}
                 className="contact-icon"
-                style={{pointerEvents: `${epoint}`}}
+                style={{display: `${edisplay}`}}
                 target="_top">
                     <svg 
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    className="icon"
-                    style={{fill: `${ecolor}`, pointerEvents: `${epoint}`}}>
+                    className="icon">
                         <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6m-2 0l-8 5l-8-5h16m0 12H4V8l8 5l8-5v10z"/>
                     </svg>
                 </a>
                 <a href={link_to_go !== "" ? getClickableLink(link_to_go) : ""}
                 className="contact-icon"
-                style={{pointerEvents: `${linkpoint}`}}
+                style={{display: `${linkdisplay}`}}
                 target="_blank" 
                 rel="noopener noreferrer" >
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24"
-                    className="icon"
-                    style={{fill: `${linkcolor}`, pointerEvents: `${linkpoint}`}}>
+                    className="icon">
                         <path d="M10.59 13.41c.41.39.41 1.03 0 1.42c-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0a5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24a2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0a5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24a2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24a.973.973 0 0 1 0-1.42z"/>
                     </svg>
                 </a>             
@@ -611,12 +592,12 @@ const Data = (
       
                     <div className="dverified-card" id="verified-card">    
                         <div className="extra-container">
-                            <div className="data-label">Status:</div>
-                        <div className="data">{verifiedtext}</div>
+                            <div className="ddata-label">Status:</div>
+                        <div className="ddata">{verifiedtext}</div>
                         </div>
                         <div className="extra-container">
-                            <div className="data-label">Verified By:</div>
-                        <div className="data">{verifiedbytext}</div>
+                            <div className="ddata-label">Verified By:</div>
+                        <div className="ddata">{verifiedbytext}</div>
                         </div>
                     </div>
                     </div>
@@ -635,16 +616,20 @@ const Data = (
             <div className="card-flex">
             <div className="extra">
                 <div className="extra-container">
-                    <div className="data-label">Location:</div> 
-                    <div className="data">{location_covered !== "" ? location_covered : "No Data"}</div>
+                    <div className="ddata-label">Location:</div> 
+                    <div className="ddata">{location_covered !== "" ? location_covered : "No Data"}</div>
                 </div>
                 <div className="extra-container">
-                <div className="data-label">Timings:</div> 
-                    <div className="data">{timings !== "" ? timings : "No Data"}</div>
+                <div className="ddata-label">Timings:</div> 
+                    <div className="ddata">{timings !== "" ? timings : "No Data"}</div>
                 </div>
                 <div className="extra-container">
-                <div className="data-label">Source:</div> 
-                    <div className="data">{source !== "" ? source : "No Data"}</div>
+                <div className="ddata-label">Source:</div> 
+                    <div className="ddata">{source !== "" ? source : "No Data"}</div>
+                </div>
+                <div className="extra-container">
+                <div className="ddata-label">Comments:</div> 
+                    <div className="ddata">{source !== "" ? source : "No Data"}</div>
                 </div>
             </div>
 
@@ -655,12 +640,12 @@ const Data = (
                     return (                    
                     <div className="extra">
                     <div className="extra-container">
-                    <div className="data-label">Blood Type:</div> 
-                        <div className="data">{pbtypetext !== "" ? pbtypetext : "No Data"}</div>
+                    <div className="ddata-label">Type:</div> 
+                        <div className="ddata">{pbtypetext !== "" ? pbtypetext : "No Data"}</div>
                     </div>
                     <div className="extra-container">
-                    <div className="data-label">Blood Group:</div> 
-                        <div className="data">{blood_group !== "" ? blood_group : "No Data"}</div>
+                    <div className="ddata-label">Blood Group:</div> 
+                        <div className="ddata">{blood_group !== "" ? blood_group : "No Data"}</div>
                     </div>
                     </div>);
                 }
@@ -669,20 +654,20 @@ const Data = (
                     return (
                         <div className="extra">
                         <div className="extra-container">
-                        <div className="data-label">Condition:</div> 
-                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                        <div className="ddata-label">Condition:</div> 
+                            <div className="ddata">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
                         </div>
                         <div className="extra-container">
-                        <div className="data-label">Type:</div> 
-                            <div className="data">{medtypetext !== "" ? medtypetext : "No Data"}</div>
+                        <div className="ddata-label">Type:</div> 
+                            <div className="ddata">{medtypetext !== "" ? medtypetext : "No Data"}</div>
                         </div>
                         <div className="extra-container">
-                        <div className="data-label">Medicine Name:</div> 
-                            <div className="data">{medicine_name !== "" ? medicine_name : "No Data"}</div>
+                        <div className="ddata-label">Medicine Name:</div> 
+                            <div className="ddata">{medicine_name !== "" ? medicine_name : "No Data"}</div>
                         </div>
                         <div className="extra-container">
-                        <div className="data-label">Price:</div> 
-                            <div className="data">{medprice !== "" ? medprice : "No Data"}</div>
+                        <div className="ddata-label">Price:</div> 
+                            <div className="ddata">{medprice !== "" ? medprice : "No Data"}</div>
                         </div>
                         </div>
                     );
@@ -692,12 +677,12 @@ const Data = (
                     return (
                         <div className="extra">
                         <div className="extra-container">
-                        <div className="data-label">Type:</div> 
+                        <div className="ddata-label">Type:</div> 
                             <div className="data">{foodtypetext !== "" ? foodtypetext : "No Data"}</div>
                         </div>
                         <div className="extra-container">
-                        <div className="data-label">Charges:</div> 
-                            <div className="data">{foodchargestext !== "" ? foodchargestext : "No Data"}</div>
+                        <div className="ddata-label">Charges:</div> 
+                            <div className="ddata">{chargestext !== "" ? chargestext : "No Data"}</div>
                         </div>
                         </div>
                         
@@ -708,8 +693,12 @@ const Data = (
                     return (
                         <div className="extra">
                         <div className="extra-container">
-                        <div className="data-label">Condition:</div> 
-                            <div className="data">{consulttext !== "" ? consulttext : "No Data"}</div>
+                        <div className="ddata-label">Condition:</div> 
+                            <div className="ddata">{consulttext !== "" ? consulttext : "No Data"}</div>
+                        </div>
+                        <div className="extra-container">
+                        <div className="ddata-label">Charges:</div> 
+                            <div className="ddata">{chargestext !== "" ? chargestext : "No Data"}</div>
                         </div>
                         </div>
                     );
@@ -719,31 +708,20 @@ const Data = (
                     return (
                         <div className="extra">
                         <div className="extra-container">
-                        <div className="data-label">Condition:</div>
-                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                        <div className="ddata-label">Condition:</div>
+                            <div className="ddata">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
                         </div>
                         <div className="extra-container">
-                        <div className="data-label">Type:</div> 
-                            <div className="data">{oxytypetext !== "" ? oxytypetext : "No Data"}</div>
+                        <div className="ddata-label">Type:</div> 
+                            <div className="ddata">{oxytypetext !== "" ? oxytypetext : "No Data"}</div>
                         </div>
                         <div className="extra-container">
-                        <div className="data-label">Capacity:</div> 
-                            <div className="data">{oxycapacity !== "" ? oxycapacity : "No Data"}</div>
+                        <div className="ddata-label">Capacity:</div> 
+                            <div className="ddata">{oxycapacity !== "" ? oxycapacity : "No Data"}</div>
                         </div>
                         <div className="extra-container">
-                        <div className="data-label">Price:</div> 
-                            <div className="data">{oxyprice !== "" ? oxyprice : "No Data"}</div>
-                        </div>
-                        </div>
-                    );
-                }
-                else if (collectionname==="/remdesivir")
-                {
-                    return (
-                        <div className="extra">
-                        <div className="extra-container">
-                        <div className="data-label">Condition:</div> 
-                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                        <div className="ddata-label">Price:</div> 
+                            <div className="ddata">{oxyprice !== "" ? oxyprice : "No Data"}</div>
                         </div>
                         </div>
                     );
@@ -756,18 +734,17 @@ const Data = (
                 <div className="contact-info">
                 <a className="contact-icon"  
                 href={`tel:${contact_number}`}
-                style={{fill: `${numcolor}`, pointerEvents: `${numpoint}`}}>
+                style={{display: `${numdisplay}`}}>
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24"
-                    padding="0.5rem"
                     className="icon">
                         <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                     </svg>
                 </a>
                 <a className="contact-icon" 
                 href={`${contact_email !== "" ? `mailto:${contact_email}` : ""}`}
-                style={{fill: `${ecolor}`, pointerEvents: `${epoint}`}}
+                style={{display: `${edisplay}`}}
                 target="_top">
                     <svg 
                     xmlns="http://www.w3.org/2000/svg"
@@ -777,9 +754,8 @@ const Data = (
                     </svg>
                 </a>
                 <a className="contact-icon" 
-                
                 href={link_to_go !== "" ? getClickableLink(link_to_go) : ""} 
-                style={{fill: `${linkcolor}`, pointerEvents: `${linkpoint}`}}
+                style={{display: `${linkdisplay}`}}
                 target="_blank" 
                 rel="noopener noreferrer" >
                     <svg 

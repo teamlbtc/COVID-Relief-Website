@@ -50,14 +50,32 @@ const About = () => {
             <div className="about-flex">
                 <div className="instruction">
                     Let's Be The Change
-
+                    <p className="para">
+                    Let's Be The Change (#TeamLBTC) is a non-profit organization which aims to build a cleaner, 
+                    healthier and more sustainable society by working in synergy with the citizens and the Government.
+                    <br/>
+                    #TeamLBTC is now offering volunteering services towards the COVID-19 efforts in and around Bangalore. 
+                    </p>
+                    <a className="lbtc-container"
+                    target="_blank"
+                    rel="noreferrer noopener" 
+                    href="https://letsbethechange.in/">
+                        <div
+                        className="lbtc-link"
+                        >https://letsbethechange.in/
+                        </div>
+                        <svg className="lbtc-icon"
+                        xmlns="http://www.w3.org/2000/svg"  
+                        viewBox="0 0 24 24">
+                            <g fill="none">
+                            <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g></svg>
+                    </a>
                 </div>
                 <div className="instruction">
-                    About
+                    Disclaimer
                     <p className="para">
-                    This site is made to assist people with Verified Information related to COVID.
-                    <br/>
-                    Resources are verified by Volunteers
+                    Information on this website is verified by group of citizen volunteers. Please use the information at your own discretion.
                     </p>
                 </div>
                 <div className="e-form-container">

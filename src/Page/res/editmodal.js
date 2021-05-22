@@ -56,8 +56,8 @@ const Modal = ({
     setEditPBType,
     editfoodtype,
     setEditFoodType,
-    editfoodcharges,
-    setEditFoodCharges,
+    editcharges,
+    setEditCharges,
     editconsultationtype,
     setEditConsultationType}) => {
 
@@ -67,8 +67,8 @@ const Modal = ({
     const foodtypeinput = (e) => {
         setEditFoodType(e.target.value);
     }
-    const foodchargesinput = (e) => {
-        setEditFoodCharges(e.target.value);
+    const chargesinput = (e) => {
+        setEditCharges(e.target.value);
     }
     const pbtypeinput = (e) => {
         setEditPBType(e.target.value);
@@ -205,7 +205,7 @@ const Modal = ({
                 setEditSource(i.source);
                 setEditAvailable(i.available);
                 setEditFoodType(i.type);
-                setEditFoodCharges(i.charges)
+                setEditCharges(i.charges);
             });
         }
         else if (collectionname==="/onlinedoc")
@@ -224,6 +224,7 @@ const Modal = ({
                 setEditSource(i.source);
                 setEditAvailable(i.available);
                 setEditConsultationType(i.type);
+                setEditCharges(i.charges);
             });
         }
         else if (collectionname==="/oxygen")
@@ -296,7 +297,7 @@ const Modal = ({
     }
 
     const updateData = () => {
-        if (collectionname==="/ambulance"||collectionname==="/bed"||collectionname==="/hometesting"||collectionname==="/tele")
+        if (collectionname==="/ambulance"||collectionname==="/hometesting"||collectionname==="/tele")
         {   
             axios.patch(`${collectionname}/${editid}`, 
             qs.stringify({
@@ -443,7 +444,7 @@ const Modal = ({
                 source : editsource,
                 available : editavailable,
                 type: editfoodtype,
-                charges: editfoodcharges
+                charges: editcharges
             }))
             .then(() => {
                 setEditName("");
@@ -459,6 +460,7 @@ const Modal = ({
                 setEditSource("");
                 setEditAvailable(false);
                 setEditFoodType("");
+                setEditCharges("");
                 setEditId(""); 
                 let body = document.querySelector("body");
                 body.style.overflow = "unset"; 
@@ -482,6 +484,7 @@ const Modal = ({
                 source : editsource,
                 available : editavailable,
                 type: editconsultationtype,
+                charges: editcharges
             }))
             .then(() => {
                 setEditName("");
@@ -497,6 +500,7 @@ const Modal = ({
                 setEditSource("");
                 setEditAvailable(false);
                 setEditConsultationType("");
+                setEditCharges("");
                 setEditId("");
                 let body = document.querySelector("body");
                 body.style.overflow = "unset"; 
@@ -545,45 +549,7 @@ const Modal = ({
                 let body = document.querySelector("body");
                 body.style.overflow = "unset"; 
             });
-        }
-        else if (collectionname==="/remdesivir")
-        {   
-            axios.patch(`${collectionname}/${editid}`, 
-            qs.stringify({
-                name : editname,
-                description : editdesc,
-                location_covered : editlocation,
-                timings : edittiming,
-                contact_name : editcontactname,
-                contact_number : editcontactnum,
-                contact_email : editcontactemail,
-                link_to_go : editlink,
-                verified : editverified,
-                verified_by : editverifiedby,
-                last_update_time:new Date(),
-                source : editsource,
-                available : editavailable,
-                condition : editomrcondition,
-            }))
-            .then(() => {
-                setEditName("");
-                setEditDesc("");
-                setEditLoc("");
-                setEditTime("");
-                setEditCName("");
-                setEditCNum("");
-                setEditCEmail("");
-                setEditLink("");
-                setEditVerified("");
-                setEditVerifiedBy("");
-                setEditSource("");
-                setEditAvailable(false);
-                setEditOMRCondition("");
-                setEditId("");
-                let body = document.querySelector("body");
-                body.style.overflow = "unset"; 
-            });
-        }          
+        }   
     };
 
     const useStyles = makeStyles(() => ({
@@ -597,7 +563,7 @@ const Modal = ({
         },
         inputfield:{
             fontSize:"0.8rem",
-            fontWeight: 600,
+            fontWeight: 500,
             color:"var(--dgrey)",
         },
         input:{
@@ -648,15 +614,15 @@ const Modal = ({
         <div className="form-details" id="form-input">
         <div className="form-data-title">Contact Information</div>
         <div className="input-flex" >   
-        <label className="label">Contact Name<div className="red">*</div></label>
+        <label className="label">Name<div className="red">*</div></label>
         <input className="edit-input" value={editcontactname} onChange={cnameinput} type="text" placeholder="Contact Name"></input>
         </div>
         <div className="input-flex" >   
-        <label className="label">Contact Number<div className="red">*</div></label>
+        <label className="label">Number<div className="red">*</div></label>
         <input className="edit-input" value={editcontactnum} onChange={cnuminput} type="tel" placeholder="Contact Number" minLength="10" maxLength="13"></input>
         </div>
     <div className="input-flex" >   
-        <label className="label">Contact Email</label>
+        <label className="label">Email</label>
         <input className="edit-input" value={editcontactemail} onChange={cemailinput} type="email" placeholder="Contact E-mail"></input>
     </div>
     <div className="input-flex" >   
@@ -832,8 +798,8 @@ const Modal = ({
                         className={classes.input}
                         >Food Type</InputLabel>
                         <Select
-                            value={editfoodcharges}
-                            onChange={foodchargesinput}
+                            value={editcharges}
+                            onChange={chargesinput}
                             className={classes.inputfield}
                             required
                             >
@@ -951,6 +917,29 @@ const Modal = ({
                         </Select>
                     </FormControl>
                 </div>
+                <div className="input-flex" >   
+                    <label className="label">Charges<div className="red">*</div></label>
+                    <FormControl className={classes.formControl}>
+                        <InputLabel 
+                        fontSize="0.8rem"
+                        fontWeight={500}
+                        className={classes.input}
+                        >Food Type</InputLabel>
+                        <Select
+                            value={editcharges}
+                            onChange={chargesinput}
+                            className={classes.inputfield}
+                            required
+                            >
+                            <MenuItem value={"0"}
+                            fontSize="0.8rem"
+                            className={classes.item}>Paid</MenuItem>
+                            <MenuItem value={"1"}
+                            fontSize="0.8rem"
+                            className={classes.item}>Free</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
             </div>
         );
     }
@@ -1027,44 +1016,7 @@ const Modal = ({
                 </div>
             </div>
         );
-    }
-    else if (collectionname==="/remdesivir")
-    {
-        return (
-            <div className="form-details" id="form-input">
-            <div className="form-data-title">Information</div>
-            <div className="input-flex" >   
-                <label className="label">Condition<div className="red">*</div></label>
-                <FormControl className={classes.formControl}>
-                    <InputLabel 
-                    fontSize="0.8rem"
-                    fontWeight={500}
-                    className={classes.input}
-                    >Remdesivir Condition</InputLabel>
-                    <Select
-                        value={editomrcondition}
-                        onChange={omrconditioninput}
-                        className={classes.inputfield}
-                        required
-                        >
-                        <MenuItem value={"0"}
-                        fontSize="0.8rem"
-                        className={classes.item}>No Stock</MenuItem>
-                        <MenuItem value={"1"}
-                        fontSize="0.8rem"
-                        className={classes.item}>Black Market</MenuItem>
-                        <MenuItem value={"2"}
-                        fontSize="0.8rem"
-                        className={classes.item}>Purchase</MenuItem>
-                        <MenuItem value={"3"}
-                        fontSize="0.8rem"
-                        className={classes.item}>Waiting Period</MenuItem>
-                    </Select>
-                </FormControl>
-            </div>
-            </div>
-        );
-    }        
+    }   
     })()
     }
     </div>

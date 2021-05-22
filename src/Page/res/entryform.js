@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -37,6 +37,10 @@ const Form = ({collectionname, setStateUpdate}) =>{
     const [inputfoodcharges, setInputFoodCharges] = useState("");
     const [inputconsultationtype, setInputConsultationType] = useState("");
 
+    useEffect(()=>{
+        let name = window.localStorage.getItem("name");
+        setInputVerifiedBy(name);
+    },[])
 
     const consultationtypeinput = (e) => {
         setInputConsultationType(e.target.value);
@@ -725,15 +729,15 @@ const Form = ({collectionname, setStateUpdate}) =>{
             <div className="form-details" id="form-input">
             <div className="form-data-title">Contact Information</div>
                 <div className="input-flex" >   
-                    <label className="label">Contact Name<div className="red">*</div></label>
+                    <label className="label">Name<div className="red">*</div></label>
                     <input className="input" value={inputcontactname} onChange={cnameinput} type="text" placeholder="Contact Name"></input>
                 </div>
                 <div className="input-flex" >   
-                    <label className="label">Contact Number<div className="red">*</div></label>
+                    <label className="label">Number<div className="red">*</div></label>
                     <input className="input" value={inputcontactnum} onChange={cnuminput} type="tel" placeholder="Contact Number" minLength="10" maxLength="13"></input>
                 </div>
                 <div className="input-flex" >   
-                    <label className="label">Contact Email</label>
+                    <label className="label">Email</label>
                     <input className="input" value={inputcontactemail} onChange={cemailinput} type="email" placeholder="Contact E-mail"></input>
                 </div>
                 <div className="input-flex" >   
@@ -1028,6 +1032,29 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                     </Select>
                                 </FormControl>
                             </div>
+                            <div className="input-flex" >   
+                                <label className="label">Charges<div className="red">*</div></label>
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel 
+                                    fontSize="0.8rem"
+                                    fontWeight={500}
+                                    className={classes.input}
+                                    >Food Type</InputLabel>
+                                    <Select
+                                        value={inputfoodcharges}
+                                        onChange={foodchargesinput}
+                                        className={classes.inputfield}
+                                        required
+                                        >
+                                        <MenuItem value={"0"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Paid</MenuItem>
+                                        <MenuItem value={"1"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Free</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </div>
                         </div>
                     );
                 }
@@ -1039,8 +1066,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                             <div className="input-flex" >       
                                 <label className="label">Type<div className="red">*</div></label>
                                 <FormControl className={classes.formControl}>
-                                    <InputLabel 
-                                    color="var(--lgrey)" 
+                                    <InputLabel
                                     fontSize="0.8rem"
                                     fontWeight={500}
                                     className={classes.input}
