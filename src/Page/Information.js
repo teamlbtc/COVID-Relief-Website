@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-const Beds = () => {
+const Info = () => {
 
     const [loader, setLoader] = useState(true);
     
@@ -34,4 +34,4 @@ const Beds = () => {
     );
 };
 
-export default Beds;
+export default Info;

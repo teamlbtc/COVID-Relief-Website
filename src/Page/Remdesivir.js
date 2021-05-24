@@ -1,7 +1,4 @@
 import {useState, useEffect} from 'react';
-import Data from './res/data';
-import Form from './res/entryform';
-import {axios} from './res/axios';
 
 const Rem = () => {   
 

@@ -136,7 +136,7 @@ const Data = (
         }
         else
         {
-            setOxyTypeText("No Data");
+            setOxyTypeText("-");
         }
     },[oxytype]);
 
@@ -155,7 +155,7 @@ const Data = (
         }
         else 
         {
-            setMedTypeText("No Data");
+            setMedTypeText("-");
         }
     },[medtype]);
 
@@ -182,7 +182,7 @@ const Data = (
         }
         else 
         {
-            setOMRConditionText("No Data");
+            setOMRConditionText("-");
         }
     },[omrcondition]);
 
@@ -197,7 +197,7 @@ const Data = (
         }
         else 
         {
-            setConsultConditionText("No Data");
+            setConsultConditionText("-");
         }
     },[consultationtype]);
 
@@ -216,7 +216,7 @@ const Data = (
         }
         else 
         {
-            setFoodTypetext("No Data");
+            setFoodTypetext("-");
         }
     },[foodtype]);
 
@@ -231,7 +231,7 @@ const Data = (
         }
         else 
         {
-            setChargesText("No Data");
+            setChargesText("-");
         }
     },[charges]);
 
@@ -250,7 +250,7 @@ const Data = (
         }
         else 
         {
-            setPBTypetext("No Data");
+            setPBTypetext("-");
         }
     },[pbtype]);
 
@@ -266,14 +266,14 @@ const Data = (
         else if(verified==="2")
         {
             setVerifiedText("Verificaiton Pending");
-            setVerifiedByText("No Data");
+            setVerifiedByText("-");
             setColor("var(--yellow)");
             
         }
         else
         {
             setVerifiedText("Not Verified");
-            setVerifiedByText("No Data");
+            setVerifiedByText("-");
             setColor("var(--lgrey)");
         }
     }, [verified, verified_by]);
@@ -432,7 +432,7 @@ const Data = (
 
             <div className="desc-container">
                 <div className="desc-label">Description:</div> 
-                <div className="desc">{description !== "" ? description : "No Data"}</div>
+                <div className="desc">{description !== "" ? description : "-"}</div>
             </div>
             {
                 (()=> {
@@ -442,11 +442,11 @@ const Data = (
                         <>                   
                         <div className="desc-container">
                         <div className="desc-label">Type:</div> 
-                            <div className="desc">{pbtypetext !== "" ? pbtypetext : "No Data"}</div>
+                            <div className="desc">{pbtypetext !== "" ? pbtypetext : "-"}</div>
                         </div>
                         <div className="desc-container">
                         <div className="desc-label">Blood Group:</div> 
-                            <div className="desc">{blood_group !== "" ? blood_group : "No Data"}</div>
+                            <div className="desc">{blood_group !== "" ? blood_group : "-"}</div>
                         </div>
                         </>);
                 }
@@ -456,19 +456,19 @@ const Data = (
                         <>
                         <div className="desc-container">
                         <div className="data-label">Medicine Name:</div> 
-                            <div className="data">{medicine_name !== "" ? medicine_name : "No Data"}</div>
+                            <div className="data">{medicine_name !== "" ? medicine_name : "-"}</div>
                         </div>
                         <div className="desc-container">
                         <div className="data-label">Condition:</div> 
-                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "-"}</div>
                         </div>
                         <div className="desc-container">
                         <div className="data-label">Type:</div> 
-                            <div className="data">{medtypetext !== "" ? medtypetext : "No Data"}</div>
+                            <div className="data">{medtypetext !== "" ? medtypetext : "-"}</div>
                         </div>
                         <div className="desc-container">
                         <div className="data-label">Price:</div> 
-                            <div className="data">{medprice !== "" ? medprice : "No Data"}</div>
+                            <div className="data">{medprice !== "" ? medprice : "-"}</div>
                         </div>
                         </>
                     );
@@ -479,11 +479,11 @@ const Data = (
                         <>
                         <div className="desc-container">
                         <div className="data-label">Type:</div> 
-                            <div className="data">{foodtypetext !== "" ? foodtypetext : "No Data"}</div>
+                            <div className="data">{foodtypetext !== "" ? foodtypetext : "-"}</div>
                         </div>
                         <div className="desc-container">
                         <div className="data-label">Charges:</div> 
-                            <div className="data">{chargestext !== "" ? chargestext : "No Data"}</div>
+                            <div className="data">{chargestext !== "" ? chargestext : "-"}</div>
                         </div>
                         </>
                     );
@@ -494,11 +494,11 @@ const Data = (
                         <>
                         <div className="desc-container">
                         <div className="data-label">Condition:</div> 
-                            <div className="data">{consulttext !== "" ? consulttext : "No Data"}</div>
+                            <div className="data">{consulttext !== "" ? consulttext : "-"}</div>
                         </div>
                         <div className="desc-container">
                         <div className="data-label">Charges:</div> 
-                            <div className="data">{chargestext !== "" ? chargestext : "No Data"}</div>
+                            <div className="data">{chargestext !== "" ? chargestext : "-"}</div>
                         </div>
                         </>
                     );
@@ -509,19 +509,19 @@ const Data = (
                         <>
                         <div className="desc-container">
                         <div className="data-label">Type:</div> 
-                            <div className="data">{oxytypetext !== "" ? oxytypetext : "No Data"}</div>
+                            <div className="data">{oxytypetext !== "" ? oxytypetext : "-"}</div>
                         </div>
                         <div className="desc-container">
                         <div className="data-label">Condition:</div>
-                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                            <div className="data">{omrconditiontext !== "" ? omrconditiontext : "-"}</div>
                         </div>
                         <div className="desc-container">
                         <div className="data-label">Capacity:</div> 
-                            <div className="data">{oxycapacity !== "" ? oxycapacity : "No Data"}</div>
+                            <div className="data">{oxycapacity !== "" ? oxycapacity : "-"}</div>
                         </div>
                         <div className="desc-container">
                         <div className="data-label">Price:</div> 
-                            <div className="data">{oxyprice !== "" ? oxyprice : "No Data"}</div>
+                            <div className="data">{oxyprice !== "" ? oxyprice : "-"}</div>
                         </div>
                         </>
                     );
@@ -541,7 +541,7 @@ const Data = (
                         <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                     </svg>
                 </a>
-                <a href={`mailto:${contact_email !== "" ? contact_email : ""}`}
+                <a href={`mailto:${contact_email}`}
                 className="contact-icon"
                 style={{display: `${edisplay}`}}
                 target="_top">
@@ -552,7 +552,7 @@ const Data = (
                         <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6m-2 0l-8 5l-8-5h16m0 12H4V8l8 5l8-5v10z"/>
                     </svg>
                 </a>
-                <a href={link_to_go !== "" ? getClickableLink(link_to_go) : ""}
+                <a href={getClickableLink(link_to_go)}
                 className="contact-icon"
                 style={{display: `${linkdisplay}`}}
                 target="_blank" 
@@ -610,26 +610,26 @@ const Data = (
             
             <div className="ddesc-container">
                 <div className="ddesc-label">Description:</div> 
-                <div className="ddesc">{description !== "" ? description : "No Data"}</div>
+                <div className="ddesc">{description !== "" ? description : "-"}</div>
             </div>
 
             <div className="card-flex">
             <div className="extra">
                 <div className="extra-container">
                     <div className="ddata-label">Location:</div> 
-                    <div className="ddata">{location_covered !== "" ? location_covered : "No Data"}</div>
+                    <div className="ddata">{location_covered !== "" ? location_covered : "-"}</div>
                 </div>
                 <div className="extra-container">
                 <div className="ddata-label">Timings:</div> 
-                    <div className="ddata">{timings !== "" ? timings : "No Data"}</div>
+                    <div className="ddata">{timings !== "" ? timings : "-"}</div>
                 </div>
                 <div className="extra-container">
                 <div className="ddata-label">Source:</div> 
-                    <div className="ddata">{source !== "" ? source : "No Data"}</div>
+                    <div className="ddata">{source !== "" ? source : "-"}</div>
                 </div>
                 <div className="extra-container">
                 <div className="ddata-label">Comments:</div> 
-                    <div className="ddata">{source !== "" ? source : "No Data"}</div>
+                    <div className="ddata">{source !== "" ? source : "-"}</div>
                 </div>
             </div>
 
@@ -641,11 +641,11 @@ const Data = (
                     <div className="extra">
                     <div className="extra-container">
                     <div className="ddata-label">Type:</div> 
-                        <div className="ddata">{pbtypetext !== "" ? pbtypetext : "No Data"}</div>
+                        <div className="ddata">{pbtypetext !== "" ? pbtypetext : "-"}</div>
                     </div>
                     <div className="extra-container">
                     <div className="ddata-label">Blood Group:</div> 
-                        <div className="ddata">{blood_group !== "" ? blood_group : "No Data"}</div>
+                        <div className="ddata">{blood_group !== "" ? blood_group : "-"}</div>
                     </div>
                     </div>);
                 }
@@ -655,19 +655,19 @@ const Data = (
                         <div className="extra">
                         <div className="extra-container">
                         <div className="ddata-label">Condition:</div> 
-                            <div className="ddata">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                            <div className="ddata">{omrconditiontext !== "" ? omrconditiontext : "-"}</div>
                         </div>
                         <div className="extra-container">
                         <div className="ddata-label">Type:</div> 
-                            <div className="ddata">{medtypetext !== "" ? medtypetext : "No Data"}</div>
+                            <div className="ddata">{medtypetext !== "" ? medtypetext : "-"}</div>
                         </div>
                         <div className="extra-container">
                         <div className="ddata-label">Medicine Name:</div> 
-                            <div className="ddata">{medicine_name !== "" ? medicine_name : "No Data"}</div>
+                            <div className="ddata">{medicine_name !== "" ? medicine_name : "-"}</div>
                         </div>
                         <div className="extra-container">
                         <div className="ddata-label">Price:</div> 
-                            <div className="ddata">{medprice !== "" ? medprice : "No Data"}</div>
+                            <div className="ddata">{medprice !== "" ? medprice : "-"}</div>
                         </div>
                         </div>
                     );
@@ -678,11 +678,11 @@ const Data = (
                         <div className="extra">
                         <div className="extra-container">
                         <div className="ddata-label">Type:</div> 
-                            <div className="data">{foodtypetext !== "" ? foodtypetext : "No Data"}</div>
+                            <div className="data">{foodtypetext !== "" ? foodtypetext : "-"}</div>
                         </div>
                         <div className="extra-container">
                         <div className="ddata-label">Charges:</div> 
-                            <div className="ddata">{chargestext !== "" ? chargestext : "No Data"}</div>
+                            <div className="ddata">{chargestext !== "" ? chargestext : "-"}</div>
                         </div>
                         </div>
                         
@@ -694,11 +694,11 @@ const Data = (
                         <div className="extra">
                         <div className="extra-container">
                         <div className="ddata-label">Condition:</div> 
-                            <div className="ddata">{consulttext !== "" ? consulttext : "No Data"}</div>
+                            <div className="ddata">{consulttext !== "" ? consulttext : "-"}</div>
                         </div>
                         <div className="extra-container">
                         <div className="ddata-label">Charges:</div> 
-                            <div className="ddata">{chargestext !== "" ? chargestext : "No Data"}</div>
+                            <div className="ddata">{chargestext !== "" ? chargestext : "-"}</div>
                         </div>
                         </div>
                     );
@@ -709,19 +709,19 @@ const Data = (
                         <div className="extra">
                         <div className="extra-container">
                         <div className="ddata-label">Condition:</div>
-                            <div className="ddata">{omrconditiontext !== "" ? omrconditiontext : "No Data"}</div>
+                            <div className="ddata">{omrconditiontext !== "" ? omrconditiontext : "-"}</div>
                         </div>
                         <div className="extra-container">
                         <div className="ddata-label">Type:</div> 
-                            <div className="ddata">{oxytypetext !== "" ? oxytypetext : "No Data"}</div>
+                            <div className="ddata">{oxytypetext !== "" ? oxytypetext : "-"}</div>
                         </div>
                         <div className="extra-container">
                         <div className="ddata-label">Capacity:</div> 
-                            <div className="ddata">{oxycapacity !== "" ? oxycapacity : "No Data"}</div>
+                            <div className="ddata">{oxycapacity !== "" ? oxycapacity : "-"}</div>
                         </div>
                         <div className="extra-container">
                         <div className="ddata-label">Price:</div> 
-                            <div className="ddata">{oxyprice !== "" ? oxyprice : "No Data"}</div>
+                            <div className="ddata">{oxyprice !== "" ? oxyprice : "-"}</div>
                         </div>
                         </div>
                     );
@@ -743,7 +743,7 @@ const Data = (
                     </svg>
                 </a>
                 <a className="contact-icon" 
-                href={`${contact_email !== "" ? `mailto:${contact_email}` : ""}`}
+                href={`mailto:${contact_email}`}
                 style={{display: `${edisplay}`}}
                 target="_top">
                     <svg 
@@ -754,7 +754,7 @@ const Data = (
                     </svg>
                 </a>
                 <a className="contact-icon" 
-                href={link_to_go !== "" ? getClickableLink(link_to_go) : ""} 
+                href={getClickableLink(link_to_go)} 
                 style={{display: `${linkdisplay}`}}
                 target="_blank" 
                 rel="noopener noreferrer" >

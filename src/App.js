@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 import Ambulance from './Page/Ambulance';
-import Beds from './Page/Beds';
+import Info from './Page/Information';
 import Blood from './Page/Blood';
 import Consultation from './Page/Consultation';
 import Counselling from './Page/Counselling';
@@ -299,7 +299,7 @@ function Main() {
                 <NavLink to="/Consultation" className="link">Online Consultation</NavLink>
                 <NavLink to="/Testing" className="link">Home Testing</NavLink>
                 <NavLink to="/Counselling" className="link">TeleCounselling</NavLink>
-                <NavLink to="/Beds" className="link">Bed Avail</NavLink>
+                <NavLink to="/Information" className="link">Information</NavLink>
                 <NavLink to="/Remdesivir" className="link">Remdesivir</NavLink>
             </div>
         </div>
@@ -425,7 +425,7 @@ function Main() {
         <Route path="/Oxygen" component={props => (<Oxygen {...props} user={user}/>)}></Route>
         <Route path="/Remdesivir" component={props => (<Rem {...props} user={user}/>)}></Route>
         <Route path="/Counselling" component={props => (<Counselling {...props} user={user}/>)}></Route>
-        <Route path="/Beds" component={props => (<Beds {...props} user={user}/>)}></Route>
+        <Route path="/Information" component={props => (<Info {...props} user={user}/>)}></Route>
       </Switch>
       <Top/>
       <Widget/>

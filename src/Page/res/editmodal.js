@@ -585,17 +585,29 @@ const Modal = ({
 
     const classes = useStyles();
 
+    useEffect(()=>{
+        let editverifier = document.getElementById("edit-verifier");
+        if (editverified==="0")
+        {   
+            editverifier.required=true;
+        }
+        else
+        {   
+            editverifier.required=false;
+        }
+    },[editverified]);
+
     return (
     <>
         <div className="edit-box">
-
+        <div className="edit-data-container">
         <div className="add-content-flex">
 
         <div className="form-details" id="form-input">
         <div className="form-data-title">Service Details</div>
         <div className="input-flex">   
         <label className="label">Name<div className="red">*</div></label>
-        <input className="edit-input" value={editname} onChange={nameinput} type="text" placeholder="Service Name"></input>
+        <input className="edit-input" value={editname} onChange={nameinput} type="text" placeholder="Service Name" required></input>
         </div>
         <div className="input-flex" >   
         <label className="label">Description</label>
@@ -615,22 +627,22 @@ const Modal = ({
         <div className="form-data-title">Contact Information</div>
         <div className="input-flex" >   
         <label className="label">Name<div className="red">*</div></label>
-        <input className="edit-input" value={editcontactname} onChange={cnameinput} type="text" placeholder="Contact Name"></input>
+        <input className="edit-input" value={editcontactname} onChange={cnameinput} type="text" placeholder="Contact Name" required></input>
         </div>
         <div className="input-flex" >   
         <label className="label">Number<div className="red">*</div></label>
-        <input className="edit-input" value={editcontactnum} onChange={cnuminput} type="tel" placeholder="Contact Number" minLength="10" maxLength="13"></input>
+        <input className="edit-input" value={editcontactnum} onChange={cnuminput} type="tel" placeholder="Contact Number" minLength="7" required></input>
         </div>
-    <div className="input-flex" >   
-        <label className="label">Email</label>
-        <input className="edit-input" value={editcontactemail} onChange={cemailinput} type="email" placeholder="Contact E-mail"></input>
-    </div>
-    <div className="input-flex" >   
-        <label className="label">Link</label>
-        <input className="edit-input" value={editlink} onChange={linkinput} type="url" placeholder="https://www.examplesite.com"></input>
-    </div>
-</div>
-</div>
+            <div className="input-flex" >   
+                <label className="label">Email</label>
+                <input className="edit-input" value={editcontactemail} onChange={cemailinput} type="email" placeholder="email@email.com"></input>
+            </div>
+            <div className="input-flex" >   
+                <label className="label">Link</label>
+                <input className="edit-input" value={editlink} onChange={linkinput} type="url" placeholder="https://www.examplesite.com"></input>
+            </div>
+        </div>
+        </div>
 
 <div className="add-content-flex">
 <div className="form-details" id="form-input">
@@ -662,25 +674,25 @@ const Modal = ({
                         className={classes.item}>Verificaiton Pending</MenuItem>
                     </Select>
                     </FormControl>    
-    </div>
-    <div className="input-flex" >   
-        <label className="label">Verified By</label>
-        <input className="edit-input" value={editverifiedby} onChange={verifiedbyinput} type="text" placeholder="Name of Verifier"></input>
-    </div>
-    <div className="input-flex" >       
-        <label className="label">Source</label>
-        <input className="edit-input" value={editsource} onChange={sourceinput} type="text" placeholder="Enter Source"></input>
-    </div>
-    <div className="input-flex">
-        <label className="label">Available</label>
-        <div className="checkbox-container">
-        <input className="checkbox" type="checkbox" id="checkedit1" checked={editavailable} onChange={availableinput}/>
-        <label htmlFor="checkedit1" className="switch"></label> 
-        </div>    
-    </div>
-</div>
+                </div>
+                <div className="input-flex" >   
+                    <label className="label">Verified By</label>
+                    <input id="edit-verifier" className="edit-input" value={editverifiedby} onChange={verifiedbyinput} type="text" placeholder="Name of Verifier"></input>
+                </div>
+                <div className="input-flex" >       
+                    <label className="label">Source</label>
+                    <input className="edit-input" value={editsource} onChange={sourceinput} type="text" placeholder="Enter Source"></input>
+                </div>
+                <div className="input-flex">
+                    <label className="label">Available</label>
+                    <div className="checkbox-container">
+                    <input className="checkbox" type="checkbox" id="checkedit1" checked={editavailable} onChange={availableinput}/>
+                    <label htmlFor="checkedit1" className="switch"></label> 
+                    </div>    
+                </div>
+            </div>
             
-{
+    {
     (()=> {
     if (collectionname==="/blooddonor")
     {
@@ -796,7 +808,7 @@ const Modal = ({
                         fontSize="0.8rem"
                         fontWeight={500}
                         className={classes.input}
-                        >Food Type</InputLabel>
+                        >Charges</InputLabel>
                         <Select
                             value={editcharges}
                             onChange={chargesinput}
@@ -924,7 +936,7 @@ const Modal = ({
                         fontSize="0.8rem"
                         fontWeight={500}
                         className={classes.input}
-                        >Food Type</InputLabel>
+                        >Charges</InputLabel>
                         <Select
                             value={editcharges}
                             onChange={chargesinput}
@@ -1023,9 +1035,10 @@ const Modal = ({
     </div>
     <div className="edit-btn-container">
         <div className="edit-btn-flex">
-            <button className="edit-d-btn" id="add-btn" onClick={deleteModal}>DELETE</button>
-            <button className="edit-u-btn" id="add-btn" onClick={updateData}>UPDATE</button>
+            <button className="edit-d-btn" onClick={deleteModal}>DELETE</button>
+            <button className="edit-u-btn" onClick={updateData}>UPDATE</button>
         </div>
+    </div>
     </div>
 
     <div className="delete-cover" id={`delete-${id}`}>

@@ -703,7 +703,7 @@
 }
 
 .list {
-  margin: 1rem 2rem;
+  margin: 1rem 0 1rem 1rem;
   color: var(--green);
   font-size: 0.9rem;
 }
@@ -803,6 +803,19 @@
   flex-direction: row;
 }
 
+.entry-disclaimer {
+  display: none;
+}
+
+.entry-disclaimer-open {
+  color: var(--red);
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 1rem;
+  display: unset;
+  text-transform: capitalize;
+}
+
 .add-content-flex {
   display: flex;
   flex-direction: column;
@@ -826,7 +839,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
   padding: 0.3rem;
 }
@@ -834,10 +847,26 @@
 .label {
   font-size: 0.9rem;
   font-weight: 500;
-  padding: 0.1rem;
+  padding-bottom: 0.1rem;
   color: var(--dgrey);
   width: 30%;
+  padding-bottom: 0.3rem;
   position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.service-contact-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  width: 30%;
+  color: var(--dgrey);
+  padding-bottom: 0.3rem;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .red {
@@ -870,6 +899,16 @@
   transition-duration: 0.15s, 0.15s;
   transition-timing-function: ease-in-out, ease-in-out;
   transition-delay: 0s, 0s;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .checkbox-container {
@@ -1069,14 +1108,6 @@
   padding: 0 0 1rem 0;
 }
 
-.edit-box {
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  width: 100%;
-}
-
 .edit-head-container {
   width: 100%;
   height: 3rem;
@@ -1119,6 +1150,21 @@
 
 .edit-x2 {
   transform: rotate(-45deg);
+}
+
+.edit-box {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+.edit-data-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
 }
 
 .edit-input {
@@ -1531,9 +1577,6 @@
   font-weight: 500;
   color: var(--accent);
   text-transform: capitalize;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .davailable {
@@ -1970,8 +2013,6 @@
   }
 
   .form-container {
-    width: 90vw;
-    padding: 1rem 0.5rem;
     flex-direction: column;
   }
 
@@ -2010,7 +2051,7 @@
     font-size: 1rem;
   }
 
-  .edit-box {
+  .edit-data-container {
     flex-direction: column;
   }
 
@@ -2045,10 +2086,6 @@
   .verified-card-open {
     padding: 0.3rem;
   }
-
-  .label {
-    width: 30%;
-  }
   .card-flex {
     flex-direction: column;
   }
@@ -2058,10 +2095,6 @@
 }
 
 @media (max-width: 400px) {
-  .form-container {
-    padding: 1rem 0.3rem;
-  }
-
   .label {
     font-size: 0.8rem;
   }
