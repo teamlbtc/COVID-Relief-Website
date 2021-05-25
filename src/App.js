@@ -18,11 +18,11 @@ import Testing from './Page/Testing';
 import Widget from './Page/res/widget';
 import Top from './Page/res/top';
 import About from './Page/res/about';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import qs from 'qs';
 import {axios} from './Page/res/axios';
 import Volunteer from './Page/res/volunteer';
-import fire from './Page/fire_config';
+//import fire from './Page/fire_config';
 
 function Main() {
 
@@ -39,9 +39,9 @@ function Main() {
   const [nameR, setnameR] = useState("");
   const [nameError, setnameError] = useState("");
   const [newuser, setNewUser] = useState(false);
-  const [medName, setMedName] = useState("Medicine")
+  const [medName, setMedName] = useState("");
   
-  fire.analytics();
+  //fire.analytics();
 
   const submit =  (e) => {
     clearErrors();
@@ -151,7 +151,6 @@ function Main() {
       }
 
   useEffect(()=>{
-
     if(logincheck!==false || localStorage.getItem('token-data') !== null)
     {
       setUser(true);
@@ -285,7 +284,7 @@ function Main() {
     navcover.classList.add("nav-cover-open");
   }
 
-  const closeNav = (e) => {
+  const closeNavE = (e) => {
     let navcover = document.getElementById("navcover");
     let navlink = document.getElementById("navlinks");
     if (e.target===navcover)
@@ -294,6 +293,14 @@ function Main() {
       navcover.classList.remove("nav-cover-open");
       navlink.classList.remove("navlinks-open");
     }
+  }
+
+  const closeNav = () => {
+    let navcover = document.getElementById("navcover");
+    let navlink = document.getElementById("navlinks");
+    document.querySelector("body").style.overflow="";
+    navcover.classList.remove("nav-cover-open");
+    navlink.classList.remove("navlinks-open");
   }
   
   return (
@@ -328,28 +335,37 @@ function Main() {
           </div>
           
           <div 
-          className="nav-cover" id="navcover" onClick={closeNav}>
+          className="nav-cover" id="navcover" onClick={closeNavE}>
           </div>
           <div className="navlinks" id="navlinks">
-              <NavLink to="/Ambulance" className="link">Ambulance</NavLink>
-              <NavLink to="/Oxygen" className="link">Oxygen</NavLink>
-              <NavLink to="/Blood" className="link">Blood Donors</NavLink>
+              <NavLink to="/Ambulance" className="link" onClick={closeNav}>Ambulance</NavLink>
+              <NavLink to="/Oxygen" className="link" onClick={closeNav}>Oxygen</NavLink>
+              <NavLink to="/Blood" className="link" onClick={closeNav}>Blood Donors</NavLink>
               
-              <div className="link">{medName}
-                <div className="dropdown-menu">
-                  <NavLink to="/Delivery" className="link">Delivery</NavLink>
-                  <NavLink to="/GeoTagged" className="link">Geo-Tagged</NavLink>
-                  <NavLink to="/Karnataka" className="link">Karnataka</NavLink>
-                  <NavLink to="/Bangalore" className="link">Bangalore Only</NavLink>
+              <div className="medlink" id="medlink">Medicine
+                <div className="med">{medName}</div>
+                <div className="dropdown-menu" id="dropdown">
+                  <NavLink to="/Delivery" className="link" onClick={closeNav}>Delivery</NavLink>
+                  <NavLink to="/GeoTagged" className="link" onClick={closeNav}>Geo-Tagged</NavLink>
+                  <NavLink to="/Karnataka" className="link" onClick={closeNav}>Karnataka</NavLink>
+                  <NavLink to="/Bangalore" className="link" onClick={closeNav}>Bangalore Only</NavLink>
                 </div>
               </div>
+              
+              <div className="dropdown-menu2" id="dropdown">
+              <div>Medicine</div>
+                  <NavLink to="/Delivery" className="link" onClick={closeNav}>Delivery</NavLink>
+                  <NavLink to="/GeoTagged" className="link" onClick={closeNav}>Geo-Tagged</NavLink>
+                  <NavLink to="/Karnataka" className="link" onClick={closeNav}>Karnataka</NavLink>
+                  <NavLink to="/Bangalore" className="link" onClick={closeNav}>Bangalore Only</NavLink>
+              </div>
 
-              <NavLink to="/Food" className="link">Food</NavLink>
-              <NavLink to="/Consultation" className="link">Online Consultation</NavLink>
-              <NavLink to="/Testing" className="link">Home Testing</NavLink>
-              <NavLink to="/Counselling" className="link">TeleCounselling</NavLink>
-              <NavLink to="/Information" className="link">Information</NavLink>
-              <NavLink to="/Remdesivir" className="link">Remdesivir</NavLink>
+              <NavLink to="/Food" className="link" onClick={closeNav}>Food</NavLink>
+              <NavLink to="/Consultation" className="link" onClick={closeNav}>Online Consultation</NavLink>
+              <NavLink to="/Testing" className="link" onClick={closeNav}>Home Testing</NavLink>
+              <NavLink to="/Counselling" className="link" onClick={closeNav}>TeleCounselling</NavLink>
+              <NavLink to="/Information" className="link" onClick={closeNav}>Information</NavLink>
+              <NavLink to="/Remdesivir" className="link" onClick={closeNav}>Remdesivir</NavLink>
           </div>
         </div>
         </div>
@@ -465,20 +481,20 @@ function Main() {
           }  
  
       <Switch>
-        <Route path="/" exact component={props => (<Home {...props} user={user}/>)}></Route>
-        <Route path="/Ambulance" component={props => (<Ambulance {...props} user={user}/>)}></Route>
-        <Route path="/Blood" component={props => (<Blood {...props} user={user}/>)}></Route>
+        <Route path="/" exact component={props => (<Home {...props} setMedName={setMedName}/>)}></Route>
+        <Route path="/Ambulance" component={props => (<Ambulance {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Blood" component={props => (<Blood {...props} user={user} setMedName={setMedName}/>)}></Route>
         <Route path="/Delivery" component={props => (<Delivery {...props} setMedName={setMedName}/>)}></Route>
         <Route path="/GeoTagged" component={props => (<GeoTagged {...props} setMedName={setMedName}/>)}></Route>
         <Route path="/Karnataka" component={props => (<Karnataka {...props} setMedName={setMedName}/>)}></Route>
         <Route path="/Bangalore" component={props => (<Bangalore {...props} setMedName={setMedName}/>)}></Route>
-        <Route path="/Food" component={props => (<Food {...props} user={user}/>)}></Route>
-        <Route path="/Testing" component={props => (<Testing {...props} user={user}/>)}></Route>
-        <Route path="/Consultation" component={props => (<Consultation {...props} user={user}/>)}></Route>
-        <Route path="/Oxygen" component={props => (<Oxygen {...props} user={user}/>)}></Route>
-        <Route path="/Remdesivir" component={Rem}></Route>
-        <Route path="/Counselling" component={props => (<Counselling {...props} user={user}/>)}></Route>
-        <Route path="/Information" component={props => (<Info {...props} user={user}/>)}></Route>
+        <Route path="/Food" component={props => (<Food {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Testing" component={props => (<Testing {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Consultation" component={props => (<Consultation {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Oxygen" component={props => (<Oxygen {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Counselling" component={props => (<Counselling {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Information" component={props => (<Info {...props} setMedName={setMedName}/>)}></Route>
+        <Route path="/Remdesivir" component={props => (<Rem {...props} setMedName={setMedName}/>)}></Route>
       </Switch>
       <Top/>
       <Widget/>

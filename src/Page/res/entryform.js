@@ -129,7 +129,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
     
     const setLink = (e) =>{
     e.preventDefault();
-    if (inputname!==""&&inputcontactname!==""&&inputcontactnum!=="")
+    if (inputname!==""&&inputcontactname!==""&&inputcontactnum!==""&&inputverified!=="")
     {
         if (collectionname==="/ambulance"||collectionname==="/bed"||collectionname==="/hometesting"||collectionname==="/tele")
         {   
@@ -744,7 +744,9 @@ const Form = ({collectionname, setStateUpdate}) =>{
                 <br/>
                 All Information Entered Will be Displayed as Cards Below.
                 <br/>
-                Please Fill All Details With Caution. Please Leave Fields Empty If Not Applicable. 
+                Please Fill All Details With Caution.
+                <br/>
+                Please Leave Fields Empty If Not Applicable. 
             </div>
 
             <div className="form-container" id="entry-form">
@@ -774,7 +776,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
             <div className="form-data-title">Contact Information</div>
                 <div className="input-flex">
                     <label className="service-contact-label">Same as Service Name</label>
-                    <div className="checkbox-container">
+                    <div className="service-checkbox-container">
                     <input className="checkbox" type="checkbox" checked={samename} id="contact-name" onChange={NameCheck}/>
                     <label htmlFor="contact-name" className="switch"></label> 
                     </div> 

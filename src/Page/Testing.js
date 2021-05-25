@@ -4,9 +4,10 @@ import Form from './res/entryform';
 import {axios} from './res/axios';
 import PageNo from './res/pageno';
 
-const Testing = ({user}) => {
+const Testing = ({user, setMedName}) => {
 
     useEffect(()=>{
+        setMedName("");
         let form=document.getElementById("form");
         if(user===true){
             form.style.display="flex";
@@ -67,6 +68,7 @@ const Testing = ({user}) => {
     }
 
     return(
+        <>
         <div className="content" id="top">
         <Form collectionname={collectionname}
         setStateUpdate={setStateUpdate}/>
@@ -78,7 +80,6 @@ const Testing = ({user}) => {
         )
         :
         (
-            <>
         <div className="card-grid">
             {linklist.map((i)=>(
                 <Data
@@ -133,23 +134,23 @@ const Testing = ({user}) => {
                 />
             ))}
             </div>
-            <div className="page-bar-container">
-            <div className="go-to">Page:</div>
-            <div className="page-no-container"> 
-            {pageno.map(i=>(
-                <PageNo
-                key={i}
-                i={i}
-                page={page}
-                setPage={setPage}
-                setLoader={setLoader}/>
-            ))}
-            </div>
-            </div>
-            </>
         )
         }
         </div>
+        <div className="page-bar-container">
+        <div className="go-to">Page:</div>
+        <div className="page-no-container"> 
+        {pageno.map(i=>(
+            <PageNo
+            key={i}
+            i={i}
+            page={page}
+            setPage={setPage}
+            setLoader={setLoader}/>
+        ))}
+        </div>
+        </div>
+        </>
     );
 };
 

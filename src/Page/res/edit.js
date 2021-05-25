@@ -69,7 +69,7 @@ const Editbtn = ({
         }
         else
         {
-            setEdit("grid");
+            setEdit("flex");
         }
     },[user])
 ;
@@ -239,7 +239,18 @@ const Editbtn = ({
 
             <div className="time-data">Last Updated: {moment(last_update_time.toString()).calendar()}</div>
                 
-            <div className="edit-btn" style={{display: `${edit}`}} onClick={popup} idvalue={id}>EDIT</div>
+            <div className="edit-btn" style={{display: `${edit}`}} onClick={popup} idvalue={id}>
+            <svg 
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            className="edit-icon-box">
+                <g fill="none">
+                    <path className="edit-icon" d="M27.314 10.343a4 4 0 0 0-5.657-5.657L20.254 6.09l5.656 5.656l1.404-1.403z"/>
+                    <path className="edit-icon" d="M24.496 13.16L12.541 25.117a5 5 0 0 1-2.323 1.315l-4.582 1.146a1 1 0 0 1-1.213-1.213l1.146-4.582a5 5 0 0 1 1.315-2.323L18.839 7.504l5.657 5.657z"/>
+                </g>
+            </svg>
+                EDIT
+            </div>
             
         <div className="edit-cover" id={`edit-${id}`} onClick={closemodal} style={{display: `${cover}`}}>
  

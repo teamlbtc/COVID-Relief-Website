@@ -12,6 +12,12 @@ const PageNo = ({i, page, setPage, setLoader}) => {
             setColor("var(--white)");
             setPoint("none");
         }
+        else
+        {
+            setBack("");
+            setColor("");
+            setPoint("");
+        }
     },[i, page]);
 
     const setCurPage = (e) => {

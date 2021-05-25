@@ -4,9 +4,10 @@ import Form from './res/entryform';
 import {axios} from './res/axios';
 import PageNo from './res/pageno';
 
-const Ambulance = ({user}) => {
+const Ambulance = ({user, setMedName}) => {
 
     useEffect(()=>{
+        setMedName("");
         let form=document.getElementById("form");
         if(user===true){
             form.style.display="flex";
@@ -67,6 +68,7 @@ const Ambulance = ({user}) => {
     }
 
     return(
+        <>
         <div className="content">
         <Form collectionname={collectionname}
         setStateUpdate={setStateUpdate}/>
@@ -133,7 +135,11 @@ const Ambulance = ({user}) => {
                 />
             ))}
             </div>
-            <div className="page-bar-container">
+            </>
+        )
+        }
+        </div>
+        <div className="page-bar-container">
             <div className="go-to">Page:</div>
             <div className="page-no-container"> 
             {pageno.map(i=>(
@@ -146,10 +152,7 @@ const Ambulance = ({user}) => {
             ))}
             </div>
             </div>
-            </>
-        )
-        }
-        </div>
+        </>
     );
 };
 

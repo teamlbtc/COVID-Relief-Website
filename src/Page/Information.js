@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-const Info = () => {
+const Info = ({setMedName}) => {
 
     const [loader, setLoader] = useState(true);
     
@@ -8,6 +8,7 @@ const Info = () => {
         setTimeout(()=>{
             setLoader(false);
         },1000)
+        setMedName("");
     }, []);
 
     return(
