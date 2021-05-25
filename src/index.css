@@ -454,6 +454,16 @@
   transition: ease-in-out 0.3s;
 }
 
+.success-submit {
+  color: var(--green);
+  font-size:x-small;
+}
+
+.fail-submit {
+  color: var(--red);
+  font-size:x-small;
+
+}
 .admin-cover {
   position: fixed;
   display: none;
@@ -1576,6 +1586,25 @@ input[type="number"] {
   height: 1.3rem;
 }
 
+.food-form {
+  margin: 0 1rem;
+  padding: 0.1rem 0.5rem;
+  border: none;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  padding: 14px 20px;
+  background-color:  var(--accent);
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.food-form:hover {
+  /* background-color: var(--accenthl); */
+  box-shadow: 0px 0px 7px 5px rgba(0, 0, 0, 0.165);
+  transition: all 0.4s;
+}
 .details-card-cover {
   display: none;
   place-items: center;
