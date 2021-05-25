@@ -83,7 +83,7 @@ const Med = ({user}) => {
         )
         :
         (
-            <>
+        <>
         <div className="card-grid">
             {linklist.map((i)=>(
                 <Data
