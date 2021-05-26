@@ -8,8 +8,9 @@ const Karanataka = ({setMedName}) => {
         setTimeout(()=>{
             setLoader(false);
         },1000)
-        setMedName("-Karanataka");
     }, []);
+    
+    setMedName("Karanataka");
 
     return(
         <div className="content">

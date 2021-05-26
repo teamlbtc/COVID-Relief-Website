@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-const Home = () => {   
+const Home = ({setMedName}) => {   
 
     const [loader, setLoader] = useState(true);
     
@@ -8,8 +8,9 @@ const Home = () => {
         setTimeout(()=>{
             setLoader(false);
         },1000)
-
     }, []);
+
+    setMedName("");
  
     return(
         <div className="content">

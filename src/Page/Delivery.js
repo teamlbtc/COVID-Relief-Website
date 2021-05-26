@@ -9,8 +9,9 @@ const Delivery = ({setMedName}) => {
         setTimeout(()=>{
             setLoader(false);
         },1000)
-        setMedName("-Delivery");
     }, []);
+    
+    setMedName("Delivery");
  
     return(
         <div className="content">

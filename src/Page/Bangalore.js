@@ -8,8 +8,9 @@ const Bangalore = ({setMedName}) => {
         setTimeout(()=>{
             setLoader(false);
         },1000)
-        setMedName("-Bangalore Only");
     }, []);
+
+    setMedName("Bangalore Only");
 
     return(
         <div className="content">

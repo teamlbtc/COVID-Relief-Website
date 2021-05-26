@@ -8,8 +8,9 @@ const GeoTagged = ({setMedName}) => {
         setTimeout(()=>{
             setLoader(false);
         },1000)
-        setMedName("-Geo-Tagged");
     }, []);
+    
+    setMedName("Geo-Tagged");
 
     return(
         <div className="content">

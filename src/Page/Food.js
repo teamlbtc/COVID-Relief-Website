@@ -5,9 +5,10 @@ import {axios} from './res/axios';
 import PageNo from './res/pageno';
 
 const Food = ({user, setMedName}) => {
+    
+    setMedName("");
 
     useEffect(()=>{
-        setMedName("");
         let form=document.getElementById("form");
         if(user===true){
             form.style.display="flex";

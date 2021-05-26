@@ -7,7 +7,6 @@ const About = () => {
   const [text, setText] = useState("");
   const [submitMsg, setSubmitMsg] = useState("");
 
-    // overflow: hidden;
     const share = () => {
         let body = document.querySelector("body");
         body.style.overflow = "hidden";
@@ -45,8 +44,8 @@ const About = () => {
 
         axios.post("/feedback",
             qs.stringify({
-                name,
-                text
+                name:name,
+                text:text
             })
             )
             .then(res => {
@@ -120,7 +119,7 @@ const About = () => {
                                 <input type="text" className="e-input-title" name="Name" placeholder="Name" required onChange={trimname} onChange={(e) => setName(e.target.value)}/>
                                 <textarea type="text" className="e-input-desc" name="Query" placeholder="Add your query here..." required onChange={(e) => setText(e.target.value)}/>
                                 <button type="submit" className="e-link-btn">SEND</button>
-                                <p className="para" className={submitMsg.includes("Sent")?'success-submit':'fail-submit'}>{submitMsg}</p>
+                                <p style={{height:"1rem"}} className={submitMsg.includes("Sent")?'success-submit':'fail-submit'}>{submitMsg}</p>
                             </form>
                         </div>
                     </div>

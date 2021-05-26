@@ -6,8 +6,9 @@ import PageNo from './res/pageno';
 
 const Consultation = ({user, setMedName}) => {
 
+    setMedName("");
+
     useEffect(()=>{
-        setMedName("");
         let form=document.getElementById("form");
         if(user===true){
             form.style.display="flex";

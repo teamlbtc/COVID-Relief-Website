@@ -8,8 +8,9 @@ const Rem = ({setMedName}) => {
         setTimeout(()=>{
             setLoader(false);
         },1000)
-        setMedName("");
     }, []);
+    
+    setMedName("");
  
     return(
         <div className="content">
