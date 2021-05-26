@@ -310,7 +310,12 @@ function Main() {
       <Volunteer/>
         <div className="title-container">
           <NavLink to="/" exact className="title">COVID RELIEF</NavLink>
-          <About/>
+            <div style={{flexDirection:'row',display:'flex'}}>
+              <button className='food-form' onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSduhCb3rwaFnCLSL1JyMehoJDKmI0tHeeZCNDc8RQ6uOMLqjA/viewform',"_blank")} >Catering Service Form</button>
+              <About/>
+            </div>
+          
+
         </div>
         <div className="navbar-container">
         <div className="navbar">
