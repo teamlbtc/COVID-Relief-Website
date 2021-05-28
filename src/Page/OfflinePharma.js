@@ -17,7 +17,7 @@ const OfflinePharma = ({user,setMedName}) => {
         }
     },[user]);
     
-    setMedName("Offline");
+    setMedName("-Offline");
 
     const [linklist, setLinkList] = useState([]);
     const [collectionname] = useState("/medicineoffline");
