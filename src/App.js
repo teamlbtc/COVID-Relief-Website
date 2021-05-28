@@ -350,19 +350,19 @@ function Main() {
                 <div className="med">{medName}</div>
                 </div>
                 <div className="dropdown-menu" id="dropdown">
-                  <NavLink to="/Delivery" className="link" onClick={closeNav}>Delivery</NavLink>
-                  <NavLink to="/GeoTagged" className="link" onClick={closeNav}>Geo-Tagged</NavLink>
-                  <NavLink to="/Karnataka" className="link" onClick={closeNav}>Karnataka</NavLink>
-                  <NavLink to="/Bangalore" className="link" onClick={closeNav}>Bangalore Only</NavLink>
+                  <NavLink to="/Delivery" className="link" onClick={closeNav}>Online Pharmacies</NavLink>
+                  <NavLink to="/GeoTagged" className="link" onClick={closeNav}> Offline Pharmacies </NavLink>
+                  <NavLink to="/Karnataka" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Karnataka)</NavLink>
+                  <NavLink to="/Bangalore" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Bengaluru)</NavLink>
                 </div>
               </div>
               
               <div className="dropdown-menu2" id="dropdown">
               <div>Medicine</div>
-                  <NavLink to="/Delivery" className="link" onClick={closeNav}>Delivery</NavLink>
-                  <NavLink to="/GeoTagged" className="link" onClick={closeNav}>Geo-Tagged</NavLink>
-                  <NavLink to="/Karnataka" className="link" onClick={closeNav}>Karnataka</NavLink>
-                  <NavLink to="/Bangalore" className="link" onClick={closeNav}>Bangalore Only</NavLink>
+                  <NavLink to="/Delivery" className="link" onClick={closeNav}>Online Pharmacies</NavLink>
+                  <NavLink to="/GeoTagged" className="link" onClick={closeNav}> Offline Pharmacies </NavLink>
+                  <NavLink to="/Karnataka" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Karnataka)</NavLink>
+                  <NavLink to="/Bangalore" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Bengaluru)</NavLink>
               </div>
 
               <NavLink to="/Food" className="link" onClick={closeNav}>Food</NavLink>
