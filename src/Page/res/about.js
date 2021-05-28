@@ -39,6 +39,13 @@ const About = () => {
         .replace(/\n +/,"\n"));
       }
 
+    const trimquery = (e) =>{
+        setText((e.target.value)
+        .replace(/(^\s*)|(\s*$)/gi, "")
+        .replace(/[ ]{2,}/gi," ")
+        .replace(/\n +/,"\n"));
+      }  
+
     const submit = (e) => {
         e.preventDefault();
 
@@ -50,7 +57,7 @@ const About = () => {
             )
             .then(res => {
                 console.log(res.status);
-                res.status==200?setSubmitMsg("Your Feedback was Sent"):setSubmitMsg("Error please try again later")
+                res.status===200?setSubmitMsg("Your Feedback was Sent"):setSubmitMsg("Error please try again later")
             })
             .catch(error => {
                 console.log(error.response.data.error)
@@ -116,8 +123,8 @@ const About = () => {
                             <div className="e-from-title">Have a Suggestion or Issue?</div>
                             <p className="para">Talk to Us.</p>
                             <form className="e-form" onSubmit={submit} method="POST">
-                                <input type="text" className="e-input-title" name="Name" placeholder="Name" required onChange={trimname} onChange={(e) => setName(e.target.value)}/>
-                                <textarea type="text" className="e-input-desc" name="Query" placeholder="Add your query here..." required onChange={(e) => setText(e.target.value)}/>
+                                <input type="text" className="e-input-title" name="Name" placeholder="Name" required onChange={trimname}/>
+                                <textarea type="text" className="e-input-desc" name="Query" placeholder="Add your query here..." required onChange={trimquery}/>
                                 <button type="submit" className="e-link-btn">SEND</button>
                                 <p style={{height:"1rem"}} className={submitMsg.includes("Sent")?'success-submit':'fail-submit'}>{submitMsg}</p>
                             </form>
