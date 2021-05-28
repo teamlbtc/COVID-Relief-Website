@@ -7,8 +7,8 @@ import Blood from './Page/Blood';
 import Consultation from './Page/Consultation';
 import Counselling from './Page/Counselling';
 import Med from './Page/Medicine';
-import Delivery from './Page/Delivery';
-import GeoTagged from './Page/GeoTagged';
+import OnlinePharma from './Page/OnlinePharma';
+import OfflinePharma from './Page/OfflinePharma';
 import Karnataka from './Page/Karnataka';
 import Bangalore from './Page/Bangalore';
 import Food from './Page/Food';
@@ -350,8 +350,8 @@ function Main() {
                 <div className="med">{medName}</div>
                 </div>
                 <div className="dropdown-menu" id="dropdown">
-                  <NavLink to="/Delivery" className="link" onClick={closeNav}>Online Pharmacies</NavLink>
-                  <NavLink to="/GeoTagged" className="link" onClick={closeNav}> Offline Pharmacies </NavLink>
+                  <NavLink to="/OnlinePharma" className="link" onClick={closeNav}>Online Pharmacies</NavLink>
+                  <NavLink to="/OfflinePharma" className="link" onClick={closeNav}> Offline Pharmacies </NavLink>
                   <NavLink to="/Karnataka" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Karnataka)</NavLink>
                   <NavLink to="/Bangalore" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Bengaluru)</NavLink>
                 </div>
@@ -359,8 +359,8 @@ function Main() {
               
               <div className="dropdown-menu2" id="dropdown">
               <div>Medicine</div>
-                  <NavLink to="/Delivery" className="link" onClick={closeNav}>Online Pharmacies</NavLink>
-                  <NavLink to="/GeoTagged" className="link" onClick={closeNav}> Offline Pharmacies </NavLink>
+                  <NavLink to="/OnlinePharma" className="link" onClick={closeNav}>Online Pharmacies</NavLink>
+                  <NavLink to="/OfflinePharma" className="link" onClick={closeNav}> Offline Pharmacies </NavLink>
                   <NavLink to="/Karnataka" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Karnataka)</NavLink>
                   <NavLink to="/Bangalore" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Bengaluru)</NavLink>
               </div>
@@ -489,8 +489,8 @@ function Main() {
         <Route path="/" exact component={props => (<Home {...props} setMedName={setMedName}/>)}></Route>
         <Route path="/Ambulance" component={props => (<Ambulance {...props} user={user} setMedName={setMedName}/>)}></Route>
         <Route path="/Blood" component={props => (<Blood {...props} user={user} setMedName={setMedName}/>)}></Route>
-        <Route path="/Delivery" component={props => (<Delivery {...props} setMedName={setMedName}/>)}></Route>
-        <Route path="/GeoTagged" component={props => (<GeoTagged {...props} setMedName={setMedName}/>)}></Route>
+        <Route path="/OnlinePharma" component={props => (<OnlinePharma {...props} setMedName={setMedName}/>)}></Route>
+        <Route path="/OfflinePharma" component={props => (<OfflinePharma {...props} setMedName={setMedName}/>)}></Route>
         <Route path="/Karnataka" component={props => (<Karnataka {...props} setMedName={setMedName}/>)}></Route>
         <Route path="/Bangalore" component={props => (<Bangalore {...props} setMedName={setMedName}/>)}></Route>
         <Route path="/Food" component={props => (<Food {...props} user={user} setMedName={setMedName}/>)}></Route>
