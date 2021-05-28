@@ -5,8 +5,6 @@ import {axios} from './res/axios';
 import PageNo from './res/pageno';
 
 const Karanataka = ({user, setMedName}) => {   
-
-    // const [loader, setLoader] = useState(true);
     
     useEffect(()=>{
         let form=document.getElementById("form");
@@ -94,7 +92,7 @@ const Karanataka = ({user, setMedName}) => {
         <div className="card-grid">
             {linklist.map((i)=>(
                 <Data
-                key={i._id}
+                key={i._id} 
                 comments={i.comments}
                 contact_email={i.contact_email}
                 contact_name={i.contact_name}
