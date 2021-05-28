@@ -4,7 +4,7 @@ import Form from './res/entryform';
 import {axios} from './res/axios';
 import PageNo from './res/pageno';
 
-const GeoTagged = ({user,setMedName}) => {   
+const OnlinePharma = ({user,setMedName}) => {   
 
     useEffect(()=>{
         let form=document.getElementById("form");
@@ -17,7 +17,7 @@ const GeoTagged = ({user,setMedName}) => {
         }
     },[user]);
     
-    setMedName("Delivery");
+    setMedName("Online");
 
     const [linklist, setLinkList] = useState([]);
     const [collectionname] = useState("/medicineonline");
@@ -174,4 +174,4 @@ const GeoTagged = ({user,setMedName}) => {
     );
 };
 
-export default GeoTagged;
+export default OnlinePharma;
