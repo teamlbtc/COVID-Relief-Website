@@ -1,12 +1,12 @@
 import {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
-import Home from './Page/Home';
+//import Home from './Page/Home';
 import Ambulance from './Page/Ambulance';
 import Info from './Page/Information';
 import Blood from './Page/Blood';
 import Consultation from './Page/Consultation';
 import Counselling from './Page/Counselling';
-import Med from './Page/Medicine';
+//import Med from './Page/Medicine';
 import OnlinePharma from './Page/OnlinePharma';
 import OfflinePharma from './Page/OfflinePharma';
 import Karnataka from './Page/Karnataka';
@@ -309,7 +309,7 @@ function Main() {
       <div className="header">
       <Volunteer/>
         <div className="title-container">
-          <NavLink to="/" exact className="title">COVID RELIEF</NavLink>
+          <div className="title">COVID RELIEF</div>
             <div className="food-about-container">
               <button className='food-form' onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSduhCb3rwaFnCLSL1JyMehoJDKmI0tHeeZCNDc8RQ6uOMLqjA/viewform',"_blank")} >Catering Service Form</button>
               <About/>
@@ -341,7 +341,7 @@ function Main() {
           className="nav-cover" id="navcover" onClick={closeNavE}>
           </div>
           <div className="navlinks" id="navlinks">
-              <NavLink to="/Ambulance" className="link" onClick={closeNav}>Ambulance</NavLink>
+              <NavLink to="/" exact className="link" onClick={closeNav}>Ambulance</NavLink>
               <NavLink to="/Oxygen" className="link" onClick={closeNav}>Oxygen</NavLink>
               <NavLink to="/Blood" className="link" onClick={closeNav}>Blood Donors</NavLink>
               
@@ -486,8 +486,8 @@ function Main() {
           }  
  
       <Switch>
-        <Route path="/" exact component={props => (<Home {...props} setMedName={setMedName}/>)}></Route>
-        <Route path="/Ambulance" component={props => (<Ambulance {...props} user={user} setMedName={setMedName}/>)}></Route>
+        {/* <Route path="/" exact component={props => (<Home {...props} setMedName={setMedName}/>)}></Route> */}
+        <Route path="/" exact component={props => (<Ambulance {...props} user={user} setMedName={setMedName}/>)}></Route>
         <Route path="/Blood" component={props => (<Blood {...props} user={user} setMedName={setMedName}/>)}></Route>
         <Route path="/OnlinePharma" component={props => (<OnlinePharma {...props} setMedName={setMedName}/>)}></Route>
         <Route path="/OfflinePharma" component={props => (<OfflinePharma {...props} setMedName={setMedName}/>)}></Route>
