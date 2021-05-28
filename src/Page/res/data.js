@@ -107,7 +107,6 @@ const Data = (
     const [medtypetext, setMedTypeText] = useState("");
     const [oxytypetext, setOxyTypeText] = useState("");
 
-    
     useEffect(()=>{
         if(available===true)
         {
@@ -410,6 +409,10 @@ const Data = (
             setEditMedName={setEditMedName}
             editmedtype={editmedtype}
             setEditMedType={setEditMedType}
+            editmedcondition={editomrcondition}
+            setEditMedCondition={setEditOMRCondition}
+            editMedprice={editprice}
+            setEditMedPrice={setEditPrice}
             editbloodgroup={editbloodgroup}
             setEditBloodGroup={setEditBloodGroup}
             editrecoverydate={editrecoverydate}
