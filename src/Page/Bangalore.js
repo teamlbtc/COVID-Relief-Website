@@ -94,15 +94,15 @@ const Bangalore = ({user, setMedName}) => {
                 <Data
                 key={i._id} 
                 comments={i.comments}
-                contact_email={i.contact_email}
+                contact_email={i.contact_email || ""}
                 contact_name={i.contact_name}
-                contact_number={i.contact_number}
+                contact_number={i.contact_number || ""}
                 description={i.address}
                 id={i._id}
-                last_update_time={i.last_update_time || ""}
+                last_update_time={i.kendra_code || ""}
                 link_to_go={i.link_to_go || ""}
                 location_covered={i.location_covered}
-                name={i.kendra_code}
+                name={i.address}
                 source={i.source}
                 timings={i.timings}
                 verified={i.verified}
