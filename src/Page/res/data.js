@@ -531,8 +531,9 @@ const Data = (
                 }
                 })()
             }
+            
             <div className="data-container">
-            <div className="details" onClick={detailsbtn}>More...</div> 
+            {contact_number && <div className="details" onClick={detailsbtn}>More...</div> }
                 <div className="contact-info">
                 <a href={`tel:${contact_number}`}
                 className="contact-icon"
@@ -569,6 +570,7 @@ const Data = (
                 </a>             
                 </div>
             </div>
+            
         </div>
 
         <div className="details-card-cover" id={id} onClick={closemodal}>
@@ -735,7 +737,7 @@ const Data = (
             <div className="data-container">
             <div className="contact-label">{contact_name}</div> 
                 <div className="contact-info">
-                <a className="contact-icon"  
+                <a className="contact-icon"
                 href={`tel:${contact_number}`}
                 style={{display: `${numdisplay}`}}>
                     <svg 

@@ -91,18 +91,18 @@ const Karanataka = ({user, setMedName}) => {
             <>
         <div className="card-grid">
             {linklist.map((i)=>(
-                <Data
+                <Data 
                 key={i._id} 
                 comments={i.comments}
-                contact_email={i.contact_email}
+                contact_email={i.contact_email || ""}
                 contact_name={i.contact_name}
-                contact_number={i.contact_number}
+                contact_number={i.contact_number || ""}
                 description={i.address}
                 id={i._id}
-                last_update_time={i.last_update_time || ""}
+                last_update_time={i.kendra_code || ""}
                 link_to_go={i.link_to_go || ""}
                 location_covered={i.location_covered}
-                name={i.kendra_code}
+                name={i.district}
                 source={i.source}
                 timings={i.timings}
                 verified={i.verified}
@@ -129,7 +129,7 @@ const Karanataka = ({user, setMedName}) => {
                 editcontactname={editcontactname}
                 setEditCName={setEditCName}
                 editcontactemail={editcontactemail}
-                setEditCEmail={setEditCEmail}
+                setEditCEmail={setEditCEmail} 
                 editcontactnum={editcontactnum}
                 setEditCNum={setEditCNum}
                 editlink={editlink}
