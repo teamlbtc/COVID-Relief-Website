@@ -17,7 +17,7 @@ const OnlinePharma = ({user,setMedName}) => {
         }
     },[user]);
     
-    setMedName("-Online");
+    setMedName("Online");
 
     const [linklist, setLinkList] = useState([]);
     const [collectionname] = useState("/medicineonline");

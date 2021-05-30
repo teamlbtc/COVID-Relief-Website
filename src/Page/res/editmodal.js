@@ -131,7 +131,7 @@ const Modal = ({
         setEditAvailable(e.target.checked);
     }
 
-    useEffect(()=>{
+    const setEditFields = () => {
         if (collectionname==="/ambulance"||collectionname==="/bed"||collectionname==="/hometesting"||collectionname==="/tele")
         {
             editlist.forEach(i=>{
@@ -266,7 +266,10 @@ const Modal = ({
                 setEditOMRCondition(i.condition);
             });
         }
-        
+    }
+
+    useEffect(()=>{
+        setEditFields();
     },[editlist, editid]);
 
     const deleteData = () => {
@@ -281,7 +284,8 @@ const Modal = ({
         body.style.overflow = "unset"; 
     };
 
-    const deleteModal = () =>{         
+    const deleteModal = (e) =>{
+        e.preventDefault();        
         let cover = document.getElementById(`delete-${id}`);
         let body = document.querySelector("body");
         body.style.overflow = "hidden"; 
@@ -296,7 +300,8 @@ const Modal = ({
         cover.style.display = "none";   
     }
 
-    const updateData = () => {
+    const updateData = (e) =>{
+        e.preventDefault();
         if (collectionname==="/ambulance"||collectionname==="/hometesting"||collectionname==="/tele")
         {   
             axios.patch(`${collectionname}/${editid}`, 
@@ -586,6 +591,13 @@ const Modal = ({
     const classes = useStyles();
 
     useEffect(()=>{
+        let namefield=document.getElementById("edit-name");
+        let cnumfield=document.getElementById("edit-cnum");
+        if (collectionname!=="/onlinedoc")
+        {
+            namefield.required=true;
+            cnumfield.required=true;
+        }
         let editverifier = document.getElementById("edit-verifier");
         if (editverified==="0")
         {   
@@ -595,19 +607,34 @@ const Modal = ({
         {   
             editverifier.required=false;
         }
-    },[editverified]);
+    },[editverified, collectionname]);
 
     return (
     <>
-        <div className="edit-box">
+        <form className="edit-box" onSubmit={updateData}>
         <div className="edit-data-container">
         <div className="add-content-flex">
 
         <div className="form-details" id="form-input">
         <div className="form-data-title">Service Details</div>
         <div className="input-flex">   
-        <label className="label">Name<div className="red">*</div></label>
-        <input className="edit-input" value={editname} onChange={nameinput} type="text" placeholder="Service Name" required></input>
+        <label className="label">Name
+            {
+            (()=> {
+            if (collectionname==="/onlinedoc")
+            {   
+                <></> 
+            }                    
+            else
+            {   
+                return(
+                <div className="red">*</div>
+                );
+            }   
+            })()
+            }
+        </label>
+        <input className="edit-input" id="edit-name" value={editname} onChange={nameinput} type="text" placeholder="Service Name"></input>
         </div>
         <div className="input-flex" >   
         <label className="label">Description</label>
@@ -630,8 +657,23 @@ const Modal = ({
         <input className="edit-input" value={editcontactname} onChange={cnameinput} type="text" placeholder="Contact Name" required></input>
         </div>
         <div className="input-flex" >   
-        <label className="label">Number<div className="red">*</div></label>
-        <input className="edit-input" value={editcontactnum} onChange={cnuminput} type="tel" placeholder="Contact Number" minLength="7" required></input>
+        <label className="label">Number
+        {
+        (()=> {
+        if (collectionname==="/onlinedoc")
+        {   
+            <></> 
+        }                    
+        else
+        {   
+            return(
+            <div className="red">*</div>
+            );
+        }   
+        })()
+        }
+        </label>
+        <input className="edit-input" id="edit-cnum" value={editcontactnum} onChange={cnuminput} type="tel" placeholder="Contact Number"></input>
         </div>
             <div className="input-flex" >   
                 <label className="label">Email</label>
@@ -907,7 +949,7 @@ const Modal = ({
             <div className="form-details" id="form-input">
             <div className="form-data-title">Information</div>
                 <div className="input-flex" >   
-                    <label className="label">Type<div className="red">*</div></label>
+                    <label className="label">Type</label>
                     <FormControl className={classes.formControl}>
                         <InputLabel  
                         fontSize="0.8rem"
@@ -918,7 +960,6 @@ const Modal = ({
                             value={editconsultationtype}
                             onChange={consultationtypeinput}
                             className={classes.inputfield}
-                            required
                             >
                             <MenuItem value={"0"}
                             fontSize="0.8rem"
@@ -1036,10 +1077,10 @@ const Modal = ({
     <div className="edit-btn-container">
         <div className="edit-btn-flex">
             <button className="edit-d-btn" onClick={deleteModal}>DELETE</button>
-            <button className="edit-u-btn" onClick={updateData}>UPDATE</button>
+            <button type="submit" className="edit-u-btn">UPDATE</button>
         </div>
     </div>
-    </div>
+    </form>
 
     <div className="delete-cover" id={`delete-${id}`}>
         <div className="delete-confirmation" id="delete-confirmation">

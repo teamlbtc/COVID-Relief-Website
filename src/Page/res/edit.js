@@ -71,10 +71,9 @@ const Editbtn = ({
         {
             setEdit("flex");
         }
-    },[user])
-;
+    },[user]);
 
-    useEffect(()=>{
+    const setEditArray = () => {
         if (collectionname==="/ambulance"||collectionname==="/hometesting"||collectionname==="/tele")
         {
             setEditName("");
@@ -195,7 +194,11 @@ const Editbtn = ({
             setEditSource("");
             setEditAvailable(false);
             setEditOMRCondition("");
-        }        
+        }
+    }
+
+    useEffect(()=>{
+        setEditArray();
     },[editid]);
 
     useEffect(()=>{
