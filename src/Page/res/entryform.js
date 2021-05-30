@@ -115,6 +115,13 @@ const Form = ({collectionname, setStateUpdate}) =>{
     }
 
     useEffect(()=>{
+        let namefield=document.getElementById("name");
+        let cnumfield=document.getElementById("cnum");
+        if (collectionname!=="/onlinedoc")
+        {
+            namefield.required=true;
+            cnumfield.required=true;
+        }
         let verifier = document.getElementById("verifier");
         if (inputverified==="0")
         {   
@@ -124,13 +131,13 @@ const Form = ({collectionname, setStateUpdate}) =>{
         {   
             verifier.required=false;
         }
-    },[inputverified]);
+    },[inputverified, collectionname]);
 
     
     const setLink = (e) =>{
     e.preventDefault();
-    if (inputname!==""&&inputcontactname!==""&&inputcontactnum!==""&&inputverified!=="")
-    {
+    if (inputcontactname!==""&&inputverified!=="")
+    {   
         if (collectionname==="/ambulance"||collectionname==="/bed"||collectionname==="/hometesting"||collectionname==="/tele")
         {   
             setBtnTxt("PLEASE WAIT");
@@ -424,7 +431,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
         }
         else if (collectionname==="/onlinedoc")
         {   
-            if(inputconsultationtype!=="")
+            if(inputcharges!=="")
             {
             setBtnTxt("PLEASE WAIT");
             let btn = document.getElementById("add-btn");
@@ -755,8 +762,25 @@ const Form = ({collectionname, setStateUpdate}) =>{
             <div className="form-details" id="form-input">
             <div className="form-data-title">Service Details</div>
                 <div className="input-flex" >   
-                    <label className="label">Name<div className="red">*</div></label>
-                    <input className="input" value={inputname} onChange={nameinput} type="text" placeholder="Service Name"></input>
+                    <label className="label">Name 
+
+                    {
+                    (()=> {
+                    if (collectionname==="/onlinedoc")
+                    {   
+                        <></> 
+                    }                    
+                    else
+                    {   
+                        return(
+                        <div className="red">*</div>
+                        );
+                    }   
+                    })()
+                    }
+
+                    </label>
+                    <input className="input" id="name" value={inputname} onChange={nameinput} type="text" placeholder="Service Name"></input>
                 </div>
                 <div className="input-flex" >   
                     <label className="label">Description</label>
@@ -786,8 +810,23 @@ const Form = ({collectionname, setStateUpdate}) =>{
                     <input className="input" value={samename ? inputname : inputcontactname} onChange={samename ? "" : cnameinput} type="text" placeholder="Contact Name"></input>
                 </div>
                 <div className="input-flex" >   
-                    <label className="label">Number<div className="red">*</div></label>
-                    <input className="input" value={inputcontactnum} onChange={cnuminput} type="number" placeholder="Contact Number" minLength="7" maxLength="13"></input>
+                    <label className="label">Number
+                    {
+                    (()=> {
+                    if (collectionname==="/onlinedoc")
+                    {   
+                        <></> 
+                    }                    
+                    else
+                    {   
+                        return(
+                        <div className="red">*</div>
+                        );
+                    }   
+                    })()
+                    }
+                    </label>
+                    <input className="input" id="cnum" value={inputcontactnum} onChange={cnuminput} type="number" placeholder="Contact Number" minLength="7" maxLength="13"></input>
                 </div>
                 <div className="input-flex" >   
                     <label className="label">Email</label>
@@ -1057,7 +1096,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                         <div className="form-details" id="form-input">
                         <div className="form-data-title">Information</div>
                             <div className="input-flex" >   
-                                <label className="label">Type<div className="red">*</div></label>
+                                <label className="label">Type</label>
                                 <FormControl className={classes.formControl}>
                                     <InputLabel 
                                     fontSize="0.8rem"

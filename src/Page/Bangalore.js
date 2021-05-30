@@ -17,7 +17,7 @@ const Bangalore = ({user, setMedName}) => {
         }
     },[user]);
 
-    setMedName("-Bangalore");
+    setMedName("Bangalore");
 
     const [linklist, setLinkList] = useState([]);
     const [collectionname] = useState("/jakbangalore");

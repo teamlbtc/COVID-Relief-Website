@@ -17,7 +17,7 @@ const Karanataka = ({user, setMedName}) => {
         }
     },[user]);
     
-    setMedName("-Karanataka");
+    setMedName("Karanataka");
 
     const [linklist, setLinkList] = useState([]);
     const [collectionname] = useState("/jakkarnataka");

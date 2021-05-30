@@ -58,6 +58,15 @@ const Rem = ({setMedName}) => {
         <br/>
         In case the hospital is not registered for COVID-19 care, the patient’s attender needs to raise an indent to the BBMP through the hospital.
         </p>
+        <br/>
+        <p className="para">
+        You can check Remdesivir allottements patient wise here :  
+        <a className="lbtc-link" 
+        target="_blank"
+        rel="noreferrer noopener"
+        href="https://www.covidwar.karnataka.gov.in/service2/"
+        > https://www.covidwar.karnataka.gov.in/service2/</a>
+        </p>
         </div>
         )
         }
