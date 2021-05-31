@@ -2,8 +2,11 @@ import {useState, useEffect} from 'react';
 import Data from './res/data';
 import Form from './res/entryform';
 import {axios} from './res/axios';
+import PageNo from './res/pageno';
 
-const Consultation = ({user}) => {
+const Consultation = ({user, setMedName}) => {
+
+    setMedName("");
 
     useEffect(()=>{
         let form=document.getElementById("form");
@@ -33,10 +36,11 @@ const Consultation = ({user}) => {
     const [editverifiedby, setEditVerifiedBy] = useState("");
     const [editavailable, setEditAvailable] = useState();
     const [editconsultationtype, setEditConsultationType] = useState("");
+    const [editcharges, setEditCharges] = useState("");
     const [stateupdate, setStateUpdate] = useState(false);
     const [loader, setLoader] = useState(true);
-    const [page, setPage] = useState(1);
-    const [size] = useState(16);
+    const [page, setPage] = useState("1");
+    const [size] = useState(12);
     const [pages, setPages] = useState();
     
     useEffect(() => {
@@ -67,12 +71,8 @@ const Consultation = ({user}) => {
         pageno.push(i);
     }
 
-    const setCurPage = (e) => {
-        setLoader(true);
-        setPage(e.target.getAttribute("pageid"));
-    }
-
     return(
+        <>
         <div className="content" id="top">
         <Form collectionname={collectionname}
         setStateUpdate={setStateUpdate}/>
@@ -84,7 +84,6 @@ const Consultation = ({user}) => {
         )
         :
         (
-            <>
         <div className="card-grid">
             {linklist.map((i)=>(
                 <Data
@@ -105,6 +104,7 @@ const Consultation = ({user}) => {
                 verified_by={i.verified_by}
                 available={i.available}
                 consultationtype={i.type}
+                charges={i.charges}
                 user={user}
                 collectionname={collectionname}
                 linklist={linklist}
@@ -139,29 +139,29 @@ const Consultation = ({user}) => {
                 setEditAvailable={setEditAvailable}
                 editconsultationtype={editconsultationtype}
                 setEditConsultationType={setEditConsultationType}
+                editcharges={editcharges}
+                setEditCharges={setEditCharges}
                 />
             ))}
             </div>
-            <div className="current-page">
-                Page - {page} of {pages}</div>
-            <div className="page-bar-container">
-            <div className="go-to">Go to:</div>
-            <div className="page-no-container"> 
-            {pageno.map(i=>(
-                <div 
-                key={i} 
-                className="page-no" 
-                pageid={i}
-                onClick={setCurPage}>
-                    {i}
-                </div>
-            ))}
-            </div>
-            </div>
-            </>
+
         )
         }
         </div>
+        <div className="page-bar-container">
+        <div className="go-to">Page:</div>
+        <div className="page-no-container"> 
+        {pageno.map(i=>(
+            <PageNo
+            key={i}
+            i={i}
+            page={page}
+            setPage={setPage}
+            setLoader={setLoader}/>
+        ))}
+        </div>
+        </div>
+        </>
     );
 };
 

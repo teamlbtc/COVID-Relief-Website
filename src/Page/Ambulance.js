@@ -2,8 +2,11 @@ import {useState, useEffect} from 'react';
 import Data from './res/data';
 import Form from './res/entryform';
 import {axios} from './res/axios';
+import PageNo from './res/pageno';
 
-const Ambulance = ({user}) => {
+const Ambulance = ({user, setMedName}) => {
+    
+    setMedName("");
 
     useEffect(()=>{
         let form=document.getElementById("form");
@@ -34,7 +37,7 @@ const Ambulance = ({user}) => {
     const [editavailable, setEditAvailable] = useState();
     const [stateupdate, setStateUpdate] = useState(false);
     const [loader, setLoader] = useState(true);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState("1");
     const [size] = useState(16);
     const [pages, setPages] = useState();
     
@@ -65,13 +68,9 @@ const Ambulance = ({user}) => {
         pageno.push(i);
     }
 
-    const setCurPage = (e) => {
-        setLoader(true);
-        setPage(e.target.getAttribute("pageid"));
-    }
-
     return(
-        <div className="content" id="top">
+        <>
+        <div className="content">
         <Form collectionname={collectionname}
         setStateUpdate={setStateUpdate}/>
         {loader ?
@@ -137,26 +136,24 @@ const Ambulance = ({user}) => {
                 />
             ))}
             </div>
-            <div className="current-page">
-                Page - {page} of {pages}</div>
-            <div className="page-bar-container">
-            <div className="go-to">Go to:</div>
-            <div className="page-no-container"> 
-            {pageno.map(i=>(
-                <div 
-                key={i} 
-                className="page-no" 
-                pageid={i}
-                onClick={setCurPage}>
-                    {i}
-                </div>
-            ))}
-            </div>
-            </div>
             </>
         )
         }
         </div>
+        <div className="page-bar-container">
+            <div className="go-to">Page:</div>
+            <div className="page-no-container"> 
+            {pageno.map(i=>(
+                <PageNo
+                key={i}
+                i={i}
+                page={page}
+                setPage={setPage}
+                setLoader={setLoader}/>
+            ))}
+            </div>
+            </div>
+        </>
     );
 };
 

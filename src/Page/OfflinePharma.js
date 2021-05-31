@@ -4,9 +4,7 @@ import Form from './res/entryform';
 import {axios} from './res/axios';
 import PageNo from './res/pageno';
 
-const Testing = ({user, setMedName}) => {
-    
-    setMedName("");
+const OfflinePharma = ({user,setMedName}) => {   
 
     useEffect(()=>{
         let form=document.getElementById("form");
@@ -18,9 +16,11 @@ const Testing = ({user, setMedName}) => {
             form.style.display="none";
         }
     },[user]);
+    
+    setMedName("Offline");
 
     const [linklist, setLinkList] = useState([]);
-    const [collectionname] = useState("/hometesting");
+    const [collectionname] = useState("/medicineoffline");
     const [editlist, setEditList] = useState([]);
     const [editid, setEditId] = useState("");
     const [editname, setEditName] = useState("");
@@ -34,13 +34,18 @@ const Testing = ({user, setMedName}) => {
     const [editlink, setEditLink] = useState("");
     const [editverified, setEditVerified] = useState("");
     const [editverifiedby, setEditVerifiedBy] = useState("");
+    
+    const [editmedname, setEditMedName] = useState();
+    const [editmedtype, setEditMedType] = useState();
+    const [editmedcondition, setEditMedCondition] = useState();
+    const [editMedprice, setEditMedPrice] = useState();
+    
     const [editavailable, setEditAvailable] = useState();
     const [stateupdate, setStateUpdate] = useState(false);
     const [loader, setLoader] = useState(true);
     const [page, setPage] = useState("1");
     const [size] = useState(16);
     const [pages, setPages] = useState();
-    
     useEffect(() => {
         const request = async () => { 
             await axios.get(collectionname, {
@@ -50,11 +55,12 @@ const Testing = ({user, setMedName}) => {
             }
         })
         .then((res)=>{
-            if (res && res.data.data) 
+            console.log(res.data.data);
+            if (res && res.data.data) {
             setLinkList(res.data.data);
             setPages(res.data.pages);
             setStateUpdate(false);
-            setLoader(false);
+            setLoader(false);}
         })
         .catch((err)=>console.log(err));
     }
@@ -70,31 +76,32 @@ const Testing = ({user, setMedName}) => {
 
     return(
         <>
-        <div className="content" id="top">
+        <div className="content">
         <Form collectionname={collectionname}
         setStateUpdate={setStateUpdate}/>
-                {loader ?
-        (
+        {loader ?
+        (   
             <div className="loader-container">
             <div className="loader">Fetching Data</div>
             </div>
         )
         :
         (
+            <>
         <div className="card-grid">
             {linklist.map((i)=>(
                 <Data
-                key={i._id}
+                key={i._id} 
                 comments={i.comments}
                 contact_email={i.contact_email}
                 contact_name={i.contact_name}
-                contact_number={i.contact_number}
-                description={i.description}
+                contact_number={i.contact_details}
+                description={i.location}
                 id={i._id}
-                last_update_time={i.last_update_time}
-                link_to_go={i.link_to_go}
-                location_covered={i.location_covered}
-                name={i.name}
+                last_update_time={i.last_update_time || ""}
+                link_to_go={i.location_link || ""}
+                location_covered={i.location}
+                name={i.pharmacy_name}
                 source={i.source}
                 timings={i.timings}
                 verified={i.verified}
@@ -130,29 +137,41 @@ const Testing = ({user, setMedName}) => {
                 setEditVerified={setEditVerified}
                 editverifiedby={editverifiedby}
                 setEditVerifiedBy={setEditVerifiedBy}
+
+                editmedname={editmedname}
+                setEditMedName={setEditMedName}
+
+                editmedtype={editmedtype}
+
+                setEditMedType={setEditMedType}
+                editmedcondition={editmedcondition}
+                editMedprice={editMedprice}
+                setEditMedPrice={setEditMedPrice}
+                setEditMedCondition={setEditMedCondition}
                 editavailable={editavailable}
                 setEditAvailable={setEditAvailable}
                 />
             ))}
             </div>
+            </>
         )
         }
         </div>
         <div className="page-bar-container">
-        <div className="go-to">Page:</div>
-        <div className="page-no-container"> 
-        {pageno.map(i=>(
-            <PageNo
-            key={i}
-            i={i}
-            page={page}
-            setPage={setPage}
-            setLoader={setLoader}/>
-        ))}
-        </div>
-        </div>
+            <div className="go-to">Page:</div>
+            <div className="page-no-container"> 
+            {pageno.map(i=>(
+                <PageNo
+                key={i}
+                i={i}
+                page={page}
+                setPage={setPage}
+                setLoader={setLoader}/>
+            ))}
+            </div>
+            </div>
         </>
     );
 };
 
-export default Testing;
+export default OfflinePharma;
