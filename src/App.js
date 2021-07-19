@@ -1,11 +1,16 @@
 import {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
+//import Home from './Page/Home';
 import Ambulance from './Page/Ambulance';
-import Beds from './Page/Beds';
+import Info from './Page/Information';
 import Blood from './Page/Blood';
 import Consultation from './Page/Consultation';
 import Counselling from './Page/Counselling';
-import Med from './Page/Medicine'
+//import Med from './Page/Medicine';
+import OnlinePharma from './Page/OnlinePharma';
+import OfflinePharma from './Page/OfflinePharma';
+import Karnataka from './Page/Karnataka';
+import Bangalore from './Page/Bangalore';
 import Food from './Page/Food';
 import Oxygen from './Page/Oxygen';
 import Rem from './Page/Remdesivir';
@@ -13,9 +18,10 @@ import Testing from './Page/Testing';
 import Widget from './Page/res/widget';
 import Top from './Page/res/top';
 import About from './Page/res/about';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import qs from 'qs';
 import {axios} from './Page/res/axios';
+import Volunteer from './Page/res/volunteer';
 import fire from './Page/fire_config';
 
 function Main() {
@@ -33,8 +39,8 @@ function Main() {
   const [nameR, setnameR] = useState("");
   const [nameError, setnameError] = useState("");
   const [newuser, setNewUser] = useState(false);
+  const [medName, setMedName] = useState("");
   
-
   fire.analytics();
 
   const submit =  (e) => {
@@ -133,7 +139,7 @@ function Main() {
 
   useEffect(()=>{
     userListener();
-  },[]);
+  });
 
     function showpass() {
         var x = document.getElementById("password");
@@ -145,7 +151,6 @@ function Main() {
       }
 
   useEffect(()=>{
-
     if(logincheck!==false || localStorage.getItem('token-data') !== null)
     {
       setUser(true);
@@ -269,61 +274,109 @@ function Main() {
     setNewUser(!newuser);
     clearInputs();
   }
-  
 
+  const openNav = () => {
+    document.querySelector("body").style.overflow="hidden";
+    let navlink = document.getElementById("navlinks");
+    navlink.classList.add("navlinks-open");
+
+    let navcover = document.getElementById("navcover");
+    navcover.classList.add("nav-cover-open");
+  }
+
+  const closeNavE = (e) => {
+    let navcover = document.getElementById("navcover");
+    let navlink = document.getElementById("navlinks");
+    if (e.target===navcover)
+    { 
+      document.querySelector("body").style.overflow="";
+      navcover.classList.remove("nav-cover-open");
+      navlink.classList.remove("navlinks-open");
+    }
+  }
+
+  const closeNav = () => {
+    let navcover = document.getElementById("navcover");
+    let navlink = document.getElementById("navlinks");
+    document.querySelector("body").style.overflow="";
+    navcover.classList.remove("nav-cover-open");
+    navlink.classList.remove("navlinks-open");
+  }
+  
   return (
-    <>
     <Router>
     <div className="app">
       <div className="header">
+      <Volunteer/>
         <div className="title-container">
           <div className="title">COVID RELIEF</div>
-          <div className="container">
-          <a
-          href="https://forms.gle/r7WbWq6d5HqGNjHL7" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="link-container">
-            <div className="link-title">BECOME A VOLUNTEER!</div>
-            <svg className="plasmalink-icon"
-            xmlns="http://www.w3.org/2000/svg"  
-            viewBox="0 0 24 24">
-              <g fill="none">
-                <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </g></svg>
-
-          </a>
-          <About/>
-          </div>
+            <div className="food-about-container">
+              <button className='food-form' onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSduhCb3rwaFnCLSL1JyMehoJDKmI0tHeeZCNDc8RQ6uOMLqjA/viewform',"_blank")} >Catering Service Form</button>
+              <About/>
+            </div>
         </div>
+        <div className="navbar-container">
         <div className="navbar">
           <div className="login-btn" id="admin-btn" 
           onClick={loginOpen}
           >
           <svg 
           xmlns="http://www.w3.org/2000/svg" 
-          width="1.83em" height="2em" 
-          viewBox="0 0 496 512">
-            <path className="login-icon" d="M248 104c-53 0-96 43-96 96s43 96 96 96s96-43 96-96s-43-96-96-96zm0 144c-26.5 0-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48zm0-240C111 8 0 119 0 256s111 248 248 248s248-111 248-248S385 8 248 8zm0 448c-49.7 0-95.1-18.3-130.1-48.4c14.9-23 40.4-38.6 69.6-39.5c20.8 6.4 40.6 9.6 60.5 9.6s39.7-3.1 60.5-9.6c29.2 1 54.7 16.5 69.6 39.5c-35 30.1-80.4 48.4-130.1 48.4zm162.7-84.1c-24.4-31.4-62.1-51.9-105.1-51.9c-10.2 0-26 9.6-57.6 9.6c-31.5 0-47.4-9.6-57.6-9.6c-42.9 0-80.6 20.5-105.1 51.9C61.9 339.2 48 299.2 48 256c0-110.3 89.7-200 200-200s200 89.7 200 200c0 43.2-13.9 83.2-37.3 115.9z"/>
+          viewBox="0 0 24 24">
+            <path className="login-icon" d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10s10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z"/>
           </svg>
           </div>
-            <div className="navlinks">
-                <NavLink to="/" exact className="link">Ambulance</NavLink>
-                <NavLink to="/Oxygen" className="link">Oxygen</NavLink>
-                <NavLink to="/Beds" className="link">Bed Avail</NavLink>
-                <NavLink to="/Blood" className="link">Blood Donors</NavLink>
-                <NavLink to="/Remdesivir" className="link">Remdesivir</NavLink>
-                <NavLink to="/Medicine" className="link">Medicine</NavLink>
-                <NavLink to="/Food" className="link">Food</NavLink>
-                <NavLink to="/Consultation" className="link">Online Consultation</NavLink>
-                <NavLink to="/Testing" className="link">Home Testing</NavLink>
-                <NavLink to="/Counselling" className="link">TeleCounselling</NavLink>
-            </div>
+          
+          <div class="box" onClick={openNav}> 
+            <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 24 24">
+              <g fill="none">
+                <path className="burger-line" d="M4 6h16M4 12h16M4 18h7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+          </div>
+          
+          <div 
+          className="nav-cover" id="navcover" onClick={closeNavE}>
+          </div>
+          <div className="navlinks" id="navlinks">
+              <NavLink to="/" exact className="link" onClick={closeNav}>Ambulance</NavLink>
+              <NavLink to="/Oxygen" className="link" onClick={closeNav}>Oxygen</NavLink>
+              <NavLink to="/Blood" className="link" onClick={closeNav}>Blood Donors</NavLink>
+              
+              <div className="medlink" id="medlink">
+                <div className="med-title">Medicine
+                <div className="med">{medName}</div>
+                </div>
+                <div className="dropdown-menu" id="dropdown">
+                  <NavLink to="/OnlinePharma" className="link" onClick={closeNav}>Online Pharmacies</NavLink>
+                  <NavLink to="/OfflinePharma" className="link" onClick={closeNav}> Offline Pharmacies </NavLink>
+                  <NavLink to="/Karnataka" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Karnataka)</NavLink>
+                  <NavLink to="/Bangalore" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Bengaluru)</NavLink>
+                </div>
+              </div>
+              
+              <div className="dropdown-menu2" id="dropdown">
+              <div>Medicine</div>
+                  <NavLink to="/OnlinePharma" className="link" onClick={closeNav}>Online Pharmacies</NavLink>
+                  <NavLink to="/OfflinePharma" className="link" onClick={closeNav}> Offline Pharmacies </NavLink>
+                  <NavLink to="/Karnataka" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Karnataka)</NavLink>
+                  <NavLink to="/Bangalore" className="link" onClick={closeNav}>Jana Aushadhi Kendra (Bengaluru)</NavLink>
+              </div>
+
+              <NavLink to="/Food" className="link" onClick={closeNav}>Food</NavLink>
+              <NavLink to="/Consultation" className="link" onClick={closeNav}>Online Consultation</NavLink>
+              <NavLink to="/Testing" className="link" onClick={closeNav}>Home Testing</NavLink>
+              <NavLink to="/Counselling" className="link" onClick={closeNav}>TeleCounselling</NavLink>
+              <NavLink to="/Information" className="link" onClick={closeNav}>Information</NavLink>
+              <NavLink to="/Remdesivir" className="link" onClick={closeNav}>Remdesivir</NavLink>
+          </div>
         </div>
         </div>
+      </div>
 
         {
-          
         (logincheck || localStorage.getItem('token-data') !== null) ?
           ( 
           <div className="admin-cover" id="admin-cover">
@@ -433,22 +486,25 @@ function Main() {
           }  
  
       <Switch>
-        <Route path="/" exact component={props => (<Ambulance {...props} user={user}/>)}></Route>
-        <Route path="/Beds" component={props => (<Beds {...props} user={user}/>)}></Route>
-        <Route path="/Blood" component={props => (<Blood {...props} user={user}/>)}></Route>
-        <Route path="/Medicine" component={props => (<Med {...props} user={user}/>)}></Route>
-        <Route path="/Food" component={props => (<Food {...props} user={user}/>)}></Route>
-        <Route path="/Testing" component={props => (<Testing {...props} user={user}/>)}></Route>
-        <Route path="/Consultation" component={props => (<Consultation {...props} user={user}/>)}></Route>
-        <Route path="/Oxygen" component={props => (<Oxygen {...props} user={user}/>)}></Route>
-        <Route path="/Remdesivir" component={props => (<Rem {...props} user={user}/>)}></Route>
-        <Route path="/Counselling" component={props => (<Counselling {...props} user={user}/>)}></Route>
+        {/* <Route path="/" exact component={props => (<Home {...props} setMedName={setMedName}/>)}></Route> */}
+        <Route path="/" exact component={props => (<Ambulance {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Blood" component={props => (<Blood {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/OnlinePharma" component={props => (<OnlinePharma {...props} setMedName={setMedName}/>)}></Route>
+        <Route path="/OfflinePharma" component={props => (<OfflinePharma {...props} setMedName={setMedName}/>)}></Route>
+        <Route path="/Karnataka" component={props => (<Karnataka {...props} setMedName={setMedName}/>)}></Route>
+        <Route path="/Bangalore" component={props => (<Bangalore {...props} setMedName={setMedName}/>)}></Route>
+        <Route path="/Food" component={props => (<Food {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Testing" component={props => (<Testing {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Consultation" component={props => (<Consultation {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Oxygen" component={props => (<Oxygen {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Counselling" component={props => (<Counselling {...props} user={user} setMedName={setMedName}/>)}></Route>
+        <Route path="/Information" component={props => (<Info {...props} setMedName={setMedName}/>)}></Route>
+        <Route path="/Remdesivir" component={props => (<Rem {...props} setMedName={setMedName}/>)}></Route>
       </Switch>
       <Top/>
       <Widget/>
     </div>
-    </Router> 
-    </>
+    </Router>
   );
 }
 

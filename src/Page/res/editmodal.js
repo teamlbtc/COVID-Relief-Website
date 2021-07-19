@@ -56,8 +56,8 @@ const Modal = ({
     setEditPBType,
     editfoodtype,
     setEditFoodType,
-    editfoodcharges,
-    setEditFoodCharges,
+    editcharges,
+    setEditCharges,
     editconsultationtype,
     setEditConsultationType}) => {
 
@@ -67,8 +67,8 @@ const Modal = ({
     const foodtypeinput = (e) => {
         setEditFoodType(e.target.value);
     }
-    const foodchargesinput = (e) => {
-        setEditFoodCharges(e.target.value);
+    const chargesinput = (e) => {
+        setEditCharges(e.target.value);
     }
     const pbtypeinput = (e) => {
         setEditPBType(e.target.value);
@@ -131,7 +131,7 @@ const Modal = ({
         setEditAvailable(e.target.checked);
     }
 
-    useEffect(()=>{
+    const setEditFields = () => {
         if (collectionname==="/ambulance"||collectionname==="/bed"||collectionname==="/hometesting"||collectionname==="/tele")
         {
             editlist.forEach(i=>{
@@ -205,7 +205,7 @@ const Modal = ({
                 setEditSource(i.source);
                 setEditAvailable(i.available);
                 setEditFoodType(i.type);
-                setEditFoodCharges(i.charges)
+                setEditCharges(i.charges);
             });
         }
         else if (collectionname==="/onlinedoc")
@@ -224,6 +224,7 @@ const Modal = ({
                 setEditSource(i.source);
                 setEditAvailable(i.available);
                 setEditConsultationType(i.type);
+                setEditCharges(i.charges);
             });
         }
         else if (collectionname==="/oxygen")
@@ -265,7 +266,10 @@ const Modal = ({
                 setEditOMRCondition(i.condition);
             });
         }
-        
+    }
+
+    useEffect(()=>{
+        setEditFields();
     },[editlist, editid]);
 
     const deleteData = () => {
@@ -280,7 +284,8 @@ const Modal = ({
         body.style.overflow = "unset"; 
     };
 
-    const deleteModal = () =>{         
+    const deleteModal = (e) =>{
+        e.preventDefault();        
         let cover = document.getElementById(`delete-${id}`);
         let body = document.querySelector("body");
         body.style.overflow = "hidden"; 
@@ -295,8 +300,9 @@ const Modal = ({
         cover.style.display = "none";   
     }
 
-    const updateData = () => {
-        if (collectionname==="/ambulance"||collectionname==="/bed"||collectionname==="/hometesting"||collectionname==="/tele")
+    const updateData = (e) =>{
+        e.preventDefault();
+        if (collectionname==="/ambulance"||collectionname==="/hometesting"||collectionname==="/tele")
         {   
             axios.patch(`${collectionname}/${editid}`, 
             qs.stringify({
@@ -443,7 +449,7 @@ const Modal = ({
                 source : editsource,
                 available : editavailable,
                 type: editfoodtype,
-                charges: editfoodcharges
+                charges: editcharges
             }))
             .then(() => {
                 setEditName("");
@@ -459,6 +465,7 @@ const Modal = ({
                 setEditSource("");
                 setEditAvailable(false);
                 setEditFoodType("");
+                setEditCharges("");
                 setEditId(""); 
                 let body = document.querySelector("body");
                 body.style.overflow = "unset"; 
@@ -482,6 +489,7 @@ const Modal = ({
                 source : editsource,
                 available : editavailable,
                 type: editconsultationtype,
+                charges: editcharges
             }))
             .then(() => {
                 setEditName("");
@@ -497,6 +505,7 @@ const Modal = ({
                 setEditSource("");
                 setEditAvailable(false);
                 setEditConsultationType("");
+                setEditCharges("");
                 setEditId("");
                 let body = document.querySelector("body");
                 body.style.overflow = "unset"; 
@@ -545,45 +554,7 @@ const Modal = ({
                 let body = document.querySelector("body");
                 body.style.overflow = "unset"; 
             });
-        }
-        else if (collectionname==="/remdesivir")
-        {   
-            axios.patch(`${collectionname}/${editid}`, 
-            qs.stringify({
-                name : editname,
-                description : editdesc,
-                location_covered : editlocation,
-                timings : edittiming,
-                contact_name : editcontactname,
-                contact_number : editcontactnum,
-                contact_email : editcontactemail,
-                link_to_go : editlink,
-                verified : editverified,
-                verified_by : editverifiedby,
-                last_update_time:new Date(),
-                source : editsource,
-                available : editavailable,
-                condition : editomrcondition,
-            }))
-            .then(() => {
-                setEditName("");
-                setEditDesc("");
-                setEditLoc("");
-                setEditTime("");
-                setEditCName("");
-                setEditCNum("");
-                setEditCEmail("");
-                setEditLink("");
-                setEditVerified("");
-                setEditVerifiedBy("");
-                setEditSource("");
-                setEditAvailable(false);
-                setEditOMRCondition("");
-                setEditId("");
-                let body = document.querySelector("body");
-                body.style.overflow = "unset"; 
-            });
-        }      
+        }   
     };
 
     const useStyles = makeStyles(() => ({
@@ -597,7 +568,7 @@ const Modal = ({
         },
         inputfield:{
             fontSize:"0.8rem",
-            fontWeight: 600,
+            fontWeight: 500,
             color:"var(--dgrey)",
         },
         input:{
@@ -619,17 +590,51 @@ const Modal = ({
 
     const classes = useStyles();
 
+    useEffect(()=>{
+        let namefield=document.getElementById("edit-name");
+        let cnumfield=document.getElementById("edit-cnum");
+        if (collectionname!=="/onlinedoc")
+        {
+            namefield.required=true;
+            cnumfield.required=true;
+        }
+        let editverifier = document.getElementById("edit-verifier");
+        if (editverified==="0")
+        {   
+            editverifier.required=true;
+        }
+        else
+        {   
+            editverifier.required=false;
+        }
+    },[editverified, collectionname]);
+
     return (
     <>
-        <div className="edit-box">
-
+        <form className="edit-box" onSubmit={updateData}>
+        <div className="edit-data-container">
         <div className="add-content-flex">
 
         <div className="form-details" id="form-input">
         <div className="form-data-title">Service Details</div>
         <div className="input-flex">   
-        <label className="label">Name<div className="red">*</div></label>
-        <input className="edit-input" value={editname} onChange={nameinput} type="text" placeholder="Service Name"></input>
+        <label className="label">Name
+            {
+            (()=> {
+            if (collectionname==="/onlinedoc")
+            {   
+                <></> 
+            }                    
+            else
+            {   
+                return(
+                <div className="red">*</div>
+                );
+            }   
+            })()
+            }
+        </label>
+        <input className="edit-input" id="edit-name" value={editname} onChange={nameinput} type="text" placeholder="Service Name"></input>
         </div>
         <div className="input-flex" >   
         <label className="label">Description</label>
@@ -648,23 +653,38 @@ const Modal = ({
         <div className="form-details" id="form-input">
         <div className="form-data-title">Contact Information</div>
         <div className="input-flex" >   
-        <label className="label">Contact Name<div className="red">*</div></label>
-        <input className="edit-input" value={editcontactname} onChange={cnameinput} type="text" placeholder="Contact Name"></input>
+        <label className="label">Name<div className="red">*</div></label>
+        <input className="edit-input" value={editcontactname} onChange={cnameinput} type="text" placeholder="Contact Name" required></input>
         </div>
         <div className="input-flex" >   
-        <label className="label">Contact Number<div className="red">*</div></label>
-        <input className="edit-input" value={editcontactnum} onChange={cnuminput} type="tel" placeholder="Contact Number" minLength="10" maxLength="13"></input>
+        <label className="label">Number
+        {
+        (()=> {
+        if (collectionname==="/onlinedoc")
+        {   
+            <></> 
+        }                    
+        else
+        {   
+            return(
+            <div className="red">*</div>
+            );
+        }   
+        })()
+        }
+        </label>
+        <input className="edit-input" id="edit-cnum" value={editcontactnum} onChange={cnuminput} type="tel" placeholder="Contact Number"></input>
         </div>
-    <div className="input-flex" >   
-        <label className="label">Contact Email</label>
-        <input className="edit-input" value={editcontactemail} onChange={cemailinput} type="email" placeholder="Contact E-mail"></input>
-    </div>
-    <div className="input-flex" >   
-        <label className="label">Link</label>
-        <input className="edit-input" value={editlink} onChange={linkinput} type="url" placeholder="https://www.examplesite.com"></input>
-    </div>
-</div>
-</div>
+            <div className="input-flex" >   
+                <label className="label">Email</label>
+                <input className="edit-input" value={editcontactemail} onChange={cemailinput} type="email" placeholder="email@email.com"></input>
+            </div>
+            <div className="input-flex" >   
+                <label className="label">Link</label>
+                <input className="edit-input" value={editlink} onChange={linkinput} type="url" placeholder="https://www.examplesite.com"></input>
+            </div>
+        </div>
+        </div>
 
 <div className="add-content-flex">
 <div className="form-details" id="form-input">
@@ -696,25 +716,25 @@ const Modal = ({
                         className={classes.item}>Verificaiton Pending</MenuItem>
                     </Select>
                     </FormControl>    
-    </div>
-    <div className="input-flex" >   
-        <label className="label">Verified By</label>
-        <input className="edit-input" value={editverifiedby} onChange={verifiedbyinput} type="text" placeholder="Name of Verifier"></input>
-    </div>
-    <div className="input-flex" >       
-        <label className="label">Source</label>
-        <input className="edit-input" value={editsource} onChange={sourceinput} type="text" placeholder="Enter Source"></input>
-    </div>
-    <div className="input-flex">
-        <label className="label">Available</label>
-        <div className="checkbox-container">
-        <input className="checkbox" type="checkbox" id="checkedit1" checked={editavailable} onChange={availableinput}/>
-        <label htmlFor="checkedit1" className="switch"></label> 
-        </div>    
-    </div>
-</div>
+                </div>
+                <div className="input-flex" >   
+                    <label className="label">Verified By</label>
+                    <input id="edit-verifier" className="edit-input" value={editverifiedby} onChange={verifiedbyinput} type="text" placeholder="Name of Verifier"></input>
+                </div>
+                <div className="input-flex" >       
+                    <label className="label">Source</label>
+                    <input className="edit-input" value={editsource} onChange={sourceinput} type="text" placeholder="Enter Source"></input>
+                </div>
+                <div className="input-flex">
+                    <label className="label">Available</label>
+                    <div className="checkbox-container">
+                    <input className="checkbox" type="checkbox" id="checkedit1" checked={editavailable} onChange={availableinput}/>
+                    <label htmlFor="checkedit1" className="switch"></label> 
+                    </div>    
+                </div>
+            </div>
             
-{
+    {
     (()=> {
     if (collectionname==="/blooddonor")
     {
@@ -830,10 +850,10 @@ const Modal = ({
                         fontSize="0.8rem"
                         fontWeight={500}
                         className={classes.input}
-                        >Food Type</InputLabel>
+                        >Charges</InputLabel>
                         <Select
-                            value={editfoodcharges}
-                            onChange={foodchargesinput}
+                            value={editcharges}
+                            onChange={chargesinput}
                             className={classes.inputfield}
                             required
                             >
@@ -929,7 +949,7 @@ const Modal = ({
             <div className="form-details" id="form-input">
             <div className="form-data-title">Information</div>
                 <div className="input-flex" >   
-                    <label className="label">Type<div className="red">*</div></label>
+                    <label className="label">Type</label>
                     <FormControl className={classes.formControl}>
                         <InputLabel  
                         fontSize="0.8rem"
@@ -940,7 +960,6 @@ const Modal = ({
                             value={editconsultationtype}
                             onChange={consultationtypeinput}
                             className={classes.inputfield}
-                            required
                             >
                             <MenuItem value={"0"}
                             fontSize="0.8rem"
@@ -948,6 +967,29 @@ const Modal = ({
                             <MenuItem value={"1"}
                             fontSize="0.8rem"
                             className={classes.item}>Home</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
+                <div className="input-flex" >   
+                    <label className="label">Charges<div className="red">*</div></label>
+                    <FormControl className={classes.formControl}>
+                        <InputLabel 
+                        fontSize="0.8rem"
+                        fontWeight={500}
+                        className={classes.input}
+                        >Charges</InputLabel>
+                        <Select
+                            value={editcharges}
+                            onChange={chargesinput}
+                            className={classes.inputfield}
+                            required
+                            >
+                            <MenuItem value={"0"}
+                            fontSize="0.8rem"
+                            className={classes.item}>Paid</MenuItem>
+                            <MenuItem value={"1"}
+                            fontSize="0.8rem"
+                            className={classes.item}>Free</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -1027,54 +1069,18 @@ const Modal = ({
                 </div>
             </div>
         );
-    }
-    else if (collectionname==="/remdesivir")
-    {
-        return (
-            <div className="form-details" id="form-input">
-            <div className="form-data-title">Information</div>
-            <div className="input-flex" >   
-                <label className="label">Condition<div className="red">*</div></label>
-                <FormControl className={classes.formControl}>
-                    <InputLabel 
-                    fontSize="0.8rem"
-                    fontWeight={500}
-                    className={classes.input}
-                    >Remdesivir Condition</InputLabel>
-                    <Select
-                        value={editomrcondition}
-                        onChange={omrconditioninput}
-                        className={classes.inputfield}
-                        required
-                        >
-                        <MenuItem value={"0"}
-                        fontSize="0.8rem"
-                        className={classes.item}>No Stock</MenuItem>
-                        <MenuItem value={"1"}
-                        fontSize="0.8rem"
-                        className={classes.item}>Black Market</MenuItem>
-                        <MenuItem value={"2"}
-                        fontSize="0.8rem"
-                        className={classes.item}>Purchase</MenuItem>
-                        <MenuItem value={"3"}
-                        fontSize="0.8rem"
-                        className={classes.item}>Waiting Period</MenuItem>
-                    </Select>
-                </FormControl>
-            </div>
-            </div>
-        );
-    }        
+    }   
     })()
     }
     </div>
     </div>
     <div className="edit-btn-container">
         <div className="edit-btn-flex">
-            <button className="edit-d-btn" id="add-btn" onClick={deleteModal}>DELETE</button>
-            <button className="edit-u-btn" id="add-btn" onClick={updateData}>UPDATE</button>
+            <button className="edit-d-btn" onClick={deleteModal}>DELETE</button>
+            <button type="submit" className="edit-u-btn">UPDATE</button>
         </div>
     </div>
+    </form>
 
     <div className="delete-cover" id={`delete-${id}`}>
         <div className="delete-confirmation" id="delete-confirmation">

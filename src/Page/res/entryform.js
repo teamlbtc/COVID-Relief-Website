@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -34,9 +34,14 @@ const Form = ({collectionname, setStateUpdate}) =>{
     const [inputmedtype, setInputMedType] = useState("");
     const [inputpbtype, setInputPBType] = useState("");
     const [inputfoodtype, setInputFoodType] = useState("");
-    const [inputfoodcharges, setInputFoodCharges] = useState("");
+    const [inputcharges, setInputCharges] = useState("");
     const [inputconsultationtype, setInputConsultationType] = useState("");
+    const [samename, setSameName] = useState(false);
 
+    useEffect(()=>{
+        let name = window.localStorage.getItem("name");
+        setInputVerifiedBy(name);
+    },[])
 
     const consultationtypeinput = (e) => {
         setInputConsultationType(e.target.value);
@@ -44,8 +49,8 @@ const Form = ({collectionname, setStateUpdate}) =>{
     const foodtypeinput = (e) => {
         setInputFoodType(e.target.value);
     }
-    const foodchargesinput = (e) =>{
-        setInputFoodCharges(e.target.value);
+    const chargesinput = (e) =>{
+        setInputCharges(e.target.value);
     }
     const pbtypeinput = (e) => {
         setInputPBType(e.target.value);
@@ -73,6 +78,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
     }
     const nameinput = (e) => {
         setInputName(e.target.value);
+        samename ? setInputCName(e.target.value) : setInputCName("");
     }
     const descinput = (e) => {
         setInputDesc(e.target.value);
@@ -107,11 +113,31 @@ const Form = ({collectionname, setStateUpdate}) =>{
     const availableinput = (e) => {
         setInputAvailable(e.target.checked);
     }
+
+    useEffect(()=>{
+        let namefield=document.getElementById("name");
+        let cnumfield=document.getElementById("cnum");
+        if (collectionname!=="/onlinedoc")
+        {
+            namefield.required=true;
+            cnumfield.required=true;
+        }
+        let verifier = document.getElementById("verifier");
+        if (inputverified==="0")
+        {   
+            verifier.required=true;
+        }
+        else
+        {   
+            verifier.required=false;
+        }
+    },[inputverified, collectionname]);
+
     
     const setLink = (e) =>{
     e.preventDefault();
-    if (inputname!==""&&inputcontactname!==""&&inputcontactnum!=="")
-    {
+    if (inputcontactname!==""&&inputverified!=="")
+    {   
         if (collectionname==="/ambulance"||collectionname==="/bed"||collectionname==="/hometesting"||collectionname==="/tele")
         {   
             setBtnTxt("PLEASE WAIT");
@@ -329,7 +355,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
         }
         else if (collectionname==="/food")
         {   
-            if(inputfoodtype!==""&&inputfoodcharges!=="")
+            if(inputfoodtype!==""&&inputcharges!=="")
             {
             setBtnTxt("PLEASE WAIT");
             let btn = document.getElementById("add-btn");
@@ -350,7 +376,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                 source : inputsource,
                 available : inputavailable,
                 type : inputfoodtype,
-                charges: inputfoodcharges
+                charges: inputcharges
             }))
             .then(() => {
                 setInputName("");
@@ -366,7 +392,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                 setInputSource("");                
                 setInputAvailable(false);
                 setInputFoodType("");
-                setInputFoodCharges("");
+                setInputCharges("");
                 setStateUpdate(true);
                 setTry("Your Entry has Been Added Below.")
                 let success = document.getElementById("add-link");
@@ -405,7 +431,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
         }
         else if (collectionname==="/onlinedoc")
         {   
-            if(inputconsultationtype!=="")
+            if(inputcharges!=="")
             {
             setBtnTxt("PLEASE WAIT");
             let btn = document.getElementById("add-btn");
@@ -426,6 +452,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                 source : inputsource,
                 available : inputavailable,
                 type : inputconsultationtype,
+                charges : inputcharges
             }))
             .then(() => {
                 setInputName("");
@@ -441,6 +468,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                 setInputSource("");                
                 setInputAvailable(false);
                 setInputConsultationType();
+                setInputCharges("")
                 setStateUpdate(true);
                 setTry("Your Entry has Been Added Below.")
                 let success = document.getElementById("add-link");
@@ -654,6 +682,9 @@ const Form = ({collectionname, setStateUpdate}) =>{
 
         let btn = document.getElementById("btn-flex");
         btn.classList.toggle("btn-flex-open");
+
+        let disclaimer = document.getElementById("entry-disclaimer");
+        disclaimer.classList.toggle("entry-disclaimer-open");
     };
 
     const useStyles = makeStyles(() => ({
@@ -689,15 +720,41 @@ const Form = ({collectionname, setStateUpdate}) =>{
 
     const classes = useStyles();
 
+    const NameCheck = () => {
+        setSameName(!samename);
+        let check = document.getElementById("contact-name").checked;
+        if (check===true)
+        {
+            setInputCName(inputname);
+        }
+        else
+        {
+            setInputCName("");
+        }
+    }
+
+
     return( 
-      <div className="entry-form" id="form">
+      <form className="entry-form" id="form" onSubmit={setLink}>
             <div className="form-title-container" onClick={forminput}>
                 <div className="form-title">Add New Data</div>
-                    <div className="form-btn" >
-                        <div className="line1" id="l1"></div>
-                        <div className="line2" id="l2"></div>
-                    </div>
+                <div className="form-btn" >
+                    <div className="line1" id="l1"></div>
+                    <div className="line2" id="l2"></div>
                 </div>
+            </div>
+
+            <div className="entry-disclaimer" id="entry-disclaimer">
+                Note:
+                <br/>
+                Fields With ' * ' Are Compulsory.
+                <br/>
+                All Information Entered Will be Displayed as Cards Below.
+                <br/>
+                Please Fill All Details With Caution.
+                <br/>
+                Please Leave Fields Empty If Not Applicable. 
+            </div>
 
             <div className="form-container" id="entry-form">
 
@@ -705,36 +762,75 @@ const Form = ({collectionname, setStateUpdate}) =>{
             <div className="form-details" id="form-input">
             <div className="form-data-title">Service Details</div>
                 <div className="input-flex" >   
-                    <label className="label">Name<div className="red">*</div></label>
-                    <input className="input" value={inputname} onChange={nameinput} type="text" placeholder="Service Name" ></input>
+                    <label className="label">Name 
+
+                    {
+                    (()=> {
+                    if (collectionname==="/onlinedoc")
+                    {   
+                        <></> 
+                    }                    
+                    else
+                    {   
+                        return(
+                        <div className="red">*</div>
+                        );
+                    }   
+                    })()
+                    }
+
+                    </label>
+                    <input className="input" id="name" value={inputname} onChange={nameinput} type="text" placeholder="Service Name"></input>
                 </div>
                 <div className="input-flex" >   
                     <label className="label">Description</label>
-                    <input className="input" value={inputdesc} onChange={descinput} type="text" placeholder="Service Description" ></input>
+                    <input className="input" value={inputdesc} onChange={descinput} type="text" placeholder="Service Description"></input>
                 </div>
                 <div className="input-flex" >   
                     <label className="label">Location</label>
-                    <input className="input" value={inputlocation} onChange={locinput} type="text" placeholder="Service Location" ></input>
+                    <input className="input" value={inputlocation} onChange={locinput} type="text" placeholder="Service Location"></input>
                 </div>
                 <div className="input-flex" >   
                     <label className="label">Timings</label>
-                    <input className="input" value={inputtiming} onChange={timeinput} type="text" placeholder="Service Timings" ></input>
+                    <input className="input" value={inputtiming} onChange={timeinput} type="text" placeholder="Service Timings"></input>
                 </div>
             </div>
             
             <div className="form-details" id="form-input">
             <div className="form-data-title">Contact Information</div>
-                <div className="input-flex" >   
-                    <label className="label">Contact Name<div className="red">*</div></label>
-                    <input className="input" value={inputcontactname} onChange={cnameinput} type="text" placeholder="Contact Name"></input>
+                <div className="input-flex">
+                    <label className="service-contact-label">Same as Service Name</label>
+                    <div className="service-checkbox-container">
+                    <input className="checkbox" type="checkbox" checked={samename} id="contact-name" onChange={NameCheck}/>
+                    <label htmlFor="contact-name" className="switch"></label> 
+                    </div> 
                 </div>
                 <div className="input-flex" >   
-                    <label className="label">Contact Number<div className="red">*</div></label>
-                    <input className="input" value={inputcontactnum} onChange={cnuminput} type="tel" placeholder="Contact Number" minLength="10" maxLength="13"></input>
+                    <label className="label">Name<div className="red">*</div></label>
+                    <input className="input" value={samename ? inputname : inputcontactname} onChange={samename ? "" : cnameinput} type="text" placeholder="Contact Name"></input>
                 </div>
                 <div className="input-flex" >   
-                    <label className="label">Contact Email</label>
-                    <input className="input" value={inputcontactemail} onChange={cemailinput} type="email" placeholder="Contact E-mail"></input>
+                    <label className="label">Number
+                    {
+                    (()=> {
+                    if (collectionname==="/onlinedoc")
+                    {   
+                        <></> 
+                    }                    
+                    else
+                    {   
+                        return(
+                        <div className="red">*</div>
+                        );
+                    }   
+                    })()
+                    }
+                    </label>
+                    <input className="input" id="cnum" value={inputcontactnum} onChange={cnuminput} type="number" placeholder="Contact Number" minLength="7" maxLength="13"></input>
+                </div>
+                <div className="input-flex" >   
+                    <label className="label">Email</label>
+                    <input className="input" value={inputcontactemail} onChange={cemailinput} type="email" placeholder="email@email.com"></input>
                 </div>
                 <div className="input-flex" >   
                     <label className="label">Link</label>
@@ -759,7 +855,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                         onChange={verifiedinput}
                         placeholder="Verification Status"
                         className={classes.inputfield}
-                        required
                         >
                         <MenuItem value={"0"}
                         fontSize="0.8rem"
@@ -776,7 +871,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                 </div>
                 <div className="input-flex" >   
                     <label className="label">Verified By</label>
-                    <input className="input" value={inputverifiedby} onChange={verifiedbyinput} type="text" placeholder="Name of Verifier"></input>
+                    <input id="verifier" className="input" value={inputverifiedby} onChange={verifiedbyinput} type="text" placeholder="Name of Verifier"></input>
                 </div>
                 <div className="input-flex" >       
                     <label className="label">Source</label>
@@ -799,7 +894,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                         <div className="form-details" id="form-input">
                         <div className="form-data-title">Information</div>
                             <div className="input-flex" >   
-                                <label className="label">Donation Type<div className="red">*</div></label>
+                                <label className="label">Type<div className="red">*</div></label>
                                 <FormControl className={classes.formControl}>
                                     <InputLabel
                                     fontSize="0.8rem"
@@ -810,7 +905,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         value={inputpbtype}
                                         onChange={pbtypeinput}
                                         className={classes.inputfield}
-                                        required
                                         >
                                         <MenuItem value={"0"}
                                         fontSize="0.8rem"
@@ -886,7 +980,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         value={inputfoodtype}
                                         onChange={foodtypeinput}
                                         className={classes.inputfield}
-                                        required
                                         >
                                         <MenuItem value={"0"}
                                         fontSize="0.8rem"
@@ -907,12 +1000,11 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                     fontSize="0.8rem"
                                     fontWeight={500}
                                     className={classes.input}
-                                    >Food Type</InputLabel>
+                                    >Charges</InputLabel>
                                     <Select
-                                        value={inputfoodcharges}
-                                        onChange={foodchargesinput}
+                                        value={inputcharges}
+                                        onChange={chargesinput}
                                         className={classes.inputfield}
-                                        required
                                         >
                                         <MenuItem value={"0"}
                                         fontSize="0.8rem"
@@ -947,7 +1039,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         value={inputmedtype}
                                         onChange={medtypeinput}
                                         className={classes.inputfield}
-                                        required
                                         >
                                         <MenuItem value={"0"}
                                         fontSize="0.8rem"
@@ -973,7 +1064,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         value={inputomrcondition}
                                         onChange={omrconditioninput}
                                         className={classes.inputfield}
-                                        required
                                         >
                                         <MenuItem value={"0"}
                                         fontSize="0.8rem"
@@ -1006,7 +1096,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                         <div className="form-details" id="form-input">
                         <div className="form-data-title">Information</div>
                             <div className="input-flex" >   
-                                <label className="label">Type<div className="red">*</div></label>
+                                <label className="label">Type</label>
                                 <FormControl className={classes.formControl}>
                                     <InputLabel 
                                     fontSize="0.8rem"
@@ -1017,7 +1107,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         value={inputconsultationtype}
                                         onChange={consultationtypeinput}
                                         className={classes.inputfield}
-                                        required
                                         >
                                         <MenuItem value={"0"}
                                         fontSize="0.8rem"
@@ -1025,6 +1114,28 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         <MenuItem value={"1"}
                                         fontSize="0.8rem"
                                         className={classes.item}>Home</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </div>
+                            <div className="input-flex" >   
+                                <label className="label">Charges<div className="red">*</div></label>
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel 
+                                    fontSize="0.8rem"
+                                    fontWeight={500}
+                                    className={classes.input}
+                                    >Charges</InputLabel>
+                                    <Select
+                                        value={inputcharges}
+                                        onChange={chargesinput}
+                                        className={classes.inputfield}
+                                        >
+                                        <MenuItem value={"0"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Paid</MenuItem>
+                                        <MenuItem value={"1"}
+                                        fontSize="0.8rem"
+                                        className={classes.item}>Free</MenuItem>
                                     </Select>
                                 </FormControl>
                             </div>
@@ -1039,8 +1150,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                             <div className="input-flex" >       
                                 <label className="label">Type<div className="red">*</div></label>
                                 <FormControl className={classes.formControl}>
-                                    <InputLabel 
-                                    color="var(--lgrey)" 
+                                    <InputLabel
                                     fontSize="0.8rem"
                                     fontWeight={500}
                                     className={classes.input}
@@ -1049,7 +1159,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         value={inputoxygentype}
                                         onChange={oxygentypeinput}
                                         className={classes.inputfield}
-                                        required
                                         >
                                         <MenuItem value={"0"}
                                         fontSize="0.8rem"
@@ -1075,7 +1184,6 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         value={inputomrcondition}
                                         onChange={omrconditioninput}
                                         className={classes.inputfield}
-                                        required
                                         >
                                         <MenuItem value={"0"}
                                         fontSize="0.8rem"
@@ -1094,39 +1202,7 @@ const Form = ({collectionname, setStateUpdate}) =>{
                                         className={classes.item}>Rental</MenuItem>
                                     </Select>
                                 </FormControl>
-                            </div>
-                            <div className="input-flex" >   
-                                <label className="label">Condition<div className="red">*</div></label>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel 
-                                    fontSize="0.8rem"
-                                    fontWeight={500}
-                                    className={classes.input}
-                                    >Oxygen Condition</InputLabel>
-                                    <Select
-                                        value={inputomrcondition}
-                                        onChange={omrconditioninput}
-                                        className={classes.inputfield}
-                                        required
-                                        >
-                                        <MenuItem value={"0"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>No Stock</MenuItem>
-                                        <MenuItem value={"1"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Black Market</MenuItem>
-                                        <MenuItem value={"2"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Purchase</MenuItem>
-                                        <MenuItem value={"3"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Waiting Period</MenuItem>
-                                        <MenuItem value={"4"}
-                                        fontSize="0.8rem"
-                                        className={classes.item}>Rental</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </div>
+                            </div>                      
                             <div className="input-flex" >   
                                 <label className="label">Capacity<div className="red">*</div></label>
                                 <input className="input" value={inputcapacity} onChange={capacityinput} type="text" placeholder="Capacity"></input>
@@ -1145,9 +1221,9 @@ const Form = ({collectionname, setStateUpdate}) =>{
         </div>
         <div className="btn-flex" id="btn-flex">
             <div className="try" id="add-link">{inputtry}</div>
-            <button type="submit" className="add-link-btn" onClick={setLink} id="add-btn">{btntxt}</button>
+            <button type="submit" className="add-link-btn" id="add-btn">{btntxt}</button>
         </div>
-    </div>      
+    </form>      
     );
 
 };

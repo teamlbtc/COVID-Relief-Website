@@ -110,7 +110,6 @@ const Data = (
     const [medtypetext, setMedTypeText] = useState();
     const [oxytypetext, setOxyTypeText] = useState();
 
-    
     useEffect(()=>{
         if(available===true)
         {
@@ -419,6 +418,10 @@ const Data = (
             setEditMedName={setEditMedName}
             editmedtype={editmedtype}
             setEditMedType={setEditMedType}
+            editmedcondition={editomrcondition}
+            setEditMedCondition={setEditOMRCondition}
+            editMedprice={editprice}
+            setEditMedPrice={setEditPrice}
             editbloodgroup={editbloodgroup}
             setEditBloodGroup={setEditBloodGroup}
             editrecoverydate={editrecoverydate}
@@ -544,8 +547,9 @@ const Data = (
                 }
                 })()
             }
+            
             <div className="data-container">
-            <div className="details" onClick={detailsbtn}>More...</div> 
+            <div className="details" onClick={detailsbtn}>More...</div>
                 <div className="contact-info">
                 <a href={`tel:${contact_number}`}
                 className="contact-icon"
@@ -585,6 +589,7 @@ const Data = (
                 </a>             
                 </div>
             </div>
+            
         </div>
 
         <div className="details-card-cover" id={id} onClick={closemodal}>
@@ -754,7 +759,7 @@ const Data = (
             <div className="data-container">
             <div className="contact-label">{contact_name}</div> 
                 <div className="contact-info">
-                <a className="contact-icon"  
+                <a className="contact-icon"
                 href={`tel:${contact_number}`}
                 style={{fill: `${numcolor}`, pointerEvents: `${numpoint}`}}>
                     <svg 
